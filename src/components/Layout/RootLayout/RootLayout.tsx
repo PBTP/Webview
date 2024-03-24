@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './RootLayout.module.scss';
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 
 const RootLayout = () => {
   return (
