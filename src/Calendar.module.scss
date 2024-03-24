@@ -1,0 +1,21 @@
+
+// 날짜가 오늘보다 이전인 날짜 
+:global(.past-date) {
+  color: #DBDEE2;
+  text-decoration: line-through;
+  pointer-events: none;
+}
+
+
+// 현재 active 날짜
+:global(.react-calendar__tile--active) {
+  background-color: #8B95A1;
+  border-radius: 8px;
+}
+
+// 요일
+:global(.react-calendar__month-view__weekdays) {
+  color: #7D8691;
+  font-size: 13px;
+  text-decoration: none;
+}
