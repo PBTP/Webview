@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.module.scss';
+import ArrowIcon from '@/icons/logo/ArrowIcon';
 
 const CMCalendar = () => {
   const [date, setDate] = useState(new Date()); // 현재 날짜로 초기화
@@ -24,6 +25,7 @@ const CMCalendar = () => {
       date1.getFullYear() === date2.getFullYear()
     );
   };
+
   return (
     <>
       <Calendar
@@ -34,6 +36,12 @@ const CMCalendar = () => {
         prev2Label={null} // -1년 & -10년 이동 버튼 숨기기
         minDetail="year" // 10년단위 년도 숨기기
         tileClassName={tileClassName}
+        prevLabel={
+          <ArrowIcon width={20} height={20} stroke="#8B95A1" fill="none" />
+        }
+        nextLabel={
+          <ArrowIcon width={20} height={20} stroke="black" fill="none" />
+        }
       />
     </>
   );

@@ -13,9 +13,20 @@
   border-radius: 8px;
 }
 
-// 요일
+// [일,월,화,수] 표시 요일
 :global(.react-calendar__month-view__weekdays) {
   color: #7D8691;
   font-size: 13px;
   text-decoration: none;
+}
+
+// prev month 버튼 
+:global(.react-calendar__navigation__arrow,.react-calendar__navigation__prev-button) {
+  > img,svg {
+    transform: rotate(180deg); /* 화살표를 180도 돌립니다. */
+  }
+}
+
+:global(.react-calendar__tile .react-calendar__month-view__days__day) {
+  color: red
 }
