@@ -7,6 +7,7 @@ button {
     color: #fff;
   }
   &.White {
+    background-color: #fff;
     border: 1px solid $gray300;
     color: $gray500;
   }
@@ -14,8 +15,13 @@ button {
     background-color: $primary;
     color: #fff;
   }
-  &.disabled {
+  &.Disabled {
     background-color: $gray300;
     color: #fff;
+  }
+  &.Reserved {
+    background-color: #fff;
+    border: 1px solid $gray200;
+    color: $gray100;
   }
 }
