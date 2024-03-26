@@ -1,0 +1,21 @@
+@import '@/styles/theme.scss';
+
+button {
+  border-radius: 8px;
+  &.Gray {
+    background-color: $gray500;
+    color: #fff;
+  }
+  &.White {
+    border: 1px solid $gray300;
+    color: $gray500;
+  }
+  &.Primary {
+    background-color: $primary;
+    color: #fff;
+  }
+  &.disabled {
+    background-color: $gray300;
+    color: #fff;
+  }
+}
