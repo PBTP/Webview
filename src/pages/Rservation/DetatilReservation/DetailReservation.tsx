@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './DetailReservation.module.scss';
 import ContentField from '@/components/common/ContentField/ContentField';
 import Button from '@/components/common/Button/Button';
-import { CalendarIcon, CheckboxIcon, MarkerIcon } from '@/icons/Icon';
+import { CalendarIcon, CheckboxIcon, MarkerIcon } from '@/icons/icon';
 
 const DetailReservation = () => {
   // const location = useLocation();

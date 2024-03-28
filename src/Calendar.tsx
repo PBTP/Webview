@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.module.scss';
-import { ArrowIcon } from './icons/Icon';
+import { ArrowIcon } from './icons/icon';
 import { Value } from 'node_modules/react-calendar/dist/cjs/shared/types';
 
 const CMCalendar = () => {
