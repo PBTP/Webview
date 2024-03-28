@@ -1,4 +1,4 @@
-import ArrowSvg from '@/assets/arrow_right.svg?react';
+import ArrowSvg from '@/assets/icon/arrow_right.svg?react';
 import { IconProps } from '../types';
 /**
  *

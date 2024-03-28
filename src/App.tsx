@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ViteLogoIcon, ReactLogoIcon } from './icons';
 import CMCalendar from './Calendar';
+import { ReactLogoIcon, ViteLogoIcon } from './icons/logo';
 
 function App() {
   const [count, setCount] = useState(0);
