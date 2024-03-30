@@ -26,14 +26,18 @@ const DetailReservation = () => {
       <div className={styles.ReservationWrapper}>
         <div className={styles.Title}>예약 일정</div>
         <ContentField className={styles.DateContent} backgroundColor="Gray">
-          <CalendarIcon width={18} height={18} stroke="#535961" />
+          <CalendarIcon
+            className={styles.CalendarIcon}
+            width={18}
+            height={18}
+          />
           <div className={styles.Date}>2023.03.15 오후 1:00</div>
         </ContentField>
       </div>
       <div className={styles.ParkingInfoWrapper}>
         <div className={styles.Title}>방문 주차 위치</div>
         <ContentField className={styles.ParkingInfo} backgroundColor="Gray">
-          <MarkerIcon width={18} height={18} stroke="#535961" />
+          <MarkerIcon className={styles.MarkerIcon} width={18} height={18} />
           <div className={styles.Address}>서울시 양천구 목동</div>
         </ContentField>
         <ContentField className={styles.DetailAddress} backgroundColor="Gray">

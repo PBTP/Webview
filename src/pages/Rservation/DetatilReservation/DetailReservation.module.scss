@@ -49,6 +49,10 @@
     gap: 8px;
     align-items: center;
 
+    > .CalendarIcon {
+      stroke: $gray800;
+    }
+
     > .Date {
       color: $gray700;
       font-size: 14px;
@@ -67,6 +71,10 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 8px;
+
+    > .MarkerIcon {
+      stroke: $gray800;
+    }
 
     > .Address {
       color: $gray700;
