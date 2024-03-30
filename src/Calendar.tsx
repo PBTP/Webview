@@ -42,7 +42,7 @@ const CMCalendar = () => {
         nextLabel={
           <ArrowIcon width={20} height={20} stroke="black" fill="none" />
         }
-        formatDay={(locale, date) =>
+        formatDay={(_locale, date) =>
           date.toLocaleString('en', { day: 'numeric' })
         }
         showNeighboringMonth={false}
