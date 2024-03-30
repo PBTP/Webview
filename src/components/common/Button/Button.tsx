@@ -5,7 +5,7 @@ type ButtonProps = {
   buttonType: 'Gray' | 'White' | 'Primary' | 'Disabled' | 'Reserved';
   children?: ReactNode;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Button = ({ children, buttonType, className, onClick }: ButtonProps) => {
