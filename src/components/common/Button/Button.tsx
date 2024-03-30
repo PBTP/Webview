@@ -2,7 +2,14 @@ import React, { ReactNode } from 'react';
 import styles from './Button.module.scss';
 
 type ButtonProps = {
-  buttonType: 'Gray' | 'White' | 'Primary' | 'Disabled' | 'Reserved';
+  buttonType:
+    | 'Gray'
+    | 'White'
+    | 'Primary'
+    | 'Disabled'
+    | 'Reserved'
+    | 'Gray400'
+    | 'TimeDisabled';
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
