@@ -6,6 +6,10 @@
   width: auto;
 }
 
+:global(.react-calendar__navigation button) {
+  min-width: auto;
+}
+
 // 날짜 텍스트 컬러 
 :global(.react-calendar__month-view__days__day) {
   color :$gray500;
@@ -24,7 +28,7 @@
 
 // 날짜를 클릭해서 focused 상태인경우
 :global(.react-calendar__tile--active:enabled:focus) {
-  background-color: $gray500; // 400
+  background-color: $gray400; 
 }
 
 
@@ -36,7 +40,7 @@
 
 // today active 날짜
 :global(.react-calendar__tile--active) {
-  background-color: $gray500; // 400
+  background-color: $gray400; 
   border-radius: 8px;
   color: #fff;
 }
@@ -63,7 +67,7 @@
 }
 
 .PrevArrowIcon {
-  stroke: $gray500; //400
+  stroke: $gray400; //400
 }
 
 .NextArrowIcon {

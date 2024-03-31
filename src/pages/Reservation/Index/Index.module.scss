@@ -1,0 +1,37 @@
+@import '@/styles/theme.scss';
+
+.Title {
+  color: $black;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px; /* 146.667% */
+}
+
+.DividerWrap {
+  margin: 26px 0;
+}
+
+.TimeWrap {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  > .TimeButton {
+    padding: 12px 14px;
+    flex-basis: calc(20% - 10px); /* 한 행에 최대 5개의 요소가 들어가도록 설정 */
+    margin-bottom: 10px; /* 요소들 간의 세로 간격 */
+  }
+}
+
+.NavigateWrap {
+  margin-top: 58px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  > button {
+    text-align: center;
+    padding: 17px 67.75px;
+    flex:1;
+  }
+}
