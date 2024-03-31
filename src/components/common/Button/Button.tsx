@@ -8,7 +8,7 @@ type ButtonProps = {
     | 'Primary'
     | 'Disabled'
     | 'Reserved'
-    | 'Gray400'
+    | 'TimeActive'
     | 'TimeDisabled';
   children?: ReactNode;
   className?: string;
