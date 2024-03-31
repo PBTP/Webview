@@ -49,6 +49,10 @@
     gap: 8px;
     align-items: center;
 
+    > .CalendarIcon {
+      stroke: $gray800;
+    }
+
     > .Date {
       color: $gray700;
       font-size: 14px;
@@ -68,6 +72,10 @@
     gap: 8px;
     margin-bottom: 8px;
 
+    > .MarkerIcon {
+      stroke: $gray800;
+    }
+
     > .Address {
       color: $gray700;
       font-size: 14px;
@@ -78,6 +86,15 @@
 
   > .DetailAddress {
     padding: 12px 16px;
+
+    > input {
+      &::placeholder {
+        color: $gray300;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+      }
+    }
   }
 }
 
@@ -112,10 +129,27 @@
   > .Telecom {
     padding: 12px 16px;
     margin-bottom: 8px;
+
+    > input {
+      font-size: 18px;
+      &::placeholder {
+        color: $gray300;
+        font-weight: 500;
+        line-height: 22px;
+      }
+    }
   }
 
   > .Phone {
     padding: 12px 16px;
+    > input {
+      font-size: 18px;
+      &::placeholder {
+        color: $gray300;
+        font-weight: 500;
+        line-height: 22px;
+      }
+    }
   }
 }
 

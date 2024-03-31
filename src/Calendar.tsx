@@ -2,15 +2,16 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.module.scss';
-import ArrowIcon from '@/icons/logo/ArrowIcon';
+import { ArrowIcon } from './icons/icon';
+import { Value } from 'node_modules/react-calendar/dist/cjs/shared/types';
 
 const CMCalendar = () => {
-  const [date, setDate] = useState(new Date()); // 현재 날짜로 초기화
+  const [date, setDate] = useState<Value>(new Date()); // 현재 날짜로 초기화
 
-  const onChange = (selectedDate: any) => {
+  const onChange = (selectedDate: Value) => {
     setDate(selectedDate);
   };
-  const tileClassName = ({ date, view }: any) => {
+  const tileClassName = ({ date, view }: { date: Date; view: string }) => {
     // 오늘 이전의 날짜를 다르게 스타일링합니다.
     if (view === 'month' && date < new Date() && !isSameDay(date, new Date())) {
       return 'past-date';
@@ -18,7 +19,7 @@ const CMCalendar = () => {
     return '';
   };
 
-  const isSameDay = (date1: any, date2: any) => {
+  const isSameDay = (date1: Date, date2: Date) => {
     return (
       date1.getDate() === date2.getDate() &&
       date1.getMonth() === date2.getMonth() &&

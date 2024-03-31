@@ -1,8 +1,9 @@
 import React from 'react';
 
-import styles from './DetailRservation.module.scss';
+import styles from './DetailReservation.module.scss';
 import ContentField from '@/components/common/ContentField/ContentField';
 import Button from '@/components/common/Button/Button';
+import { CalendarIcon, CheckboxIcon, MarkerIcon } from '@/icons/icon';
 
 const DetailReservation = () => {
   // const location = useLocation();
@@ -25,14 +26,18 @@ const DetailReservation = () => {
       <div className={styles.ReservationWrapper}>
         <div className={styles.Title}>예약 일정</div>
         <ContentField className={styles.DateContent} backgroundColor="Gray">
-          <div>달력 아이콘</div>
+          <CalendarIcon
+            className={styles.CalendarIcon}
+            width={18}
+            height={18}
+          />
           <div className={styles.Date}>2023.03.15 오후 1:00</div>
         </ContentField>
       </div>
       <div className={styles.ParkingInfoWrapper}>
         <div className={styles.Title}>방문 주차 위치</div>
         <ContentField className={styles.ParkingInfo} backgroundColor="Gray">
-          <div>지도 아이콘</div>
+          <MarkerIcon className={styles.MarkerIcon} width={18} height={18} />
           <div className={styles.Address}>서울시 양천구 목동</div>
         </ContentField>
         <ContentField className={styles.DetailAddress} backgroundColor="Gray">
@@ -41,7 +46,7 @@ const DetailReservation = () => {
       </div>
       <div className={styles.ParkingCheckBoxWrapper}>
         <div className={styles.ParkingCheckBoxContainer}>
-          <div>체크박스</div>
+          <CheckboxIcon width={20} height={20} />
           <div className={styles.CheckBoxText}>
             주차 공간이 마련되어 있습니다.
           </div>
@@ -113,7 +118,7 @@ const DetailReservation = () => {
       <div className={styles.BusinessRulesWrapper}>
         <div className={styles.Title}>업체 규정 확인</div>
         <div className={styles.RulesCheckBoxWrapper}>
-          <div>체크박스</div>
+          <CheckboxIcon width={20} height={20} />
           <div>업체 규정 및 약관을 확인했습니다.</div>
         </div>
         <div className={styles.RulesDescription}>
