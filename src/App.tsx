@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CMCalendar from './Calendar';
+import CMCalendar from './components/common/Calendar/Calendar';
 import { ReactLogoIcon, ViteLogoIcon } from './icons/logo';
 
 function App() {

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.module.scss';
-import { ArrowIcon } from './icons/icon';
 import { Value } from 'node_modules/react-calendar/dist/cjs/shared/types';
-
+import { ArrowIcon } from '@/icons/icon';
+import styles from './Calendar.module.scss';
 const CMCalendar = () => {
   const [date, setDate] = useState<Value>(new Date()); // 현재 날짜로 초기화
 
@@ -38,10 +38,20 @@ const CMCalendar = () => {
         minDetail="year" // 10년단위 년도 숨기기
         tileClassName={tileClassName}
         prevLabel={
-          <ArrowIcon width={20} height={20} stroke="#8B95A1" fill="none" />
+          <ArrowIcon
+            width={20}
+            height={20}
+            className={styles.PrevArrowIcon}
+            fill="none"
+          />
         }
         nextLabel={
-          <ArrowIcon width={20} height={20} stroke="black" fill="none" />
+          <ArrowIcon
+            width={20}
+            height={20}
+            className={styles.NextArrowIcon}
+            fill="none"
+          />
         }
         formatDay={(_locale, date) =>
           date.toLocaleString('en', { day: 'numeric' })
