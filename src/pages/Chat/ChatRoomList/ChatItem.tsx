@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ChatItem.module.scss';
 import { IChatItem } from '../types';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 type ChatItemProps = {
   chatInfo: IChatItem;
