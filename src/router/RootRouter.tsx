@@ -1,7 +1,7 @@
-import App from '@/App';
 import RootLayout from '@/components/Layout/RootLayout/RootLayout';
 import DetailReservation from '@/pages/Reservation/Detail/DetailReservation';
 import ReservationIndexPage from '@/pages/Reservation/Index/Index';
+import ChatRoom from '@/pages/Chat/ChatRoom/ChatRoom';
 import ChatRoomList from '@/pages/Chat/ChatRoomList/ChatRoomList';
 import {
   createBrowserRouter,
@@ -16,6 +16,7 @@ export const RootRouter = () => {
       <Route path="/" element={<RootLayout />}>
         <Route path="chat-list" element={<ChatRoomList />} />
         <Route path="reservation" element={<ReservationIndexPage />} />
+        <Route path="chat-list/*" element={<ChatRoom />} />
         <Route path="reservation/*" element={<DetailReservation />} />
       </Route>
     )
