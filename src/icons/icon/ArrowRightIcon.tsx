@@ -1,19 +1,18 @@
-import ArrowSvg from '@/assets/icon/arrow_right.svg?react';
+import ArrowRightSvg from '@/assets/icon/arrow_right.svg?react';
 import { IconProps } from '../types';
 /**
  *
  * 해당 아이콘은 fill값이 default none입니다.
  */
-const ArrowIcon = ({ width, height, fill, stroke, className }: IconProps) => {
+const ArrowRightIcon = ({ width, height, stroke, className }: IconProps) => {
   return (
-    <ArrowSvg
+    <ArrowRightSvg
       className={className}
       width={width}
       height={height}
-      fill={fill}
       stroke={stroke}
     />
   );
 };
 
-export default ArrowIcon;
+export default ArrowRightIcon;
