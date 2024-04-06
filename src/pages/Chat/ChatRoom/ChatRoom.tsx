@@ -47,7 +47,8 @@ const ChatRoom = () => {
       <div className={styles.ChatInputWrapper}>
         <PlusIcon className={styles.PlusIcon} width={24} height={24} />
         <div className={styles.ChatInputContent}>
-          <input
+          <textarea
+            rows={1}
             className={styles.ChatInput}
             placeholder="메시지를 입력하세요"
           />
