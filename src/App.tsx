@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { ViteLogoIcon, ReactLogoIcon } from './icons';
-import CMCalendar from './Calendar';
-
+import { ReactLogoIcon, ViteLogoIcon } from './icons/logo';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -27,7 +25,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <CMCalendar />
     </>
   );
 }
