@@ -6,6 +6,7 @@ async function initMocks() {
     const { worker } = await import('./browser.js');
     worker.start();
   }
+  return Promise.resolve();
 }
 
 export default initMocks;

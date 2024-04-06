@@ -6,7 +6,10 @@ import { RootRouter } from './router/RootRouter';
 import initMocks from '@/mocks/index.js';
 
 if (import.meta.env.DEV) {
-  await initMocks();
+  await (async () => {
+    console.log('MSW 준비완료?');
+    initMocks();
+  })();
 }
 
 const queryClient = new QueryClient();
