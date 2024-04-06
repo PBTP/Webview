@@ -39,6 +39,13 @@ input {
   background-color: transparent;
 }
 
+textarea {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  resize: vertical;
+}
+
 button {
   border: none;
   cursor: pointer;
