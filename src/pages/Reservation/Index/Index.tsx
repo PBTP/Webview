@@ -11,9 +11,7 @@ const ReservationIndexPage = () => {
     <div>
       <div className={styles.Title}>예약 스케쥴</div>
       <CMCalendar />
-      <div className={styles.DividerWrap}>
-        <div className="Divider" />
-      </div>
+      <div className={`Divider Reservation`} />
       <div className={styles.Title}>오전</div>
       <div className={styles.TimeWrap}>
         <Button buttonType="White" className={styles.TimeButton}>

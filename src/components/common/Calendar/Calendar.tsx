@@ -3,28 +3,14 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.module.scss';
 import { Value } from 'node_modules/react-calendar/dist/cjs/shared/types';
-import { ArrowIcon } from '@/icons/icon';
+import { ArrowRightIcon } from '@/icons/icon';
 import styles from './Calendar.module.scss';
+import { tileClassName } from '@/utils/date';
 const CMCalendar = () => {
   const [date, setDate] = useState<Value>(new Date()); // 현재 날짜로 초기화
 
   const onChange = (selectedDate: Value) => {
     setDate(selectedDate);
-  };
-  const tileClassName = ({ date, view }: { date: Date; view: string }) => {
-    // 오늘 이전의 날짜를 다르게 스타일링합니다.
-    if (view === 'month' && date < new Date() && !isSameDay(date, new Date())) {
-      return 'past-date';
-    }
-    return '';
-  };
-
-  const isSameDay = (date1: Date, date2: Date) => {
-    return (
-      date1.getDate() === date2.getDate() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getFullYear() === date2.getFullYear()
-    );
   };
 
   return (
@@ -38,19 +24,17 @@ const CMCalendar = () => {
         minDetail="year" // 10년단위 년도 숨기기
         tileClassName={tileClassName}
         prevLabel={
-          <ArrowIcon
+          <ArrowRightIcon
             width={20}
             height={20}
             className={styles.PrevArrowIcon}
-            fill="none"
           />
         }
         nextLabel={
-          <ArrowIcon
+          <ArrowRightIcon
             width={20}
             height={20}
             className={styles.NextArrowIcon}
-            fill="none"
           />
         }
         formatDay={(_locale, date) =>

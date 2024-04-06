@@ -46,4 +46,7 @@ button {
 
 .Divider {
   border: 1px solid $gray300;
+  &.Reservation {
+    margin: 26px 0;
+  }
 }
