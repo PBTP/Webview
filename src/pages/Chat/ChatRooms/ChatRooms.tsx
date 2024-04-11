@@ -22,7 +22,7 @@ const ChatRooms = () => {
       storeName: '개신남 10호점',
       lastDate: '2024-03-31',
       recentChat: '아하 네 알겠습니다 ㅎㅎ',
-      unviewedMsgCount: 2,
+      unViewedMsgCount: 2,
     },
     {
       imgSrc:
@@ -31,7 +31,7 @@ const ChatRooms = () => {
       storeName: '개신남 10호점',
       lastDate: '2024-03-31',
       recentChat: '아하 네 알겠습니다 ㅎㅎ',
-      unviewedMsgCount: 2,
+      unViewedMsgCount: 2,
     },
     {
       imgSrc:
@@ -40,7 +40,7 @@ const ChatRooms = () => {
       storeName: '개신남 10호점',
       lastDate: '2024-03-31',
       recentChat: '아하 네 알겠습니다 ㅎㅎ',
-      unviewedMsgCount: 2,
+      unViewedMsgCount: 2,
     },
   ];
   return (
@@ -60,7 +60,12 @@ const ChatRooms = () => {
           </div>
           <div>
             {mockChatRooms.map((chatInfo: IChatItem) => (
-              <ChatItem key={chatInfo.roomId} chatInfo={chatInfo} />
+              <ChatItem key={chatInfo.roomId} chatInfo={chatInfo}>
+                <ChatItem.ChatItemContent chatInfo={chatInfo} />
+                <ChatItem.ViewCount
+                  unViewedMsgCount={chatInfo.unViewedMsgCount}
+                />
+              </ChatItem>
             ))}
           </div>
         </div>
