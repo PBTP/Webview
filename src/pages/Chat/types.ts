@@ -4,5 +4,5 @@ export interface IChatItem {
   storeName: string;
   lastDate: string;
   recentChat: string;
-  unviewedMsgCount: number;
+  unViewedMsgCount: number;
 }
