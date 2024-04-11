@@ -9,7 +9,8 @@ type ButtonProps = {
     | 'Disabled'
     | 'Reserved'
     | 'TimeActive'
-    | 'TimeDisabled';
+    | 'TimeDisabled'
+    | 'Spacing';
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
