@@ -1,9 +1,6 @@
-import { http } from 'msw';
+import { rest } from 'msw';
+import { reservationAPIList } from './api';
 
-export const handlers = [
-  // Handles a POST /login request
-  http.post('/login', null),
-
-  // Handles a GET /user request
-  http.get('/user', null),
-];
+export function handlers() {
+  return [rest.get('/time', reservationAPIList.getTimes)];
+}
