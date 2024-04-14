@@ -4,17 +4,22 @@ import Button from '@/components/common/Button/Button';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IReservation } from '@/interfaces/reservation';
+import { requestAPI } from '@/utils/fetch';
 
 const ReservationIndexPage = () => {
   const [times, setTimes] = useState<IReservation>();
   const fetchs = async () => {
-    const res = await axios.get('/time');
+    const res = await requestAPI().get('/time');
     console.log(res.data);
     setTimes(res.data);
   };
-
+  const fetch2 = async () => {
+    const res = await requestAPI().get('/todos');
+    console.log(res);
+  };
   useEffect(() => {
     fetchs();
+    fetch2();
   }, []);
   return (
     <div>
