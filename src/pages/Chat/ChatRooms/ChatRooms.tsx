@@ -12,8 +12,6 @@ const ChatRooms = () => {
     setIsEdit((prev) => !prev);
   };
 
-  console.log(isEdit);
-
   const mockChatRooms = [
     {
       imgSrc:
