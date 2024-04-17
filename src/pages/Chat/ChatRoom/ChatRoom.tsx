@@ -4,11 +4,18 @@ import CameraIcon from '@/icons/icon/CameraIcon';
 import PlusIcon from '@/icons/icon/PlusIcon';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
+import { useNavigate } from 'react-router';
+
 const ChatRoom = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.ChatRoomHeader}>
-        <ArrowLeftTailIcon width={24} height={24} />
+        <ArrowLeftTailIcon
+          onClick={() => navigate('/chat-list')}
+          width={24}
+          height={24}
+        />
         <div className={styles.ChatRoomTitle}> 개신남 10호점 </div>
         <DotsVerticalIcon width={24} height={24} />
       </div>

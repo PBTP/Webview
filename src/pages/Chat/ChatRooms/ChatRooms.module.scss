@@ -1,7 +1,7 @@
 @import '@/styles/theme.scss';
 
-.ChatRoomListWrapper {
-  > .ChatRoomListHeader {
+.ChatRoomsWrapper {
+  > .ChatRoomsHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,6 +15,7 @@
 
     > .EditIcon {
       stroke: $gray500;
+      cursor: pointer;
     }
   }
 }
