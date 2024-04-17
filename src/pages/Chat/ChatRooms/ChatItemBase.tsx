@@ -1,34 +1,33 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, createContext } from 'react';
 import styles from './ChatItem.module.scss';
 import { IChatItem } from '../types';
-import { useNavigate } from 'react-router-dom';
 import RadioActiveIcon from '@/icons/icon/RadioActiveIcon';
 import RadioIcon from '@/icons/icon/RadioIcon';
 
-type ChatItemProps = {
-  chatInfo: IChatItem;
+type ChatItemBaseProps = {
   children?: ReactNode;
 };
 
-const ChatItem = ({ chatInfo, children }: ChatItemProps) => {
-  const { roomId, storeName } = chatInfo;
-  const navigate = useNavigate();
+type ChatItemContentProps = {
+  chatInfo: IChatItem;
+  onClick?: () => void;
+};
 
-  const handleChatItem = () => {
-    navigate(`${roomId}`, { state: { roomId, storeName } });
-  };
+const ChatItemContext = createContext('');
 
+const ChatItemBase = ({ children }: ChatItemBaseProps) => {
   return (
-    <div onClick={handleChatItem} className={styles.ChatItemWrapper}>
-      {children}
-    </div>
+    <ChatItemContext.Provider value="">
+      <div className={styles.ChatItemWrapper}>{children}</div>
+    </ChatItemContext.Provider>
   );
 };
 
-const ChatItemContent = ({ chatInfo }: ChatItemProps) => {
+const ChatItemContent = ({ chatInfo, onClick }: ChatItemContentProps) => {
   const { imgSrc, storeName, lastDate, recentChat } = chatInfo;
+
   return (
-    <div className={styles.ChatItemContainer}>
+    <div className={styles.ChatItemContainer} onClick={onClick}>
       <img src={imgSrc} className={styles.ChatImage} />
       <div className={styles.ChatContent}>
         <div className={styles.ChatTitle}>
@@ -41,8 +40,8 @@ const ChatItemContent = ({ chatInfo }: ChatItemProps) => {
   );
 };
 
-const ViewCount = ({ unViewedMsgCount }: { unViewedMsgCount: number }) => {
-  return <div className={styles.ChatCount}>{unViewedMsgCount}</div>;
+const UnViewCount = ({ unViewedMsgCount }: { unViewedMsgCount: number }) => {
+  return <div className={styles.UnViewCount}>{unViewedMsgCount}</div>;
 };
 
 const EditButton = ({ isActive }: { isActive: boolean }) => {
@@ -57,8 +56,8 @@ const EditButton = ({ isActive }: { isActive: boolean }) => {
   );
 };
 
-ChatItem.ChatItemContent = ChatItemContent;
-ChatItem.ViewCount = ViewCount;
-ChatItem.EditButton = EditButton;
+ChatItemBase.ChatItemContent = ChatItemContent;
+ChatItemBase.UnViewCount = UnViewCount;
+ChatItemBase.EditButton = EditButton;
 
-export default ChatItem;
+export default ChatItemBase;

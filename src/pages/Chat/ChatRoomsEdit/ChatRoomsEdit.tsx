@@ -1,10 +1,10 @@
 import React from 'react';
 import { IChatItem } from '../types';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
-import ChatItem from '../ChatRooms/ChatItem';
 
 import styles from './ChatRoomsEdit.module.scss';
 import Button from '@/components/common/Button/Button';
+import ChatItemBase from '../ChatRooms/ChatItemBase';
 
 type ChatRoomsEditProps = {
   setIsEdit: React.Dispatch<boolean>;
@@ -27,13 +27,10 @@ const ChatRoomsEdit = ({ setIsEdit, chatData }: ChatRoomsEditProps) => {
         </div>
         <div className={styles.ChatRoomsEditContent}>
           {chatData.map((chatInfo: IChatItem, idx) => (
-            <ChatItem
-              key={`${chatInfo.roomId}-chatRoomsEdit`}
-              chatInfo={chatInfo}
-            >
-              <ChatItem.EditButton isActive={idx % 2 === 0} />
-              <ChatItem.ChatItemContent chatInfo={chatInfo} />
-            </ChatItem>
+            <ChatItemBase key={`${chatInfo.roomId}-chatRoomsEdit`}>
+              <ChatItemBase.EditButton isActive={idx % 2 === 0} />
+              <ChatItemBase.ChatItemContent chatInfo={chatInfo} />
+            </ChatItemBase>
           ))}
         </div>
       </div>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import ChatItem from './ChatItem';
 import { IChatItem } from '../types';
 import styles from './ChatRooms.module.scss';
 import EditIcon from '@/icons/icon/EditIcon';
 import ChatRoomsEdit from '../ChatRoomsEdit/ChatRoomsEdit';
+import { useNavigate } from 'react-router';
+import ChatItemBase from './ChatItemBase';
 
 const ChatRooms = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -12,7 +13,7 @@ const ChatRooms = () => {
     setIsEdit((prev) => !prev);
   };
 
-  const mockChatRooms = [
+  const mockChatData = [
     {
       imgSrc:
         'https://i.namu.wiki/i/Qvk18CBALY3A7CKoYdienLC1B8q8JXEZIiydvuxxVFFqGYjDmDOaY2vB0YX_P_WbxA5REh9NtAdhi5L1TLEx1A.webp',
@@ -41,10 +42,17 @@ const ChatRooms = () => {
       unViewedMsgCount: 2,
     },
   ];
+
+  const navigate = useNavigate();
+
+  const onClickRoute = (roomId: string, storeName: string) => {
+    navigate(`${roomId}`, { state: { roomId, storeName } });
+  };
+
   return (
     <>
       {isEdit ? (
-        <ChatRoomsEdit chatData={mockChatRooms} setIsEdit={setIsEdit} />
+        <ChatRoomsEdit chatData={mockChatData} setIsEdit={setIsEdit} />
       ) : (
         <div className={styles.ChatRoomsWrapper}>
           <div className={styles.ChatRoomsHeader}>
@@ -56,16 +64,19 @@ const ChatRooms = () => {
               onClick={handleEditIcon}
             />
           </div>
-          <div>
-            {mockChatRooms.map((chatInfo: IChatItem) => (
-              <ChatItem key={chatInfo.roomId} chatInfo={chatInfo}>
-                <ChatItem.ChatItemContent chatInfo={chatInfo} />
-                <ChatItem.ViewCount
-                  unViewedMsgCount={chatInfo.unViewedMsgCount}
-                />
-              </ChatItem>
-            ))}
-          </div>
+          {mockChatData.map((chatInfo: IChatItem) => (
+            <ChatItemBase key={chatInfo.roomId}>
+              <ChatItemBase.ChatItemContent
+                onClick={() =>
+                  onClickRoute(chatInfo.roomId, chatInfo.storeName)
+                }
+                chatInfo={chatInfo}
+              />
+              <ChatItemBase.UnViewCount
+                unViewedMsgCount={chatInfo.unViewedMsgCount}
+              />
+            </ChatItemBase>
+          ))}
         </div>
       )}
     </>
