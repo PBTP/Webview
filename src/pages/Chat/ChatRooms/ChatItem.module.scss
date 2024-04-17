@@ -11,6 +11,7 @@
     align-items: center;
     gap: 16px;
     flex: 1;
+    cursor: pointer;
 
     > .ChatImage {
       width: 60px;
@@ -50,7 +51,7 @@
     }
   }
 
-  > .ChatCount {
+  .UnViewCount {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +65,7 @@
     line-height: 22px;
   }
 
-  > .RadioIcon {
+  .RadioIcon {
     margin-right: 36px;
   }
 }
