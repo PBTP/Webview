@@ -1,3 +1,4 @@
+import { chatKeys } from '@/keys/chat';
 import { IChatItem } from '@/pages/Chat/types';
 import { requestAPI } from '@/utils/fetch';
 import { useQuery } from '@tanstack/react-query';
@@ -10,7 +11,7 @@ const fetchChatRooms = async (): Promise<IChatItem[]> => {
 const useChatApi = () => {
   const getChatRooms = (): IChatItem[] => {
     const { data } = useQuery({
-      queryKey: ['getChatRooms'],
+      queryKey: chatKeys.chatRooms,
       queryFn: fetchChatRooms,
     });
     return data!;

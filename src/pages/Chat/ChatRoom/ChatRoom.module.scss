@@ -107,6 +107,7 @@
       font-weight: 500;
       flex: 1;
       height: auto;
+      resize: none;
 
       &::placeholder {
         color: $gray300;
