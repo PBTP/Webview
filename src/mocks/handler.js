@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { reservationAPIList } from './api';
+import { reservationAPIList, chatApiList } from './api';
 
 const baseUrl = 'https://jsonplaceholder.typicode.com';
 
@@ -34,6 +34,9 @@ export function handlers() {
     ),
     rest.get(`${baseUrl}/todos`, (req, res, ctx) =>
       handleRequest(req, res, ctx, reservationAPIList.getTodos)
+    ),
+    rest.get(`${baseUrl}/chatRooms`, (req, res, ctx) =>
+      handleRequest(req, res, ctx, chatApiList.getChatRooms)
     ),
   ];
 }
