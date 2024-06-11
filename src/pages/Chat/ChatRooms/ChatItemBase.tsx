@@ -1,11 +1,12 @@
 import React, { ReactNode, createContext } from 'react';
-import styles from './ChatItem.module.scss';
+import styles from './ChatItemBase.module.scss';
 import { IChatItem } from '../types';
 import RadioActiveIcon from '@/icons/icon/RadioActiveIcon';
 import RadioIcon from '@/icons/icon/RadioIcon';
 
 type ChatItemBaseProps = {
   children?: ReactNode;
+  onClick?: () => void;
 };
 
 type ChatItemContentProps = {
@@ -15,10 +16,12 @@ type ChatItemContentProps = {
 
 const ChatItemContext = createContext('');
 
-const ChatItemBase = ({ children }: ChatItemBaseProps) => {
+const ChatItemBase = ({ children, onClick }: ChatItemBaseProps) => {
   return (
     <ChatItemContext.Provider value="">
-      <div className={styles.ChatItemWrapper}>{children}</div>
+      <div onClick={onClick} className={styles.ChatItemWrapper}>
+        {children}
+      </div>
     </ChatItemContext.Provider>
   );
 };
