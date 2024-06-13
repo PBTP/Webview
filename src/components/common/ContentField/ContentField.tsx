@@ -6,16 +6,19 @@ type ContentFieldProps = {
   children: ReactNode;
   backgroundColor: 'Gray' | 'White';
   className?: string;
+  onClick?: () => void;
 };
 
 const ContentField = ({
   children,
   backgroundColor,
   className,
+  onClick,
 }: ContentFieldProps) => {
   return (
     <div
       className={`${styles.Wrapper} ${styles[backgroundColor]} ${className}`}
+      onClick={onClick}
     >
       {children}
     </div>
