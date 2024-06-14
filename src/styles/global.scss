@@ -37,6 +37,10 @@ input {
   outline: none;
   border: none;
   background-color: transparent;
+
+  &::placeholder {
+    color: $gray300;
+  }
 }
 
 textarea {
