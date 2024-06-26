@@ -11,16 +11,31 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import { requestAPI } from '@/utils/fetch';
 
 export const RootRouter = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route path="chat-list" element={<CharRoomsPage />} />
-        <Route path="reservation" element={<ReservationIndexPage />} />
-        <Route path="chat-list/*" element={<ChatRoomPage />} />
-        <Route path="reservation/*" element={<DetailReservation />} />
-        <Route path="payment" element={<PaymentPage />} />
+        <Route
+          element={<ProtectedRoute />}
+          loader={async () => {
+            const token = await requestAPI().get(
+              'https://pokeapi.co/api/v2/pokemon/ditto'
+            );
+            return token;
+          }}
+        >
+          <Route path="chat-list" element={<CharRoomsPage />} />
+          <Route path="reservation" element={<ReservationIndexPage />} />
+          <Route path="chat-list/:chatId" element={<ChatRoomPage />} />
+          <Route
+            path="reservation/:reservationId"
+            element={<DetailReservation />}
+          />
+          <Route path="payment" element={<PaymentPage />} />
+        </Route>
       </Route>
     )
   );
