@@ -2,7 +2,6 @@ import CMCalendar from '@/components/common/Calendar/Calendar';
 import styles from './Index.module.scss';
 import Button from '@/components/common/Button/Button';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { IReservation } from '@/interfaces/reservation';
 import { requestAPI } from '@/utils/fetch';
 
@@ -17,10 +16,23 @@ const ReservationIndexPage = () => {
     const res = await requestAPI().get('/todos');
     console.log(res);
   };
+
+  const handleIosButton = () => {
+    alert('AccessToten');
+    if (
+      window.webkit &&
+      window.webkit.messageHandlers &&
+      window.webkit.messageHandlers.buttonClicked
+    ) {
+      window.webkit.messageHandlers.buttonClicked.postMessage('프론트엔드');
+    }
+  };
+
   useEffect(() => {
     fetchs();
     fetch2();
   }, []);
+
   return (
     <div>
       <div className={styles.Title}>예약 스케쥴</div>
@@ -51,7 +63,9 @@ const ReservationIndexPage = () => {
         ))}
       </div>
       <div className={styles.NavigateWrap}>
-        <Button buttonType="Gray">취소</Button>
+        <Button onClick={handleIosButton} buttonType="Gray">
+          취소
+        </Button>
         <Button buttonType="Primary">다음</Button>
       </div>
     </div>
