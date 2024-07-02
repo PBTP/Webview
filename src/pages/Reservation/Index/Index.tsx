@@ -28,6 +28,16 @@ const ReservationIndexPage = () => {
     }
   };
 
+  const iOSToJavaScript = (token: string) => {
+    if (
+      window.webkit &&
+      window.webkit.messageHandlers &&
+      window.webkit.messageHandlers.buttonClicked
+    ) {
+      window.webkit.messageHandlers.buttonClicked.postMessage(token);
+    }
+  };
+
   useEffect(() => {
     fetchs();
     fetch2();
