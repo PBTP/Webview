@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-export const axiosInstance = axios.create({
+export const axiosInstance: AxiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
 });
 
@@ -13,7 +13,11 @@ const handleResponse = (response: AxiosResponse) => {
 
 export const requestAPI = () => {
   const request = (method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH') => {
-    return (url: string, bodyJson?: any, contentType?: string) => {
+    return (
+      url: string,
+      bodyJson?: Record<string, unknown>,
+      contentType?: string
+    ) => {
       return axiosInstance({
         url,
         method: method,
@@ -21,18 +25,14 @@ export const requestAPI = () => {
         headers: {
           'Content-Type': contentType ?? 'application/json',
         },
-        validateStatus: (status) => {
-          return true;
+        validateStatus: (status: number) => {
+          return status < 400;
         },
       })
         .then(handleResponse)
         .catch((err) => {
           console.log(err.response);
-          // 401 Unauthorized가 아닌 다른 에러라면
-          if (err.response?.status !== 401) {
-            return Promise.reject(err);
-          }
-          return Promise.resolve(err);
+          return Promise.reject(err);
           // 무한 루프 방지 eject
           //   axiosInstance.interceptors.response.eject(0);
           //   return axiosInstance
