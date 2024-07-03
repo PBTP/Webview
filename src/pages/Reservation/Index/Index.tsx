@@ -29,12 +29,9 @@ const ReservationIndexPage = () => {
   };
 
   const iOSToJavaScript = (token: string) => {
-    if (
-      window.webkit &&
-      window.webkit.messageHandlers &&
-      window.webkit.messageHandlers.buttonClicked
-    ) {
-      window.webkit.messageHandlers.buttonClicked.postMessage(token);
+    if (window) {
+      window.iOSToJavaScript(token);
+      alert(token);
     }
   };
 
@@ -49,6 +46,7 @@ const ReservationIndexPage = () => {
       <CMCalendar />
       <div className={`Divider Reservation`} />
       <div className={styles.Title}>오전</div>
+      <div id="message" style={{ color: 'red' }}></div>
       <div className={styles.TimeWrap}>
         {times?.am?.map((item, index) => (
           <Button

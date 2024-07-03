@@ -1,6 +1,7 @@
 declare global {
   interface Window {
     webkit: Webkit;
+    iOSToJavaScript: (token: string) => void;
   }
 
   interface Webkit {
