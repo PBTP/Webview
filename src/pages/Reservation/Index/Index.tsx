@@ -30,13 +30,11 @@ const ReservationIndexPage = () => {
 
   const [msg, setMsg] = useState('');
 
-  const iOSToJavaScript = (token: string) => {
-    if (window) {
-      window.iOSToJavaScript(token);
-      alert(token);
-    }
+  const getAccessToken = (token: string) => {
     setMsg(token.length > 0 ? token : '토큰없음');
   };
+
+  window.iOSToJavaScript = getAccessToken;
 
   useEffect(() => {
     fetchs();
