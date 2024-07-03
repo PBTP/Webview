@@ -28,11 +28,14 @@ const ReservationIndexPage = () => {
     }
   };
 
+  const [msg, setMsg] = useState('');
+
   const iOSToJavaScript = (token: string) => {
     if (window) {
       window.iOSToJavaScript(token);
       alert(token);
     }
+    setMsg(token.length > 0 ? token : '토큰없음');
   };
 
   useEffect(() => {
@@ -46,7 +49,9 @@ const ReservationIndexPage = () => {
       <CMCalendar />
       <div className={`Divider Reservation`} />
       <div className={styles.Title}>오전</div>
-      <div id="message" style={{ color: 'red' }}></div>
+      <div id="message" style={{ color: 'red' }}>
+        토큰 : {msg}
+      </div>
       <div className={styles.TimeWrap}>
         {times?.am?.map((item, index) => (
           <Button
