@@ -1,8 +1,24 @@
+import { useTokenStore } from '@/stores/useTokenStore';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = useTokenStore((state) => state.accessToken);
+
+    config.headers.Authorization = token ? token : '';
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 const handleResponse = (response: AxiosResponse) => {
   // if (response.status === 400) {

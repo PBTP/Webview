@@ -17,25 +17,6 @@ const ReservationIndexPage = () => {
     console.log(res);
   };
 
-  const handleIosButton = () => {
-    alert('AccessToten');
-    if (
-      window.webkit &&
-      window.webkit.messageHandlers &&
-      window.webkit.messageHandlers.buttonClicked
-    ) {
-      window.webkit.messageHandlers.buttonClicked.postMessage('프론트엔드');
-    }
-  };
-
-  const [msg, setMsg] = useState('');
-
-  const getAccessToken = (token: string) => {
-    setMsg(token.length > 0 ? token : '토큰없음');
-  };
-
-  window.iOSToJavaScript = getAccessToken;
-
   useEffect(() => {
     fetchs();
     fetch2();
@@ -47,9 +28,6 @@ const ReservationIndexPage = () => {
       <CMCalendar />
       <div className={`Divider Reservation`} />
       <div className={styles.Title}>오전</div>
-      <div id="message" style={{ color: 'red' }}>
-        토큰 : {msg}
-      </div>
       <div className={styles.TimeWrap}>
         {times?.am?.map((item, index) => (
           <Button
@@ -74,9 +52,7 @@ const ReservationIndexPage = () => {
         ))}
       </div>
       <div className={styles.NavigateWrap}>
-        <Button onClick={handleIosButton} buttonType="Gray">
-          취소
-        </Button>
+        <Button buttonType="Gray">취소</Button>
         <Button buttonType="Primary">다음</Button>
       </div>
     </div>
