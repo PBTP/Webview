@@ -1,10 +1,12 @@
-import { RefObject, useEffect, useState } from 'react';
+import { useEffect, useState, RefObject } from 'react';
 
 const useOutsideClick = (ref: RefObject<HTMLElement>): boolean => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
-  const handleClickOutside = (event: any) => {
-    if (ref.current && !ref.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (ref.current && !ref.current.contains(event.target as Node)) {
+      setIsVisible(false);
+    } else {
       setIsVisible(true);
     }
   };
