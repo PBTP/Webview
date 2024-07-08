@@ -1,0 +1,51 @@
+@import '@/styles/theme.scss';
+
+.ReviewContainer {
+
+}
+
+.ReviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .ReviewTitle {
+    color: $gray1000;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .ReviewHiddenElement {
+    visibility: hidden;
+  }
+}
+
+.ReviewInfoWrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 24px 0;
+  gap: 16px;
+  > img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+  }
+  .ReviewInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    .ReviewInfoTitle {
+      color: $black;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .ReviewInfoPuppyInfo {
+      color: $gray400;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .ReviewInfoDate {
+      color: $primary;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+}

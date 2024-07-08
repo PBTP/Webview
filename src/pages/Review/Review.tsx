@@ -1,27 +1,81 @@
 import { DeleteXIcon } from '@/icons/icon';
-import styles from './Review.module.scss'
+import styles from './Review.module.scss';
+import ReviewInfo from '@/components/ReviewInfo/ReviewInfo';
+import { useState, useEffect } from 'react';
+import Button from '@/components/common/Button/Button';
 
 const ReviewPage = () => {
+  const [step, setStep] = useState<'SURVEY' | 'REVIEW'>('SURVEY');
+  const [reviewData, setReviewData] = useState<any>();
+
+  const initialButtonStates = new Array(8).fill('Survey');
+  const [buttonStates, setButtonStates] = useState(initialButtonStates);
+  const [isNextButtonEnabled, setIsNextButtonEnabled] = useState(false);
+
+  const handleButtonClick = (index: number) => {
+    const newButtonStates = [...buttonStates];
+    newButtonStates[index] =
+      newButtonStates[index] === 'Survey' ? 'SurveyActive' : 'Survey';
+    setButtonStates(newButtonStates);
+  };
+
+  useEffect(() => {
+    const hasFacilityActive = buttonStates.slice(0, 4).includes('SurveyActive');
+    const hasServiceActive = buttonStates.slice(4, 8).includes('SurveyActive');
+    setIsNextButtonEnabled(hasFacilityActive && hasServiceActive);
+  }, [buttonStates]);
+
   return (
     <>
-      <div className={styles.ReviewHeader}>
-        <DeleteXIcon width={14} height={14} />
-        <div className={styles.ReviewTitle}>리뷰 작성</div>
-        <div className={styles.ReviewHiddenElement}>Hidden</div>
-      </div>
-      <div className={styles.ReviewInfoWrapper}>
-        <img src="https://files.oaiusercontent.com/file-QWhzafquTQgIbQAxCN55c7Fb?se=2024-07-08T12%3A30%3A13Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Da66f388d-ca05-4bcd-8a16-75efe21af6ca.webp&sig=RxcAL4vIVVWa3oO8CBWUMvgprnuGHebHYU6D/Tp6TT4%3D" />
-        <div className={styles.ReviewInfo}>
-          <div className={styles.ReviewInfoTitle}>개신남 10호점</div>
-          <div className={styles.ReviewInfoPuppyInfo}>
-            김뽀삐 | 중형견 | 장모종
+      <ReviewInfo />
+      <div className="Divider Review" />
+      {step === 'SURVEY' && (
+        <>
+          <div className={styles.ReviewSurveyWrapper}>
+            <div className={styles.ReviewSurveyVisitCount}>1번째 방문</div>
+            <div className={styles.ReviewSurveyMainTitle}>
+              개신남 10호점’의 서비스가 어떠셨나요?
+            </div>
+            <div className={styles.ReviewSurveySubTitle}>
+              어울리는 키워드를 골라주세요 (1개~5개)
+            </div>
+            <div className={styles.ReviewSelectTitle}>시설</div>
+            <div className={styles.ReviewSelectButtonWrapper}>
+              {[0, 1, 2, 3].map((row, index) => (
+                <Button
+                  key={index}
+                  buttonType={buttonStates[row]}
+                  className={styles.ReviewSelectButton}
+                  onClick={() => handleButtonClick(row)}
+                >
+                  청결한 트럭
+                </Button>
+              ))}
+            </div>
+            <div className={styles.ReviewSelectTitle}>서비스</div>
+            <div className={styles.ReviewSelectButtonWrapper}>
+              {[4, 5, 6, 7].map((row, index) => (
+                <Button
+                  key={index}
+                  buttonType={buttonStates[row]}
+                  className={styles.ReviewSelectButton}
+                  onClick={() => handleButtonClick(row)}
+                >
+                  꼼꼼한 목욕
+                </Button>
+              ))}
+            </div>
           </div>
-          <div className={styles.ReviewInfoDate}>2024.04.06(토) 오후 1:00</div>
-        </div>
-      </div>
-      <div className='Divider Review'/>
+          <div className={styles.NavigateWrap}>
+            <Button buttonType="Disabled">취소</Button>
+            <Button buttonType={isNextButtonEnabled ? 'Primary' : 'Disabled'}>
+              다음
+            </Button>
+          </div>
+        </>
+      )}
     </>
   );
-}
+};
 
 export default ReviewPage;

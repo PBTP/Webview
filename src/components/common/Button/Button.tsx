@@ -10,7 +10,10 @@ type ButtonProps = {
     | 'Reserved'
     | 'TimeActive'
     | 'TimeDisabled'
-    | 'Spacing';
+    | 'Spacing'
+    | 'Survey'
+    | 'SurveyActive';
+
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
