@@ -1,75 +1,86 @@
 import React, { useRef, useState } from 'react';
 import styles from './Location.module.scss';
 import ContentField from '@/components/common/ContentField/ContentField';
-import { SearchIcon, TargetIcon } from '@/icons/icon';
+import { SearchIcon } from '@/icons/icon';
 import Button from '@/components/common/Button/Button';
 import useOutsideClick from '@/hooks/useOutsideClick';
+import { useDebounce } from '@/hooks/useDebounce';
+import useAddress from '@/hooks/api/useAddress';
 
 const Location = () => {
-  const [searchValue, setSearchValue] = useState<string>();
-  const [detailAddress, setDetailAddress] = useState<string>();
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [detailAddress, setDetailAddress] = useState<string>('');
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+
+  const debouncedValue = useDebounce(searchKeyword);
+
+  const {
+    data: addressData,
+    isFetching,
+    isError,
+  } = useAddress({
+    keyword: debouncedValue,
+    isSelected,
+  });
 
   const LocationSearchWrapperRef = useRef(null);
-  const dumyLocationData = [
-    '서울시 중구 통일로 1',
-    '서울시 중구 통일로 2',
-    '서울시 중구 통일로 3',
-    '서울시 중구 통일로 4',
-  ];
 
   const isShowSearchWrapper = useOutsideClick(LocationSearchWrapperRef);
-  const shouldDisplaySearchWrapper = searchValue && isShowSearchWrapper;
 
-  // api 쿼리 결과 없으면 true로 바꿔줘야함
-  const shouldDisplayEmptyDescription = false;
+  const shouldDisplaySearchWrapper =
+    addressData &&
+    addressData.juso.length > 0 &&
+    isShowSearchWrapper &&
+    !isSelected;
+
+  const shouldDisplayEmptyDescription = isError;
 
   return (
     <div>
-      <ContentField backgroundColor="Gray" className={styles.LocationInfoField}>
+      <ContentField
+        ref={LocationSearchWrapperRef}
+        backgroundColor="Gray"
+        className={styles.LocationInfoField}
+      >
         <SearchIcon width={24} height={24} className={styles.SearchIcon} />
         <input
           className={styles.LocationInput}
-          value={searchValue}
+          value={searchKeyword}
           placeholder="도로명 주소, 건물명 또는 지번"
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={(e) => setSearchKeyword(e.target.value)}
+          onClick={() => setIsSelected(false)}
         />
         {shouldDisplaySearchWrapper && (
-          <div
-            ref={LocationSearchWrapperRef}
-            className={styles.LocationSearchWrapper}
-          >
-            {dumyLocationData.map((location) => (
+          <div className={styles.LocationSearchWrapper}>
+            {addressData.juso.map((addressInfo, idx) => (
               <div
-                onClick={() => setSearchValue(location)}
+                key={`${addressInfo.rnMgtSn}-${addressInfo.zipNo}-${idx}`}
+                onClick={() => {
+                  setSearchKeyword(`${addressInfo.roadAddr}`);
+                  setIsSelected(true);
+                }}
                 className={styles.LocationSearchItem}
               >
-                {location}
+                {addressInfo.roadAddr}
               </div>
             ))}
           </div>
         )}
       </ContentField>
 
-      {searchValue && (
-        <div className={styles.LocationDetailContent}>
-          <div className={styles.LocationDetailHeader}>상세주소</div>
-          <ContentField
-            backgroundColor="Gray"
-            className={styles.LocationDetailAddress}
-          >
-            <input
-              className={styles.LocationDetailAddressInput}
-              placeholder="상세주소"
-              value={detailAddress}
-              onChange={(e) => setDetailAddress(e.target.value)}
-            />
-          </ContentField>
-        </div>
-      )}
-
-      <div className={styles.LocationCurrentContent}>
-        <TargetIcon width={24} height={24} />
-        <div>현재 위치로 지정</div>
+      <div className={styles.LocationDetailContent}>
+        <div className={styles.LocationDetailHeader}>상세주소</div>
+        <ContentField
+          backgroundColor="Gray"
+          className={styles.LocationDetailAddress}
+        >
+          <input
+            className={styles.LocationDetailAddressInput}
+            placeholder="상세주소"
+            value={detailAddress}
+            onChange={(e) => setDetailAddress(e.target.value)}
+          />
+        </ContentField>
       </div>
 
       {shouldDisplayEmptyDescription && (
@@ -79,9 +90,15 @@ const Location = () => {
         </div>
       )}
 
+      {isFetching && (
+        <div className={styles.LocationEmptyContent}>
+          <div>주소를 검색중입니다...</div>
+        </div>
+      )}
+
       <Button
         className={styles.LocationButton}
-        buttonType={searchValue ? 'Primary' : 'Disabled'}
+        buttonType={isSelected && detailAddress ? 'Primary' : 'Disabled'}
       >
         확인
       </Button>
