@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import { setAccessToken, useTokenStore } from '@/stores/useTokenStore';
+import Location from '@/pages/Location/Location/Location';
 
 export const RootRouter = () => {
   const handleIosWebviewToken = (token: string) => {
@@ -40,6 +41,7 @@ export const RootRouter = () => {
             element={<DetailReservation />}
           />
           <Route path="payment" element={<PaymentPage />} />
+          <Route path="location" element={<Location />} />
         </Route>
       </Route>
     )
