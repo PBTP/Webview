@@ -12,7 +12,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const token = useTokenStore((state) => state.accessToken);
 
-    config.headers.Authorization = token ? token : '';
+    config.headers.Authorization = token ? `Bearer ${token}` : '';
     return config;
   },
   (error) => {
