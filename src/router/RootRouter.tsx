@@ -12,19 +12,24 @@ import {
   Route,
 } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
-import { requestAPI } from '@/utils/fetch';
+import { setAccessToken, useTokenStore } from '@/stores/useTokenStore';
 
 export const RootRouter = () => {
+  const handleIosWebviewToken = (token: string) => {
+    if (token) setAccessToken(token);
+  };
+
+  window.iOSToJavaScript = handleIosWebviewToken;
+
+  const accessToken = useTokenStore((state) => state.accessToken);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route
           element={<ProtectedRoute />}
           loader={async () => {
-            const token = await requestAPI().get(
-              'https://pokeapi.co/api/v2/pokemon/ditto'
-            );
-            return token;
+            return accessToken;
           }}
         >
           <Route path="chat-list" element={<CharRoomsPage />} />
