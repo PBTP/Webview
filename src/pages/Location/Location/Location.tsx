@@ -6,6 +6,7 @@ import Button from '@/components/common/Button/Button';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { useDebounce } from '@/hooks/useDebounce';
 import useAddress from '@/hooks/api/useAddress';
+import { sendAddressFromWebview } from '@/webview/address';
 
 const Location = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>('');
@@ -99,6 +100,7 @@ const Location = () => {
       <Button
         className={styles.LocationButton}
         buttonType={isSelected && detailAddress ? 'Primary' : 'Disabled'}
+        onClick={() => sendAddressFromWebview(searchKeyword)}
       >
         확인
       </Button>
