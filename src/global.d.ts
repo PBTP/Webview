@@ -2,13 +2,16 @@ declare global {
   interface Window {
     webkit: {
       messageHandlers: {
-        buttonClicked: {
-          postMessage: (message: string) => void;
-        };
+        buttonClicked: TWebviewFunction;
+        getAddressWebview: TWebviewFunction;
       };
     };
     iOSToJavaScript: (token: string) => void;
   }
+
+  type TWebviewFunction = {
+    postMessage: (message: string) => void;
+  };
 }
 
 export {};

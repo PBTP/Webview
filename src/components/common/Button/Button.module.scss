@@ -18,6 +18,7 @@ button {
   &.Disabled {
     background-color: $gray300;
     color: $white;
+    pointer-events: none;
   }
   &.Reserved {
     background-color: $white;
