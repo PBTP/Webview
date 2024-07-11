@@ -28,6 +28,7 @@
     background-color: $white;
     border: 1px solid $gray100;
     border-radius: 8px;
+    min-height: 270px;
 
     > .LocationSearchItem {
       color: $black;
@@ -35,6 +36,7 @@
       font-weight: 500;
       line-height: 22px;
       padding: 16px 0px;
+      border-bottom: 1px solid $gray100;
     }
   }
 }
@@ -71,6 +73,7 @@
     padding: 12px 16px;
 
     > .LocationDetailAddressInput {
+      width: 100%;
       color: $black;
       font-size: 18px;
       font-weight: 500;

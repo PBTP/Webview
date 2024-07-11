@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { forwardRef, ReactNode, ForwardedRef } from 'react';
 
 import styles from './ContentField.module.scss';
 
@@ -9,20 +9,21 @@ type ContentFieldProps = {
   onClick?: () => void;
 };
 
-const ContentField = ({
-  children,
-  backgroundColor,
-  className,
-  onClick,
-}: ContentFieldProps) => {
-  return (
-    <div
-      className={`${styles.Wrapper} ${styles[backgroundColor]} ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
-};
+const ContentField = forwardRef<HTMLDivElement, ContentFieldProps>(
+  (
+    { children, backgroundColor, className, onClick },
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={`${styles.Wrapper} ${styles[backgroundColor]} ${className}`}
+        onClick={onClick}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
 export default ContentField;
