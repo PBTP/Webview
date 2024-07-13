@@ -1,6 +1,6 @@
 @import '@/styles/theme.scss';
 
-.Wrapper {
+.ContentFieldWrapper {
   border-radius: 8px;
   &.Gray {
     background-color: $gray100;
@@ -8,5 +8,14 @@
 
   &.White {
     background-color: #fff;
+  }
+
+  &.Border {
+    border: 1px solid $gray300;
+    transition: border 0.3s;
+
+    &:focus-within {
+      border: 1px solid $gray1000;
+    }
   }
 }
