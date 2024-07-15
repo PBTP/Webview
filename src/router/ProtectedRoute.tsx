@@ -1,8 +1,9 @@
+import { useToken } from '@/components/Layout/RootLayout/RootLayout';
 import { useTokenStore } from '@/stores/useTokenStore';
-import { Navigate, Outlet } from 'react-router';
+import { Navigate, Outlet, useOutletContext } from 'react-router';
 
 const ProtectedRoute = () => {
-  const token = useTokenStore((state) => state.accessToken);
+  const { token } = useToken();
 
   return <>{token ? <Outlet /> : <Navigate to="/" replace={true} />}</>;
 };
