@@ -22,17 +22,10 @@ export const RootRouter = () => {
 
   window.iOSToJavaScript = handleIosWebviewToken;
 
-  const accessToken = useTokenStore((state) => state.accessToken);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route
-          element={<ProtectedRoute />}
-          loader={async () => {
-            return accessToken;
-          }}
-        >
+        <Route element={<ProtectedRoute />}>
           <Route path="chat-list" element={<CharRoomsPage />} />
           <Route path="reservation" element={<ReservationIndexPage />} />
           <Route path="chat-list/:chatId" element={<ChatRoomPage />} />

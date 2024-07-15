@@ -1,7 +1,8 @@
-import { Navigate, Outlet, useLoaderData } from 'react-router';
+import { useTokenStore } from '@/stores/useTokenStore';
+import { Navigate, Outlet } from 'react-router';
 
 const ProtectedRoute = () => {
-  const token = useLoaderData() as string;
+  const token = useTokenStore((state) => state.accessToken);
 
   return <>{token ? <Outlet /> : <Navigate to="/" replace={true} />}</>;
 };
