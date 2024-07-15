@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Divider from '@/components/common/Divider/Divider';
 import Button from '@/components/common/Button/Button';
 import PaymentLoading from '../PaymentLoading/PaymentLoading';
+import Combobox from '@/components/common/Combobox/Combobox';
 
 const Payment = () => {
   const [cardMethod, setCardMethod] = useState<string>();
@@ -38,15 +39,6 @@ const Payment = () => {
             >
               <div className={styles.PaymentInfoHeader}>개신남 3호점</div>
               <div className={styles.PaymentInfoContent}>
-                <div className={styles.PaymentInfoLine}>
-                  <span>일정</span>
-                  <span>2023.03.15</span>
-                  <span>오후 1시</span>
-                </div>
-                <div className={styles.PaymentInfoLine}>
-                  <span>위치</span>
-                  <span>서울시 양천구 근린공원 주차장</span>
-                </div>
                 <div className={styles.PaymentInfoLine}>
                   <span>정보</span>
                   <span>중형견 | 장모종</span>
@@ -82,73 +74,61 @@ const Payment = () => {
             <div className={styles.PaymentCardWrapper}>
               <div className={styles.PaymentCardContent}>
                 <div className={styles.PaymentCardHeader}>카드선택</div>
-                <ContentField
-                  backgroundColor="White"
-                  border="Border"
-                  className={styles.PaymentCardInputWrapper}
-                >
-                  <input
-                    placeholder="카드 선택"
-                    className={styles.PaymentCardInput}
-                    value={cardMethod}
-                    readOnly
+                <Combobox>
+                  <Combobox.Trigger
+                    placeholder="카드선택"
+                    className={styles.PaymentCardCombobox}
                   />
-                  <ArrowDownNoTail
-                    width={12}
-                    height={7}
-                    className={styles.PaymentCardInputDownArrow}
-                  />
-                </ContentField>
+                  <Combobox.Popover>
+                    <Combobox.PopoverItem
+                      className={styles.PaymentCardComboboxItem}
+                      value="신한카드"
+                    />
+                  </Combobox.Popover>
+                </Combobox>
               </div>
               <div className={styles.PaymentCardContent}>
                 <div className={styles.PaymentCardHeader}>할부기간</div>
-                <ContentField
-                  backgroundColor="White"
-                  border="Border"
-                  className={styles.PaymentCardInputWrapper}
-                >
-                  <input
-                    placeholder="할부 선택"
-                    className={styles.PaymentCardInput}
-                    value={instalmentPeriod}
-                    readOnly
-                  />
-                  <ArrowDownNoTail
-                    width={12}
-                    height={7}
-                    className={styles.PaymentCardInputDownArrow}
-                  />
-                </ContentField>
+                <Combobox>
+                  <Combobox.Trigger
+                    placeholder="할부선택"
+                    className={styles.PaymentCardCombobox}
+                  >
+                    <div></div>
+                  </Combobox.Trigger>
+                  <Combobox.Popover>
+                    <Combobox.PopoverItem
+                      className={styles.PaymentCardComboboxItem}
+                      value="일시불"
+                    />
+                  </Combobox.Popover>
+                </Combobox>
               </div>
               <div className={styles.PaymentCardContent}>
                 <div className={styles.PaymentCardHeader}>사용자이메일</div>
-                <ContentField
-                  backgroundColor="White"
-                  border="Border"
-                  className={styles.PaymentCardInputWrapper}
-                >
+                <div className={styles.PaymentCardInputWrapper}>
                   <input
                     placeholder="mgmg@mgmg.com"
                     className={styles.PaymentCardInput}
                   />
-                </ContentField>
+                </div>
               </div>
-            </div>
-            <div
-              className={styles.PaymentDefaultContent}
-              onClick={() => setIsDefaultPayment((prev) => !prev)}
-            >
-              {isDefaultPayment ? (
-                <SelectedCheckboxIcon width={20} height={20} />
-              ) : (
-                <CheckboxIcon width={20} height={20} />
-              )}
+              <div
+                className={styles.PaymentDefaultContent}
+                onClick={() => setIsDefaultPayment((prev) => !prev)}
+              >
+                {isDefaultPayment ? (
+                  <SelectedCheckboxIcon width={20} height={20} />
+                ) : (
+                  <CheckboxIcon width={20} height={20} />
+                )}
 
-              <span>기본 결제 수단으로 사용</span>
-            </div>
-            <div className={styles.PaymentMeetAndPay}>
-              <UnSelectedIcon width={18} height={18} />
-              <span>만나서 결제</span>
+                <span>기본 결제 수단으로 사용</span>
+              </div>
+              <div className={styles.PaymentMeetAndPay}>
+                <UnSelectedIcon width={18} height={18} />
+                <span>만나서 결제</span>
+              </div>
             </div>
           </section>
           <div className={styles.PaymentSectionLine} />

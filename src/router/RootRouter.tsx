@@ -35,10 +35,10 @@ export const RootRouter = () => {
             path="reservation/:reservationId"
             element={<DetailReservation />}
           />
-          <Route path="payment" element={<PaymentPage />} />
           <Route path="location" element={<Location />} />
           <Route path="review" element={<ReviewPage />} />
         </Route>
+        <Route path="payment" element={<PaymentPage />} />
       </Route>
     )
   );

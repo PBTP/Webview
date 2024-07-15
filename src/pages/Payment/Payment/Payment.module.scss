@@ -133,19 +133,28 @@
           align-items: center;
           justify-content: space-between;
           padding: 8px 12px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+        }
 
-          > .PaymentCardInput {
-            width: 100%;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
-          }
+        .PaymentCardCombobox {
+          border-radius: 8px;
+          border: 1px solid $gray300;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 8px 12px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+        }
 
-          > .PaymentCardInputDownArrow {
-            path {
-              fill: $gray500;
-            }
-          }
+        .PaymentCardComboboxItem {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          padding: 8px 12px;
         }
       }
     }

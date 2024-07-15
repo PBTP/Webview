@@ -5,6 +5,8 @@ html,
 body,
 div,
 span,
+ul,
+li,
 h2,
 h3,
 h4,
@@ -56,6 +58,12 @@ button {
   border: none;
   cursor: pointer;
   box-sizing: border-box;
+  background-color: $white;
+}
+
+ul,
+li {
+  list-style: none;
 }
 
 .Divider {
