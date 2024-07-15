@@ -19,4 +19,4 @@ export const useTokenStore = create(
 export const setAccessToken = (accessToken: string) =>
   useTokenStore.setState({ accessToken });
 
-export const logout = () => useTokenStore.persist.clearStorage;
+export const logout = useTokenStore.persist.clearStorage;
