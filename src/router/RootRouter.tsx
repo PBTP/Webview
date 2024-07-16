@@ -14,6 +14,8 @@ import {
 import ProtectedRoute from './ProtectedRoute';
 import { setAccessToken, useTokenStore } from '@/stores/useTokenStore';
 import Location from '@/pages/Location/Location/Location';
+import { requestAPI } from '@/utils/fetch';
+import ReviewPage from '@/pages/Review/Review';
 
 export const RootRouter = () => {
   const handleIosWebviewToken = (token: string) => {
@@ -35,6 +37,7 @@ export const RootRouter = () => {
           />
           <Route path="payment" element={<PaymentPage />} />
           <Route path="location" element={<Location />} />
+          <Route path="review" element={<ReviewPage />} />
         </Route>
       </Route>
     )

@@ -1,0 +1,19 @@
+@import '@/styles/theme.scss';
+
+.ReviewContainer {
+
+}
+
+.ReviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .ReviewTitle {
+    color: $gray1000;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .ReviewHiddenElement {
+    visibility: hidden;
+  }
+}
