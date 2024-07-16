@@ -22,7 +22,7 @@ const ReviewPage = () => {
     setButtonStates(newButtonStates);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleReivewText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setReviewData((prevData: any) => ({
       ...prevData,
@@ -116,7 +116,7 @@ const ReviewPage = () => {
               placeholder="리뷰 작성 시 사업자에게 상처가 되는 욕설, 비방, 명예훼손성 표현은 삼가주세요."
               rows={4}
               name="text"
-              onChange={handleChange}
+              onChange={handleReivewText}
             ></textarea>
             <div className={styles.ReviewTextLength}>
               {reviewData.text.length} / 400
