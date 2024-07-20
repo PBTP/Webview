@@ -12,9 +12,8 @@ import {
   Route,
 } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
-import { setAccessToken, useTokenStore } from '@/stores/useTokenStore';
+import { setAccessToken } from '@/stores/useTokenStore';
 import Location from '@/pages/Location/Location/Location';
-import { requestAPI } from '@/utils/fetch';
 import ReviewPage from '@/pages/Review/Review';
 
 export const RootRouter = () => {
