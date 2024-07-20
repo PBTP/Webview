@@ -1,13 +1,18 @@
 @import '@/styles/theme.scss';
 
-.ComboboxWrapper {
+.DropdownWrapper {
   position: relative;
   border-radius: 8px;
   border: 1px solid $gray300;
   width: 100%;
+  transition: border 0.3s;
+
+  &:focus-within {
+    border: 1px solid $gray1000;
+  }
 }
 
-.ComboboxTrigger {
+.DropdownTrigger {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,7 +34,7 @@
   }
 }
 
-.ComboboxPopoverWrapper {
+.DropdownPopoverWrapper {
   position: absolute;
   top: 107%;
   left: 0px;
@@ -47,7 +52,7 @@
     pointer-events: all;
   }
 
-  > .ComboboxPopoverItem {
+  > .DropdownPopoverItem {
     color: $gray900;
   }
 }
