@@ -104,7 +104,7 @@ const Location = () => {
       <Button
         className={styles.LocationButton}
         buttonType={isSelected && detailAddress ? 'Primary' : 'Disabled'}
-        onClick={() => sendAddressFromWebview(searchKeyword)}
+        onClick={() => sendAddressFromWebview(searchKeyword, detailAddress)}
       >
         확인
       </Button>
