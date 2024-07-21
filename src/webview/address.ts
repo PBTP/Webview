@@ -2,12 +2,11 @@ export const sendAddressFromWebview = (
   address: string,
   detailAddress: string
 ) => {
-  alert(`${address},${detailAddress}`);
+  const formatJsonAddress = JSON.stringify({ address, detailAddress });
   if (window.webkit && address && detailAddress) {
-    window.webkit.messageHandlers.getAddressWebview.postMessage({
-      address,
-      detailAddress,
-    });
+    window.webkit.messageHandlers.getAddressWebview.postMessage(
+      formatJsonAddress
+    );
     return;
   }
 };
