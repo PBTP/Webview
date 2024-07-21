@@ -36,8 +36,8 @@ export const RootRouter = () => {
             element={<DetailReservation />}
           />
           <Route path="payment" element={<PaymentPage />} />
-          <Route path="location" element={<Location />} />
           <Route path="review" element={<ReviewPage />} />
+          <Route path="location" element={<Location />} />
         </Route>
       </Route>
     )

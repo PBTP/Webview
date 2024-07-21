@@ -10,7 +10,7 @@ declare global {
   }
 
   type TWebviewFunction = {
-    postMessage: (message: string) => void;
+    postMessage: (message: string | object) => void;
   };
 }
 
