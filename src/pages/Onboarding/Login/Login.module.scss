@@ -1,0 +1,52 @@
+@import '@/styles/theme.scss';
+
+.InputWrapper {
+  padding: 11px 12px;
+
+  margin-top: 8px;
+
+  &:first-child {
+    margin-top: 24px;
+  }
+
+  > .Input {
+    width: 100%;
+  }
+}
+
+.LoginButton {
+  padding: 13px 0px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.LoginAutoLine {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+
+  > .LoginAutoText {
+    color: $gray1000;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+}
+
+.LoginNavLine {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+
+  color: $gray500;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+
+  > span {
+    cursor: pointer;
+  }
+}

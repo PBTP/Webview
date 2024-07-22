@@ -12,8 +12,9 @@ import {
   Route,
 } from 'react-router-dom';
 import { setAccessToken } from '@/stores/useTokenStore';
-import Location from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
+import LocationPage from '@/pages/Location/Location/Location';
+import LoginPage from '@/pages/Onboarding/Login/Login';
 
 export const RootRouter = () => {
   const handleIosWebviewToken = (token: string) => {
@@ -34,7 +35,8 @@ export const RootRouter = () => {
         />
         <Route path="payment" element={<PaymentPage />} />
         <Route path="review" element={<ReviewPage />} />
-        <Route path="location" element={<Location />} />
+        <Route path="location" element={<LocationPage />} />
+        <Route path="login" element={<LoginPage />} />
       </Route>
     )
   );
