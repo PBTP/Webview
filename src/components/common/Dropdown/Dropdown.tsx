@@ -100,7 +100,7 @@ interface PopoverItemProps {
 }
 const PopoverItem = ({ value, className, onClick }: PopoverItemProps) => {
   const { setLabel, setOpen } = useContext(DropdownContext);
-  const handlePopvoerItem = () => {
+  const handlePopoverItem = () => {
     setLabel(value);
     setOpen(false);
     onClick?.();
@@ -108,7 +108,7 @@ const PopoverItem = ({ value, className, onClick }: PopoverItemProps) => {
   return (
     <li
       className={`${styles.DropdownPopoverItem} ${className}`}
-      onClick={handlePopvoerItem}
+      onClick={handlePopoverItem}
     >
       {value}
     </li>

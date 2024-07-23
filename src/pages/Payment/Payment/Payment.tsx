@@ -18,16 +18,16 @@ const Payment = () => {
 
   const [paymentInfo, setPaymentInfo] = useState({
     cardMethod: '',
-    instalmentPeriod: '',
+    installmentPeriod: '',
     email: '',
     isDefaultPayment: false,
   });
 
   const paymentButtonDisabled =
-    !paymentInfo.cardMethod || !paymentInfo.instalmentPeriod;
+    !paymentInfo.cardMethod || !paymentInfo.installmentPeriod;
 
   const handlePaymentInfo = (
-    type: 'cardMethod' | 'instalmentPeriod' | 'email' | 'isDefaultPayment',
+    type: 'cardMethod' | 'installmentPeriod' | 'email' | 'isDefaultPayment',
     value: string | boolean
   ) => {
     setPaymentInfo((prevPaymentInfo) => ({
@@ -121,12 +121,12 @@ const Payment = () => {
                 className={styles.PaymentCardDropdown}
               />
               <Dropdown.Popover>
-                {instalmentPeriods.map((instalment) => (
+                {installmentPeriods.map((instalment) => (
                   <Dropdown.PopoverItem
                     className={styles.PaymentCardDropdownItem}
                     value={instalment}
                     onClick={() =>
-                      handlePaymentInfo('instalmentPeriod', instalment)
+                      handlePaymentInfo('installmentPeriod', instalment)
                     }
                   />
                 ))}
