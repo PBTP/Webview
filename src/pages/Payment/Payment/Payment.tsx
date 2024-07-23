@@ -14,7 +14,7 @@ import Dropdown from '@/components/common/Dropdown/Dropdown';
 
 const Payment = () => {
   const cardMethods = ['국민은행', '신한은행', '우리은행', '기업은행'];
-  const instalmentPeriods = ['일시불', '1개월', '2개월', '3개월'];
+  const installmentPeriods = ['일시불', '1개월', '2개월', '3개월'];
 
   const [paymentInfo, setPaymentInfo] = useState({
     cardMethod: '',
