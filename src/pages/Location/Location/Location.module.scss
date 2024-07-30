@@ -56,8 +56,7 @@
 
 .LocationButton {
   position: fixed;
-  max-width: 335px;
-  width: 100%;
+  width: calc(100% - 40px);
   left: 50%;
   bottom: $fixcedButtonHeight;
   transform: translateX(-50%);

@@ -129,22 +129,37 @@
 
         > .PaymentCardInputWrapper {
           flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 8px 12px;
+          border-radius: 8px;
+          border: 1px solid $gray300;
+          padding: 7px 12px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
 
           > .PaymentCardInput {
             width: 100%;
+          }
+        }
+
+        > .PaymentCardDropdownWrapper {
+          flex: 1;
+          .PaymentCardDropdown {
+            flex: 1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
             font-size: 14px;
             font-weight: 500;
             line-height: 20px;
           }
 
-          > .PaymentCardInputDownArrow {
-            path {
-              fill: $gray500;
-            }
+          .PaymentCardDropdownItem {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            padding: 8px 12px;
           }
         }
       }

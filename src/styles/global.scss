@@ -5,6 +5,11 @@ html,
 body,
 div,
 span,
+button,
+input,
+textarea,
+ul,
+li,
 h2,
 h3,
 h4,
@@ -56,6 +61,12 @@ button {
   border: none;
   cursor: pointer;
   box-sizing: border-box;
+  background-color: $white;
+}
+
+ul,
+li {
+  list-style: none;
 }
 
 .Divider {
@@ -64,4 +75,3 @@ button {
     margin: 26px 0;
   }
 }
-

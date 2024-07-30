@@ -12,6 +12,7 @@ const Location = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>('');
   const [detailAddress, setDetailAddress] = useState<string>('');
   const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [isShowSearchWrapper, setIsShowSearchWrapper] = useState<boolean>(true);
 
   const debouncedValue = useDebounce(searchKeyword);
 
@@ -26,7 +27,9 @@ const Location = () => {
 
   const LocationSearchWrapperRef = useRef(null);
 
-  const isShowSearchWrapper = useOutsideClick(LocationSearchWrapperRef);
+  useOutsideClick(LocationSearchWrapperRef, () =>
+    setIsShowSearchWrapper(false)
+  );
 
   const shouldDisplaySearchWrapper =
     addressData &&
@@ -42,6 +45,7 @@ const Location = () => {
         ref={LocationSearchWrapperRef}
         backgroundColor="Gray"
         className={styles.LocationInfoField}
+        onClick={() => setIsShowSearchWrapper(true)}
       >
         <SearchIcon width={24} height={24} className={styles.SearchIcon} />
         <input
