@@ -11,7 +11,7 @@ export const searchAddress = async ({
   keyword,
   currentPage,
   countPerPage,
-}: ReqSearchAddress) => {
+}: ReqSearchAddress): Promise<ResSearchAddress | void> => {
   if (!checkSearchedWord(keyword)) return;
 
   try {
@@ -27,7 +27,7 @@ export const searchAddress = async ({
       },
     });
 
-    return data.results as ResSearchAddress;
+    return data.results;
   } catch (e) {
     console.error(e);
     throw new Error('Error searchAddress');
@@ -40,9 +40,7 @@ export const searchCoordinate = async ({
   udrtYn,
   buldMnnm,
   buldSlno,
-}: ReqSearchCoordinate) => {
-  if (!admCd || !rnMgtSn || !udrtYn || !buldMnnm || !buldSlno) return;
-
+}: ReqSearchCoordinate): Promise<ResSearchCoordinate> => {
   try {
     const { data } = await axios({
       url: `${import.meta.env.VITE_JUSO_API_URL}/addrCoordApi.do`,
@@ -58,7 +56,7 @@ export const searchCoordinate = async ({
       },
     });
 
-    return data.results as ResSearchCoordinate;
+    return data.results;
   } catch (e) {
     console.error(e);
     throw new Error('Error searchCoordinate');

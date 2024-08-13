@@ -1,7 +1,7 @@
 export default function checkSearchedWord(keyword: string) {
   if (keyword.length > 0) {
     //특수문자 제거
-    const expText = /[%=><]/;
+    const expText = /[%=><!@#$^&*]/;
     if (expText.test(keyword) == true) {
       alert('특수문자를 입력 할수 없습니다.');
       return false;
@@ -38,4 +38,8 @@ export default function checkSearchedWord(keyword: string) {
     }
   }
   return true;
+}
+
+export function removeSpecialCharacters(str: string): string {
+  return str.replace(/[%=><!@#$^&*]/g, '');
 }

@@ -8,6 +8,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { sendAddressFromWebview } from '@/webview/address';
 import { useAddress, useCoordinate } from '@/hooks/api/useAddress';
 import { SearchAddressJuso } from '@/hooks/api/types/address';
+import { removeSpecialCharacters } from '@/utils/format';
 
 const Location = () => {
   const [addressInfo, setAddressInfo] = useState({
@@ -96,7 +97,10 @@ const Location = () => {
           value={keyword}
           placeholder="도로명 주소, 건물명 또는 지번"
           onChange={(e) =>
-            setAddressInfo({ ...addressInfo, keyword: e.target.value })
+            setAddressInfo({
+              ...addressInfo,
+              keyword: removeSpecialCharacters(e.target.value),
+            })
           }
           onClick={() => setIsSelected(false)}
         />

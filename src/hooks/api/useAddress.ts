@@ -11,15 +11,20 @@ export const useAddress = ({
   return useQuery({
     queryKey: ['address', { currentPage, countPerPage, keyword }],
     queryFn: async () => {
-      const res = await searchAddress({
-        keyword,
-        currentPage,
-        countPerPage,
-      });
-      if (res?.common.errorCode !== '0') {
-        throw new Error(res?.common.errorMessage);
+      try {
+        const res = await searchAddress({
+          keyword,
+          currentPage,
+          countPerPage,
+        });
+        if (res?.common.errorCode !== '0') {
+          throw new Error(res?.common.errorMessage);
+        }
+        return res;
+      } catch (e) {
+        console.error(e);
+        throw e;
       }
-      return res;
     },
     staleTime: 1000 * 60,
     enabled: !!keyword && !isSelected,
@@ -37,17 +42,22 @@ export const useCoordinate = ({
   return useQuery({
     queryKey: ['coordinate', { rnMgtSn, buldMnnm, buldSlno }],
     queryFn: async () => {
-      const res = await searchCoordinate({
-        admCd,
-        rnMgtSn,
-        udrtYn,
-        buldMnnm,
-        buldSlno,
-      });
-      if (res?.common.errorCode !== '0') {
-        throw new Error(res?.common.errorMessage);
+      try {
+        const res = await searchCoordinate({
+          admCd,
+          rnMgtSn,
+          udrtYn,
+          buldMnnm,
+          buldSlno,
+        });
+        if (res?.common.errorCode !== '0') {
+          throw new Error(res?.common.errorMessage);
+        }
+        return res;
+      } catch (e) {
+        console.error(e);
+        throw e;
       }
-      return res;
     },
     select: (data) => {
       return {
