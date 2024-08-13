@@ -5,16 +5,27 @@ import { SearchIcon } from '@/icons/icon';
 import Button from '@/components/common/Button/Button';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { useDebounce } from '@/hooks/useDebounce';
-import useAddress from '@/hooks/api/useAddress';
 import { sendAddressFromWebview } from '@/webview/address';
+import { useAddress, useCoordinate } from '@/hooks/api/useAddress';
+import { SearchAddressJuso } from '@/hooks/api/types/address';
 
 const Location = () => {
-  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [addressInfo, setAddressInfo] = useState({
+    keyword: '',
+    admCd: '',
+    rnMgtSn: '',
+    udrtYn: '',
+    buldMnnm: '',
+    buldSlno: '',
+  });
+
+  const { keyword, admCd, rnMgtSn, udrtYn, buldMnnm, buldSlno } = addressInfo;
+
   const [detailAddress, setDetailAddress] = useState<string>('');
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [isShowSearchWrapper, setIsShowSearchWrapper] = useState<boolean>(true);
 
-  const debouncedValue = useDebounce(searchKeyword);
+  const debouncedValue = useDebounce(keyword);
 
   const {
     data: addressData,
@@ -24,6 +35,38 @@ const Location = () => {
     keyword: debouncedValue,
     isSelected,
   });
+
+  const { data: coordinateData } = useCoordinate({
+    admCd,
+    rnMgtSn,
+    udrtYn,
+    buldMnnm,
+    buldSlno,
+  });
+
+  const onClickJusoInfo = (juso: SearchAddressJuso) => {
+    const { roadAddr, admCd, rnMgtSn, udrtYn, buldMnnm, buldSlno } = juso;
+
+    setAddressInfo({
+      keyword: roadAddr,
+      admCd,
+      rnMgtSn,
+      udrtYn,
+      buldMnnm,
+      buldSlno,
+    });
+    setIsSelected(true);
+  };
+
+  const handleWebviewAddressInfo = () => {
+    if (coordinateData) {
+      const filteredCoordinateData = {
+        entX: coordinateData.data.entX,
+        entY: coordinateData.data.entY,
+      };
+      sendAddressFromWebview(keyword, detailAddress, filteredCoordinateData);
+    }
+  };
 
   const LocationSearchWrapperRef = useRef(null);
 
@@ -50,23 +93,24 @@ const Location = () => {
         <SearchIcon width={24} height={24} className={styles.SearchIcon} />
         <input
           className={styles.LocationInput}
-          value={searchKeyword}
+          value={keyword}
           placeholder="도로명 주소, 건물명 또는 지번"
-          onChange={(e) => setSearchKeyword(e.target.value)}
+          onChange={(e) =>
+            setAddressInfo({ ...addressInfo, keyword: e.target.value })
+          }
           onClick={() => setIsSelected(false)}
         />
         {shouldDisplaySearchWrapper && (
           <div className={styles.LocationSearchWrapper}>
-            {addressData.juso.map((addressInfo, idx) => (
+            {addressData.juso.map((juso, idx) => (
               <div
-                key={`${addressInfo.rnMgtSn}-${addressInfo.zipNo}-${idx}`}
+                key={`${juso.rnMgtSn}-${juso.zipNo}-${idx}`}
                 onClick={() => {
-                  setSearchKeyword(`${addressInfo.roadAddr}`);
-                  setIsSelected(true);
+                  onClickJusoInfo(juso);
                 }}
                 className={styles.LocationSearchItem}
               >
-                {addressInfo.roadAddr}
+                {juso.roadAddr}
               </div>
             ))}
           </div>
@@ -104,7 +148,7 @@ const Location = () => {
       <Button
         className={styles.LocationButton}
         buttonType={isSelected && detailAddress ? 'Primary' : 'Disabled'}
-        onClick={() => sendAddressFromWebview(searchKeyword, detailAddress)}
+        onClick={handleWebviewAddressInfo}
       >
         확인
       </Button>

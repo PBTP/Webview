@@ -1,19 +1,13 @@
-import { searchAddress } from '@/services/address';
+import { searchAddress, searchCoordinate } from '@/hooks/api/services/address';
 import { useQuery } from '@tanstack/react-query';
+import { ReqSearchAddress, ReqSearchCoordinate } from './types/address';
 
-export type TReqSearchAddress = {
-  keyword: string;
-  currentPage?: number;
-  countPerPage?: number;
-  isSelected?: boolean;
-};
-
-const useAddress = ({
+export const useAddress = ({
   keyword,
   countPerPage = 5,
   currentPage = 1,
   isSelected = false,
-}: TReqSearchAddress) => {
+}: ReqSearchAddress) => {
   return useQuery({
     queryKey: ['address', { currentPage, countPerPage, keyword }],
     queryFn: async () => {
@@ -33,4 +27,35 @@ const useAddress = ({
   });
 };
 
-export default useAddress;
+export const useCoordinate = ({
+  admCd,
+  rnMgtSn,
+  udrtYn,
+  buldMnnm,
+  buldSlno,
+}: ReqSearchCoordinate) => {
+  return useQuery({
+    queryKey: ['coordinate', { rnMgtSn, buldMnnm, buldSlno }],
+    queryFn: async () => {
+      const res = await searchCoordinate({
+        admCd,
+        rnMgtSn,
+        udrtYn,
+        buldMnnm,
+        buldSlno,
+      });
+      if (res?.common.errorCode !== '0') {
+        throw new Error(res?.common.errorMessage);
+      }
+      return res;
+    },
+    select: (data) => {
+      return {
+        data: data.juso[0],
+      };
+    },
+    staleTime: 1000 * 60,
+    enabled: !!rnMgtSn,
+    retry: 0,
+  });
+};
