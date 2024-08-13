@@ -2,7 +2,7 @@ import { useTokenStore } from '@/stores/useTokenStore';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com',
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
