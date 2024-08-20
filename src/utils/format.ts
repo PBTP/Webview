@@ -1,10 +1,10 @@
-export default function checkSearchedWord(keyword: string) {
+export function foramtSearchWord(keyword: string): string {
   if (keyword.length > 0) {
     //특수문자 제거
-    const expText = /[%=><]/;
+    const expText = /[%=><!@#$^&*]/;
     if (expText.test(keyword) == true) {
       alert('특수문자를 입력 할수 없습니다.');
-      return false;
+      return removeSpecialCharacters(keyword);
     }
 
     //특정문자열(sql예약어의 앞뒤공백포함) 제거
@@ -33,9 +33,13 @@ export default function checkSearchedWord(keyword: string) {
           '"' + sqlArray[i] + '"와(과) 같은 특정문자로 검색할 수 없습니다.'
         );
         keyword = keyword.replace(regex, '');
-        return false;
+        return keyword;
       }
     }
   }
-  return true;
+  return keyword;
+}
+
+export function removeSpecialCharacters(str: string): string {
+  return str.replace(/[%=><!@#$^&*]/g, '');
 }
