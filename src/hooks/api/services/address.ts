@@ -1,4 +1,3 @@
-import checkSearchedWord from '@/utils/format';
 import axios from 'axios';
 import {
   ReqSearchAddress,
@@ -11,9 +10,7 @@ export const searchAddress = async ({
   keyword,
   currentPage,
   countPerPage,
-}: ReqSearchAddress): Promise<ResSearchAddress | void> => {
-  if (!checkSearchedWord(keyword)) return;
-
+}: ReqSearchAddress): Promise<ResSearchAddress> => {
   try {
     const { data } = await axios({
       url: `${import.meta.env.VITE_JUSO_API_URL}/addrLinkApi.do`,
@@ -34,6 +31,15 @@ export const searchAddress = async ({
   }
 };
 
+/**
+
+@param admCd - 행정구역코드
+@param rnMgtSn - 도로명코드
+@param udrtYn - 지하여부(0:지상, 1:지하)
+@param buldMnnm - 건물본번
+@param buldSlno - 건물부번
+@returns 주소의 경도 위도를 반환하는 함수
+*/
 export const searchCoordinate = async ({
   admCd,
   rnMgtSn,
