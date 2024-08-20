@@ -8,7 +8,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { sendAddressFromWebview } from '@/webview/address';
 import { useAddress, useCoordinate } from '@/hooks/api/useAddress';
 import { SearchAddressJuso } from '@/hooks/api/types/address';
-import { removeSpecialCharacters } from '@/utils/format';
+import { foramtSearchWord } from '@/utils/format';
 
 const Location = () => {
   const [addressInfo, setAddressInfo] = useState({
@@ -99,7 +99,7 @@ const Location = () => {
           onChange={(e) =>
             setAddressInfo({
               ...addressInfo,
-              keyword: removeSpecialCharacters(e.target.value),
+              keyword: foramtSearchWord(e.target.value),
             })
           }
           onClick={() => setIsSelected(false)}
