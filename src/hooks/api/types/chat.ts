@@ -12,3 +12,10 @@ export interface ResChatRoom {
     chatMessageContent: string;
   };
 }
+
+export interface ReqChatRoomMessages {
+  chatRoomId: string;
+  cursor?: number;
+  limit?: number;
+  next?: number;
+}
