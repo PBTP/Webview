@@ -6,7 +6,7 @@ declare global {
         getAddressWebview: TWebviewFunction;
       };
     };
-    iOSToJavaScript: (token: string) => void;
+    iOSToJavaScript: (token: string, uuid: string) => void;
   }
 
   type TWebviewFunction = {
