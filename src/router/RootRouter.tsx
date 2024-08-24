@@ -27,7 +27,7 @@ export const RootRouter = () => {
       <Route path="/" element={<RootLayout />}>
         <Route path="chat-list" element={<CharRoomsPage />} />
         <Route path="reservation" element={<ReservationIndexPage />} />
-        <Route path="chat-list/:chatId" element={<ChatRoomPage />} />
+        <Route path="chat-list/:chatRoomId" element={<ChatRoomPage />} />
         <Route
           path="reservation/:reservationId"
           element={<DetailReservation />}

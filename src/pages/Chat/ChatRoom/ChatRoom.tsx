@@ -1,13 +1,42 @@
-import React from 'react';
 import styles from './ChatRoom.module.scss';
 import CameraIcon from '@/icons/icon/CameraIcon';
 import PlusIcon from '@/icons/icon/PlusIcon';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useSocket } from '@/hooks/socket/useSocket';
+import { useChatRoomMessages } from '@/hooks/api/useChat';
+import { ReqChatRoomMessages } from '@/hooks/api/types/chat';
 
 const ChatRoom = () => {
   const navigate = useNavigate();
+  const { chatRoomId } = useParams();
+  const { data: previousMessages } = useChatRoomMessages({
+    chatRoomId,
+  } as ReqChatRoomMessages);
+  const socket = useSocket();
+
+  const [chatMsgs, setChatMsgs] = useState([...previousMessages]);
+
+  useEffect(
+    function handleChatRoom() {
+      if (!socket || !chatRoomId) return;
+
+      const getMessage = (msg: string[]) => {
+        setChatMsgs([...chatMsgs, ...msg]);
+      };
+
+      socket.emit('join', { chatRoomId });
+      socket.on('receive', getMessage);
+
+      return () => {
+        socket.off('receive');
+      };
+    },
+    [socket, chatRoomId]
+  );
+
   return (
     <>
       <div className={styles.ChatRoomHeader}>
