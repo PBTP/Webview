@@ -1,10 +1,14 @@
 import { useTokenStore } from '@/stores/useTokenStore';
+import qs from 'qs';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
+  },
+  paramsSerializer: (params) => {
+    return qs.stringify(params);
   },
 });
 
@@ -37,6 +41,7 @@ export const requestAPI = () => {
       return axiosInstance({
         url,
         method: method,
+        params: method === 'GET' && bodyJson,
         data: bodyJson,
         headers: {
           'Content-Type': contentType ?? 'application/json',
