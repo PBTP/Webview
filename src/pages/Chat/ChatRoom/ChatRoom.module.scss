@@ -22,6 +22,12 @@
   max-height: 547px;
   overflow-y: auto;
 
+  ::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   > .ChatWrapper {
     display: flex;
 
@@ -88,8 +94,8 @@
   padding: 12px 0px;
   width: 100%;
 
-  > .PlusIcon {
-    stroke: $gray500;
+  > .CameraIcon {
+    stroke: $gray400;
   }
 
   > .ChatInputContent {
@@ -112,9 +118,9 @@
         color: $gray300;
       }
     }
-
-    > .CameraIcon {
+    > .UploadIcon {
       stroke: $gray400;
+      cursor: pointer;
     }
   }
 }
