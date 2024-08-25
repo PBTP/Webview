@@ -1,8 +1,8 @@
 import React, { ReactNode, createContext } from 'react';
 import styles from './ChatItemBase.module.scss';
-import { IChatItem } from '../types';
 import RadioActiveIcon from '@/icons/icon/RadioActiveIcon';
 import RadioIcon from '@/icons/icon/RadioIcon';
+import { ChatRoom } from '@/hooks/api/types/chat';
 
 type ChatItemBaseProps = {
   children?: ReactNode;
@@ -10,7 +10,7 @@ type ChatItemBaseProps = {
 };
 
 type ChatItemContentProps = {
-  chatInfo: IChatItem;
+  chatInfo: ChatRoom;
   onClick?: () => void;
 };
 
@@ -27,14 +27,16 @@ const ChatItemBase = ({ children, onClick }: ChatItemBaseProps) => {
 };
 
 const ChatItemContent = ({ chatInfo, onClick }: ChatItemContentProps) => {
-  const { imgSrc, storeName, lastDate, recentChat } = chatInfo;
+  const { lastMessage, inviteUser, chatRoomName } = chatInfo;
+  const { lastDate, chatMessageContent: recentChat } = lastMessage;
+  const { imgSrc } = inviteUser;
 
   return (
     <div className={styles.ChatItemContainer} onClick={onClick}>
       <img src={imgSrc} className={styles.ChatImage} />
       <div className={styles.ChatContent}>
         <div className={styles.ChatTitle}>
-          <span className={styles.ShopName}>{storeName}</span>
+          <span className={styles.ShopName}>{chatRoomName}</span>
           <span className={styles.LastDate}>{lastDate}</span>
         </div>
         <div className={styles.ChatText}>{recentChat}</div>
