@@ -1,8 +1,8 @@
-import { useTokenStore } from '@/stores/useTokenStore';
+import { useAuthStore } from '@/stores/useAuthStore';
 import { Navigate, Outlet } from 'react-router';
 
 const ProtectedRoute = () => {
-  const token = useTokenStore((state) => state.accessToken);
+  const token = useAuthStore((state) => state.accessToken);
 
   return <>{token ? <Outlet /> : <Navigate to="/" replace={true} />}</>;
 };
