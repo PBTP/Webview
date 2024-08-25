@@ -12,9 +12,11 @@ export const axiosInstance: AxiosInstance = axios.create({
   },
 });
 
+const authStore = useAuthStore.getState();
+
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = useAuthStore((state) => state.accessToken);
+    const token = authStore.accessToken;
 
     config.headers.Authorization = token ? `Bearer ${token}` : '';
     return config;
