@@ -29,7 +29,7 @@ const ChatRoom = () => {
 
   const [chatMsgs, setChatMsgs] = useState([...previousMessages]);
 
-  const sendMeg = () => {
+  const sendMsg = () => {
     if (!socket) return;
     socket.emit('send', {
       chatRoomId,
@@ -111,7 +111,7 @@ const ChatRoom = () => {
             onChange={(e) => setChatMessageContent(e.target.value)}
           />
           <UploadIcon
-            onClick={sendMeg}
+            onClick={sendMsg}
             className={styles.UploadIcon}
             width={20}
             height={20}

@@ -1,9 +1,9 @@
-import { useTokenStore } from '@/stores/useTokenStore';
-import { useEffect, useMemo, useState } from 'react';
+import { useAuthStore } from '@/stores/useAuthStore';
+import { useEffect, useMemo } from 'react';
 import { io } from 'socket.io-client';
 
 export const useSocket = (path: 'chat' = 'chat') => {
-  const token = useTokenStore((state) => state.accessToken);
+  const token = useAuthStore((state) => state.accessToken);
 
   const socket = useMemo(() => {
     if (!token) return null;
