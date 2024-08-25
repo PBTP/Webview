@@ -1,4 +1,5 @@
-import { useTokenStore } from '@/stores/useTokenStore';
+import { useAuthStore } from '@/stores/useAuthStore';
+import qs from 'qs';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export const axiosInstance: AxiosInstance = axios.create({
@@ -6,11 +7,16 @@ export const axiosInstance: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  paramsSerializer: (params) => {
+    return qs.stringify(params);
+  },
 });
+
+const authStore = useAuthStore.getState();
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = useTokenStore((state) => state.accessToken);
+    const token = authStore.accessToken;
 
     config.headers.Authorization = token ? `Bearer ${token}` : '';
     return config;
@@ -37,6 +43,7 @@ export const requestAPI = () => {
       return axiosInstance({
         url,
         method: method,
+        params: method === 'GET' && bodyJson,
         data: bodyJson,
         headers: {
           'Content-Type': contentType ?? 'application/json',

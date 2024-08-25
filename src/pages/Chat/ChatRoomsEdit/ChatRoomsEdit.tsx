@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { IChatItem } from '../types';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 
 import styles from './ChatRoomsEdit.module.scss';
 import Button from '@/components/common/Button/Button';
 import ChatItemBase from '../ChatRooms/ChatItemBase';
+import { ChatRoom } from '@/hooks/api/types/chat';
 
 type ChatRoomsEditProps = {
   setIsEdit: React.Dispatch<boolean>;
-  chatData: IChatItem[];
+  chatData: ChatRoom[];
 };
 
 const ChatRoomsEdit = ({ setIsEdit, chatData }: ChatRoomsEditProps) => {
@@ -34,7 +34,7 @@ const ChatRoomsEdit = ({ setIsEdit, chatData }: ChatRoomsEditProps) => {
       setSelectedEditChatRooms([]);
       return;
     }
-    setSelectedEditChatRooms(chatData.map((chatInfo) => chatInfo.roomId));
+    setSelectedEditChatRooms(chatData.map((chatInfo) => chatInfo.chatRoomId));
   };
 
   const isAllSelected = selectedEditChatRooms.length === chatData.length;
@@ -58,14 +58,14 @@ const ChatRoomsEdit = ({ setIsEdit, chatData }: ChatRoomsEditProps) => {
           </div>
         </div>
         <div className={styles.ChatRoomsEditContent}>
-          {chatData.map((chatInfo: IChatItem, idx) => {
+          {chatData.map((chatInfo, idx) => {
             return (
               <ChatItemBase
-                onClick={() => handleSelectedEditChatRooms(chatInfo.roomId)}
-                key={`${chatInfo.roomId}-${idx}`}
+                onClick={() => handleSelectedEditChatRooms(chatInfo.chatRoomId)}
+                key={`${chatInfo.chatRoomId}-${idx}`}
               >
                 <ChatItemBase.EditButton
-                  isActive={selectedEditChatRooms.includes(chatInfo.roomId)}
+                  isActive={selectedEditChatRooms.includes(chatInfo.chatRoomId)}
                 />
                 <ChatItemBase.ChatItemContent chatInfo={chatInfo} />
               </ChatItemBase>

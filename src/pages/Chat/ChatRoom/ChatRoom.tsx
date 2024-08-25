@@ -1,13 +1,63 @@
-import React from 'react';
 import styles from './ChatRoom.module.scss';
-import CameraIcon from '@/icons/icon/CameraIcon';
-import PlusIcon from '@/icons/icon/PlusIcon';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useSocket } from '@/hooks/socket/useSocket';
+import { useChatRoomMessages } from '@/hooks/api/useChat';
+import { ReqChatRoomMessages } from '@/hooks/api/types/chat';
+import { useAuthStore } from '@/stores/useAuthStore';
+import { UploadIcon, CameraIcon } from '@/icons/icon';
+
+type ChatMessageType = 'TEXT' | 'IMAGE' | 'VIDEO';
 
 const ChatRoom = () => {
+  const senderUuid = useAuthStore((state) => state.uuid);
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { chatRoomId, storeName, chatMessageId } = state;
+
+  const [chatMessageContent, setChatMessageContent] = useState('');
+
+  const { data: previousMessages } = useChatRoomMessages({
+    chatRoomId,
+  } as ReqChatRoomMessages);
+  const socket = useSocket();
+
+  const [chatMessageType, setChatMessageType] =
+    useState<ChatMessageType>('TEXT');
+
+  const [chatMsgs, setChatMsgs] = useState([...previousMessages]);
+
+  const sendMsg = () => {
+    if (!socket) return;
+    socket.emit('send', {
+      chatRoomId,
+      chatMessageId,
+      senderUuid,
+      chatMessageType,
+      chatMessageContent,
+    });
+  };
+
+  useEffect(
+    function handleChatRoom() {
+      if (!socket || !chatRoomId) return;
+
+      const getMessage = (msg: string[]) => {
+        setChatMsgs([...chatMsgs, ...msg]);
+      };
+
+      socket.emit('join', { chatRoomId });
+      socket.on('receive', getMessage);
+
+      return () => {
+        socket.off('receive');
+      };
+    },
+    [socket, chatRoomId]
+  );
+
   return (
     <>
       <div className={styles.ChatRoomHeader}>
@@ -16,7 +66,7 @@ const ChatRoom = () => {
           width={24}
           height={24}
         />
-        <div className={styles.ChatRoomTitle}> 개신남 10호점 </div>
+        <div className={styles.ChatRoomTitle}> {storeName} </div>
         <DotsVerticalIcon width={24} height={24} />
       </div>
       <div className={styles.ChatRoomWrapper}>
@@ -52,14 +102,20 @@ const ChatRoom = () => {
         </div>
       </div>
       <div className={styles.ChatInputWrapper}>
-        <PlusIcon className={styles.PlusIcon} width={24} height={24} />
+        <CameraIcon className={styles.CameraIcon} width={24} height={24} />
         <div className={styles.ChatInputContent}>
           <textarea
             rows={1}
             className={styles.ChatInput}
             placeholder="메시지를 입력하세요"
+            onChange={(e) => setChatMessageContent(e.target.value)}
           />
-          <CameraIcon className={styles.CameraIcon} width={20} height={20} />
+          <UploadIcon
+            onClick={sendMsg}
+            className={styles.UploadIcon}
+            width={20}
+            height={20}
+          />
         </div>
       </div>
     </>

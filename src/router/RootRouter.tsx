@@ -11,13 +11,13 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
-import { setAccessToken } from '@/stores/useTokenStore';
 import Location from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
+import { setUserAuth } from '@/stores/useAuthStore';
 
 export const RootRouter = () => {
-  const handleIosWebviewToken = (token: string) => {
-    if (token) setAccessToken(token);
+  const handleIosWebviewToken = (token: string, uuid: string) => {
+    if (token) setUserAuth(token, uuid);
   };
 
   window.iOSToJavaScript = handleIosWebviewToken;
@@ -27,7 +27,7 @@ export const RootRouter = () => {
       <Route path="/" element={<RootLayout />}>
         <Route path="chat-list" element={<CharRoomsPage />} />
         <Route path="reservation" element={<ReservationIndexPage />} />
-        <Route path="chat-list/:chatId" element={<ChatRoomPage />} />
+        <Route path="chat-list/:chatRoomId" element={<ChatRoomPage />} />
         <Route
           path="reservation/:reservationId"
           element={<DetailReservation />}
