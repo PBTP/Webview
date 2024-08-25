@@ -11,13 +11,13 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
-import { setAccessToken } from '@/stores/useTokenStore';
 import Location from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
+import { setUserAuth } from '@/stores/useAuthStore';
 
 export const RootRouter = () => {
-  const handleIosWebviewToken = (token: string) => {
-    if (token) setAccessToken(token);
+  const handleIosWebviewToken = (token: string, uuid: string) => {
+    if (token) setUserAuth(token, uuid);
   };
 
   window.iOSToJavaScript = handleIosWebviewToken;

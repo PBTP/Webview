@@ -1,4 +1,4 @@
-import { useTokenStore } from '@/stores/useTokenStore';
+import { useAuthStore } from '@/stores/useAuthStore';
 import qs from 'qs';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
@@ -14,7 +14,7 @@ export const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = useTokenStore((state) => state.accessToken);
+    const token = useAuthStore((state) => state.accessToken);
 
     config.headers.Authorization = token ? `Bearer ${token}` : '';
     return config;
