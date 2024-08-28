@@ -1,6 +1,4 @@
 export const showiOSInfo = (info: unknown) => {
-  const formatIosInfo = JSON.stringify(info);
-  window.webkit.messageHandlers.showInfo.postMessage(formatIosInfo);
   if (window.webkit && info) {
     const formatIosInfo = JSON.stringify(info);
     window.webkit.messageHandlers.showInfo.postMessage(formatIosInfo);

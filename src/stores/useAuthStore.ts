@@ -13,12 +13,12 @@ export const useAuthStore = create(
       uuid: '',
     }),
     {
-      name: 'token-storage',
+      name: 'auth-storage',
     }
   )
 );
 
-export const setUserAuth = (accessToken: string, uuid?: string) =>
+export const setUserAuth = (accessToken: string, uuid: string) =>
   useAuthStore.setState({ accessToken, uuid });
 
 export const logout = useAuthStore.persist.clearStorage;
