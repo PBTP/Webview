@@ -13,15 +13,8 @@ import {
 } from 'react-router-dom';
 import Location from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
-import { setUserAuth } from '@/stores/useAuthStore';
 
 export const RootRouter = () => {
-  const handleIosWebviewToken = (token: string, uuid: string) => {
-    if (token) setUserAuth(token, uuid);
-  };
-
-  window.iOSToJavaScript = handleIosWebviewToken;
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
