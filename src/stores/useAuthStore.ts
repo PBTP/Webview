@@ -13,7 +13,7 @@ export const useAuthStore = create(
       uuid: '',
     }),
     {
-      name: 'auth-storage',
+      name: 'token-storage',
     }
   )
 );
