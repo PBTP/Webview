@@ -2,7 +2,7 @@ declare global {
   interface Window {
     webkit: {
       messageHandlers: {
-        buttonClicked: TWebviewFunction;
+        showInfo: TWebviewFunction;
         getAddressWebview: TWebviewFunction;
       };
     };

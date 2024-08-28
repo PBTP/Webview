@@ -1,8 +1,12 @@
 import { RootRouter } from './router/RootRouter';
 import { setUserAuth } from './stores/useAuthStore';
+import { showiOSInfo } from './webview/utils';
 function App() {
   const handleIosWebviewToken = (token: string, uuid: string) => {
-    if (token) setUserAuth(token, uuid);
+    showiOSInfo(`token:${token}, uuid:${uuid}`);
+    if (token && uuid) {
+      setUserAuth(token, uuid);
+    }
   };
 
   window.iOSToJavaScript = handleIosWebviewToken;
