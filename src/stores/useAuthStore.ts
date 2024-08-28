@@ -18,7 +18,7 @@ export const useAuthStore = create(
   )
 );
 
-export const setUserAuth = (accessToken: string, uuid: string) =>
+export const setUserAuth = (accessToken: string, uuid?: string) =>
   useAuthStore.setState({ accessToken, uuid });
 
 export const logout = useAuthStore.persist.clearStorage;

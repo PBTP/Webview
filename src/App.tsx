@@ -3,10 +3,10 @@ import { RootRouter } from './router/RootRouter';
 import { setUserAuth } from './stores/useAuthStore';
 import { showiOSInfo } from './webview/utils';
 function App() {
-  const handleIosWebviewToken = (token: string, uuid: string) => {
-    showiOSInfo(`token:${token}, uuid:${uuid}`);
-    if (token && uuid) {
-      setUserAuth(token, uuid);
+  const handleIosWebviewToken = (token: string) => {
+    showiOSInfo(`token:${token}`);
+    if (token) {
+      setUserAuth(token);
       return 'success';
     }
     return 'fail';
