@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { RootRouter } from './router/RootRouter';
 import { setUserAuth } from './stores/useAuthStore';
 import { showiOSInfo } from './webview/utils';
@@ -8,8 +9,8 @@ function App() {
       setUserAuth(token, uuid);
     }
   };
-
-  window.iOSToJavaScript = handleIosWebviewToken;
+  window.handleIosWebviewToken = handleIosWebviewToken;
+  // window.iOSToJavaScript = handleIosWebviewToken;
 
   return <RootRouter />;
 }
