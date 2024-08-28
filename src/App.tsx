@@ -7,10 +7,12 @@ function App() {
     showiOSInfo(`token:${token}, uuid:${uuid}`);
     if (token && uuid) {
       setUserAuth(token, uuid);
+      return 'success';
     }
+    return 'fail';
   };
+
   window.handleIosWebviewToken = handleIosWebviewToken;
-  // window.iOSToJavaScript = handleIosWebviewToken;
 
   return <RootRouter />;
 }
