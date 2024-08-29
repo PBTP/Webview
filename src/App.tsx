@@ -14,9 +14,9 @@ function App() {
 
   window.handleIosWebviewToken = handleIosWebviewToken;
 
-  useEffect(() => {
-    webviewInit();
-  }, []);
+  // useEffect(() => {
+  //   webviewInit();
+  // }, []);
 
   return <RootRouter />;
 }
