@@ -12,11 +12,10 @@ function App() {
     return 'fail';
   };
 
-  window.handleIosWebviewToken = handleIosWebviewToken;
-
-  // useEffect(() => {
-  //   webviewInit();
-  // }, []);
+  useEffect(() => {
+    window.handleIosWebviewToken = handleIosWebviewToken;
+    webviewInit();
+  }, []);
 
   return <RootRouter />;
 }
