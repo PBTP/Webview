@@ -11,8 +11,9 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
-import Location from '@/pages/Location/Location/Location';
+import LocationPage from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
+import VersionPage from '@/pages/Version/Version';
 
 export const RootRouter = () => {
   const router = createBrowserRouter(
@@ -27,7 +28,8 @@ export const RootRouter = () => {
         />
         <Route path="payment" element={<PaymentPage />} />
         <Route path="review" element={<ReviewPage />} />
-        <Route path="location" element={<Location />} />
+        <Route path="location" element={<LocationPage />} />
+        <Route path="version" element={<VersionPage />} />
       </Route>
     )
   );
