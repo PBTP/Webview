@@ -8,7 +8,7 @@ export const showiOSInfo = (info: unknown) => {
 
 export const webviewInit = () => {
   if (window.webkit) {
-    window.webkit.messageHandlers.webviewInit.postMessage();
+    window.webkit.messageHandlers.webviewInit.postMessage('초기설정');
   }
   return;
 };
