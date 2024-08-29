@@ -5,3 +5,10 @@ export const showiOSInfo = (info: unknown) => {
   }
   return;
 };
+
+export const webviewInit = () => {
+  if (window.webkit) {
+    window.webkit.messageHandlers.webviewInit.postMessage();
+  }
+  return;
+};

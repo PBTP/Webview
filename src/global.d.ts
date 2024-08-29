@@ -4,6 +4,7 @@ declare global {
       messageHandlers: {
         showInfo: TWebviewFunction;
         getAddressWebview: TWebviewFunction;
+        webviewInit: TWebviewFunction;
       };
     };
     handleIosWebviewToken: (token: string, uuid: string) => void;
@@ -11,7 +12,7 @@ declare global {
   }
 
   type TWebviewFunction = {
-    postMessage: (message: string | object) => void;
+    postMessage: (message?: string | object) => void;
   };
 }
 
