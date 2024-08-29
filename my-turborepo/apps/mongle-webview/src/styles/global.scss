@@ -1,0 +1,77 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import '@/styles/theme.scss';
+
+html,
+body,
+div,
+span,
+button,
+input,
+textarea,
+ul,
+li,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+}
+
+input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+  &::placeholder {
+    color: $gray300;
+  }
+}
+
+textarea {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: $white;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.Divider {
+  border: 1px solid $gray300;
+  &.Reservation {
+    margin: 26px 0;
+  }
+}
