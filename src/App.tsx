@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { RootRouter } from './router/RootRouter';
 import { setUserAuth } from './stores/useAuthStore';
 import { showiOSInfo, webviewInit } from './webview/utils';
-function App() {
-  const handleIosWebviewToken = (token: string, uuid: string) => {
+
+if (!window.handleIosWebviewToken) {
+  window.handleIosWebviewToken = (token, uuid) => {
     showiOSInfo(`token:${token},uuid:${uuid}`);
     if (token) {
       setUserAuth(token, uuid);
@@ -11,9 +12,10 @@ function App() {
     }
     return 'fail';
   };
+}
 
+function App() {
   useEffect(() => {
-    window.handleIosWebviewToken = handleIosWebviewToken;
     webviewInit();
   }, []);
 
