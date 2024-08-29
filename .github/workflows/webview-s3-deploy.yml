@@ -40,7 +40,7 @@ jobs:
 
       - name: .env setting
         run: |
-          echo -e "VITE_API_URL=${{secrets.API_URL}}\nVITE_SOCKET_URL=${{secrets.SOCKET_URL}}\nVITE_JUSO_API_URL=${{secrets.JUSO_API_URL}}\nVITE_JUSO_ADDRESS_CONFIRM_KEY=${{secrets.JUSO_ADDRESS_CONFIRM_KEY}}\nVITE_JUSO_COORDINATE_CONFIRM_KEY=${{secrets.JUSO_COORDINATE_CONFIRM_KEY}}" >> .env
+          echo -e "VITE_API_URL=${{secrets.API_URL}}\nVITE_SOCKET_URL=${{secrets.SOCKET_URL}}\nVITE_JUSO_API_URL=${{secrets.JUSO_API_URL}}\nVITE_JUSO_ADDRESS_CONFIRM_KEY=${{secrets.JUSO_ADDRESS_CONFIRM_KEY}}\nVITE_JUSO_COORDINATE_CONFIRM_KEY=${{secrets.JUSO_COORDINATE_CONFIRM_KEY}}" >> .env.production
 
       - name: install yarn dependencies
         run: yarn install

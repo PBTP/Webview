@@ -19,7 +19,7 @@ export const RootRouter = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route path="chat-list" element={<CharRoomsPage />} />
+        <Route path="chat-list" element={<VersionPage />} />
         <Route path="reservation" element={<ReservationIndexPage />} />
         <Route path="chat-list/:chatRoomId" element={<ChatRoomPage />} />
         <Route
