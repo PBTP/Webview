@@ -23,7 +23,7 @@ const ChatRooms = () => {
 
   return (
     <>
-      {isEdit ? (
+      {isEdit && chatRoomDatas ? (
         <ChatRoomsEdit chatData={chatRoomDatas} setIsEdit={setIsEdit} />
       ) : (
         <div className={styles.ChatRoomsWrapper}>
@@ -36,6 +36,7 @@ const ChatRooms = () => {
               onClick={handleEditIcon}
             />
           </div>
+          {chatRoomDatas && <div>{chatRoomDatas[0].tsid}</div>}
           {chatRoomDatas &&
             chatRoomDatas.map((chatInfo) => (
               <ChatItemBase key={chatInfo.chatRoomId}>

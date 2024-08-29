@@ -11,7 +11,6 @@ export const useChatRooms = () => {
       const res = fetchChatRooms();
       return res;
     },
-    initialData: [],
     enabled: !!token,
   });
 };
