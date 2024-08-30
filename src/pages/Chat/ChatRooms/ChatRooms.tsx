@@ -46,9 +46,11 @@ const ChatRooms = () => {
                   }
                   chatInfo={chatInfo}
                 />
-                <ChatItemBase.UnViewCount
-                  unViewedMsgCount={chatInfo.unViewedMsgCount}
-                />
+                {chatInfo?.unViewedMsgCount > 0 && (
+                  <ChatItemBase.UnViewCount
+                    unViewedMsgCount={chatInfo.unViewedMsgCount}
+                  />
+                )}
               </ChatItemBase>
             ))}
         </div>
