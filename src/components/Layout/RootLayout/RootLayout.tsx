@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import styles from './RootLayout.module.scss';
 import { Outlet } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useAuthStore } from '@/stores/useAuthStore';
 import { showiOSInfo, webviewInit } from '@/webview/utils';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorPage from '@/pages/Error/ErrorPage';
+import LoadingSpinner from '@/pages/Loading/LoadingSpinner';
 
 const RootLayout = () => {
   const { accessToken, uuid } = useAuthStore((state) => state);
@@ -20,7 +21,9 @@ const RootLayout = () => {
         <button onClick={webviewInit}>초기설정</button>
       </div>
       <ErrorBoundary fallback={<ErrorPage />}>
-        <Outlet />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Outlet />
+        </Suspense>
       </ErrorBoundary>
     </div>
   );
