@@ -4,6 +4,8 @@ import styles from './RootLayout.module.scss';
 import { Outlet } from 'react-router-dom';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { showiOSInfo, webviewInit } from '@/webview/utils';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorPage from '@/pages/Error/ErrorPage';
 
 const RootLayout = () => {
   const { accessToken, uuid } = useAuthStore((state) => state);
@@ -17,7 +19,9 @@ const RootLayout = () => {
         </button>
         <button onClick={webviewInit}>초기설정</button>
       </div>
-      <Outlet />
+      <ErrorBoundary fallback={<ErrorPage />}>
+        <Outlet />
+      </ErrorBoundary>
     </div>
   );
 };

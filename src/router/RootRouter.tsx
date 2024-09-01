@@ -14,6 +14,7 @@ import {
 import LocationPage from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
 import VersionPage from '@/pages/Version/Version';
+import ErrorPage from '@/pages/Error/ErrorPage';
 
 export const RootRouter = () => {
   const router = createBrowserRouter(
@@ -30,6 +31,7 @@ export const RootRouter = () => {
         <Route path="review" element={<ReviewPage />} />
         <Route path="location" element={<LocationPage />} />
         <Route path="version" element={<VersionPage />} />
+        <Route path="*" element={<ErrorPage type="notFound" />} />
       </Route>
     )
   );
