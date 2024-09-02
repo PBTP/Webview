@@ -1,0 +1,23 @@
+@import '@/styles/theme.scss';
+
+.ErrorWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+
+  > .ErrorContent {
+    margin-top: 29px;
+    text-align: center;
+
+    color: $gray600;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 32px;
+
+    > .ErrorTitle {
+      font-size: 20px;
+    }
+  }
+}
