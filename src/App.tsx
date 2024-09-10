@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
 import { RootRouter } from './router/RootRouter';
 import { setUserAuth } from './stores/useAuthStore';
-import { showiOSInfo, webviewInit } from './webview/utils';
+import { showiOSInfo } from './webview/utils';
 
 if (!window.handleIosWebviewToken) {
   window.handleIosWebviewToken = (token, uuid) => {
@@ -15,10 +14,6 @@ if (!window.handleIosWebviewToken) {
 }
 
 function App() {
-  useEffect(() => {
-    webviewInit();
-  }, []);
-
   return <RootRouter />;
 }
 
