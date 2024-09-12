@@ -2,6 +2,7 @@ import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { fetchChatRoomMessages, fetchChatRooms } from './services/chat';
 import { ReqChatRoomMessages } from './types/chat';
 import { useAuthStore } from '@/stores/useAuthStore';
+import { chatKeys } from './keys/chat';
 
 export const useChatRooms = () => {
   const token = useAuthStore((state) => state.accessToken);
@@ -15,15 +16,9 @@ export const useChatRooms = () => {
   });
 };
 
-export const useChatRoomMessages = ({
-  chatRoomId,
-  cursor,
-  limit,
-  next,
-}: ReqChatRoomMessages) => {
-  console.log(chatRoomId);
+export const useChatRoomMessages = (params: ReqChatRoomMessages) => {
   return useQuery({
-    queryKey: ['chatRoomMessage', { chatRoomId, cursor, limit, next }] as const,
+    queryKey: chatKeys.chatMessagesKey(params),
     queryFn: async ({ queryKey }) => {
       const reqChatRoomMessages = queryKey[1];
       const res = await fetchChatRoomMessages(reqChatRoomMessages);

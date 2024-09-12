@@ -2,7 +2,7 @@ import styles from './ChatRoom.module.scss';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
 import { useLocation, useNavigate } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { useSocket } from '@/hooks/socket/useSocket';
 import { useChatRoomMessages } from '@/hooks/api/useChat';
 import { ChatMessage, ReqChatRoomMessages } from '@/hooks/api/types/chat';
