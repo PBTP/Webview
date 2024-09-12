@@ -24,3 +24,24 @@ export interface ReqChatRoomMessages {
   limit?: number;
   next?: number;
 }
+
+export interface ChatUser {
+  authProvider: 'KAKAO' | 'GOOGLE';
+  userType: 'customer' | 'business' | 'driver';
+  userId?: number;
+  phoneNumber?: string;
+  uuid?: string;
+  name: string;
+}
+export interface ChatMessage {
+  chatRoomId: number;
+  chatMessageId: number;
+  senderUuid: string;
+  chatMessageType: string;
+  user: ChatUser;
+  chatMessageContent: string;
+}
+export interface ChatMessages {
+  data: ChatMessage[];
+  next: number;
+}

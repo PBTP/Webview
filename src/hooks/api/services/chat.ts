@@ -1,5 +1,5 @@
 import { requestAPI } from '@/utils/fetch';
-import { ChatRoom, ReqChatRoomMessages } from '../types/chat';
+import { ChatMessages, ChatRoom, ReqChatRoomMessages } from '../types/chat';
 
 export const fetchChatRooms = async (): Promise<ChatRoom[]> => {
   const { data } = await requestAPI().get('/v1/chat/room');
@@ -11,7 +11,7 @@ export const fetchChatRoomMessages = async ({
   cursor = 0,
   limit = 20,
   next,
-}: ReqChatRoomMessages): Promise<string[]> => {
+}: ReqChatRoomMessages): Promise<ChatMessages> => {
   const { data } = await requestAPI().get(
     `/v1/chat/room/${chatRoomId}/message`,
     {
