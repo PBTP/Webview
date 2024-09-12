@@ -22,7 +22,7 @@ const ChatRoom = () => {
   const { data: previousMessages } = useChatRoomMessages({
     chatRoomId,
   } as ReqChatRoomMessages);
-  const socket = useSocket();
+  const { socket, sendMessage, onMessage, joinRoom } = useSocket();
 
   const [chatMessageType, setChatMessageType] =
     useState<ChatMessageType>('TEXT');
@@ -30,30 +30,25 @@ const ChatRoom = () => {
   const [chatMsgs, setChatMsgs] = useState([...previousMessages]);
 
   const sendMsg = () => {
-    if (!socket) return;
-    socket.emit('send', {
-      chatRoomId,
-      chatMessageId,
-      senderUuid,
-      chatMessageType,
-      chatMessageContent,
-    });
+    sendMessage(
+      {
+        chatRoomId,
+        chatMessageId,
+        senderUuid,
+        chatMessageType,
+        chatMessageContent,
+      },
+      senderUuid
+    );
   };
 
   useEffect(
     function handleChatRoom() {
-      if (!socket || !chatRoomId) return;
-
       const getMessage = (msg: string[]) => {
         setChatMsgs([...chatMsgs, ...msg]);
       };
-
-      socket.emit('join', { chatRoomId });
-      socket.on('receive', getMessage);
-
-      return () => {
-        socket.off('receive');
-      };
+      onMessage(getMessage);
+      joinRoom(chatRoomId);
     },
     [socket, chatRoomId]
   );

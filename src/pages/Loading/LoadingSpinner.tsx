@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 import spinnerData from './mongleloading.json';
-import styles from './Loading.module.scss';
+import styles from './LoadingSpinner.module.scss';
 
 const LoadingSpinner = () => {
   return (
