@@ -17,8 +17,8 @@ const ChatRooms = () => {
 
   const navigate = useNavigate();
 
-  const onClickRoute = (roomId: string, storeName: string) => {
-    navigate(`${roomId}`, { state: { roomId, storeName } });
+  const onClickRoute = (chatRoomId: string, storeName: string) => {
+    navigate(`${chatRoomId}`, { state: { chatRoomId, storeName } });
   };
 
   return (
@@ -36,7 +36,6 @@ const ChatRooms = () => {
               onClick={handleEditIcon}
             />
           </div>
-          {chatRoomDatas && <div>{chatRoomDatas[0].tsid}</div>}
           {chatRoomDatas &&
             chatRoomDatas.map((chatInfo) => (
               <ChatItemBase key={chatInfo.chatRoomId}>

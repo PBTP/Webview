@@ -21,6 +21,7 @@ export const useChatRoomMessages = ({
   limit,
   next,
 }: ReqChatRoomMessages) => {
+  console.log(chatRoomId);
   return useQuery({
     queryKey: ['chatRoomMessage', { chatRoomId, cursor, limit, next }] as const,
     queryFn: async ({ queryKey }) => {
@@ -28,6 +29,5 @@ export const useChatRoomMessages = ({
       const res = await fetchChatRoomMessages(reqChatRoomMessages);
       return res;
     },
-    initialData: [''],
   });
 };

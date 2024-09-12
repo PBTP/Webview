@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useSocket } from '@/hooks/socket/useSocket';
 import { useChatRoomMessages } from '@/hooks/api/useChat';
-import { ReqChatRoomMessages } from '@/hooks/api/types/chat';
+import { ChatMessage, ReqChatRoomMessages } from '@/hooks/api/types/chat';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { UploadIcon, CameraIcon } from '@/icons/icon';
 
@@ -15,25 +15,24 @@ const ChatRoom = () => {
   const senderUuid = useAuthStore((state) => state.uuid);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { chatRoomId, storeName, chatMessageId } = state;
+  const { chatRoomId, storeName } = state;
 
   const [chatMessageContent, setChatMessageContent] = useState('');
 
   const { data: previousMessages } = useChatRoomMessages({
     chatRoomId,
-  } as ReqChatRoomMessages);
+  });
   const { socket, sendMessage, onMessage, joinRoom } = useSocket();
 
   const [chatMessageType, setChatMessageType] =
     useState<ChatMessageType>('TEXT');
 
-  const [chatMsgs, setChatMsgs] = useState([...previousMessages]);
+  const [chatMsgs, setChatMsgs] = useState([...(previousMessages?.data ?? [])]);
 
-  const sendMsg = () => {
+  const handleSocketMessage = () => {
     sendMessage(
       {
         chatRoomId,
-        chatMessageId,
         senderUuid,
         chatMessageType,
         chatMessageContent,
@@ -43,8 +42,8 @@ const ChatRoom = () => {
   };
 
   useEffect(
-    function handleChatRoom() {
-      const getMessage = (msg: string[]) => {
+    function onSocket() {
+      const getMessage = (msg: ChatMessage[]) => {
         setChatMsgs([...chatMsgs, ...msg]);
       };
       onMessage(getMessage);
@@ -106,7 +105,7 @@ const ChatRoom = () => {
             onChange={(e) => setChatMessageContent(e.target.value)}
           />
           <UploadIcon
-            onClick={sendMsg}
+            onClick={handleSocketMessage}
             className={styles.UploadIcon}
             width={20}
             height={20}
