@@ -2,10 +2,8 @@ import styles from './ChatRoom.module.scss';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
 import { useLocation, useNavigate } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSocket } from '@/hooks/socket/useSocket';
-import { useChatRoomMessages } from '@/hooks/api/useChat';
-import { ChatMessage, ReqChatRoomMessages } from '@/hooks/api/types/chat';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { UploadIcon, CameraIcon } from '@/icons/icon';
 
@@ -19,15 +17,11 @@ const ChatRoom = () => {
 
   const [chatMessageContent, setChatMessageContent] = useState('');
 
-  const { data: previousMessages } = useChatRoomMessages({
-    chatRoomId,
-  });
-  const { socket, sendMessage, onMessage, joinRoom } = useSocket();
+  const { messages, sendMessage } = useSocket('chat', chatRoomId);
+  console.log(messages);
 
   const [chatMessageType, setChatMessageType] =
     useState<ChatMessageType>('TEXT');
-
-  const [chatMsgs, setChatMsgs] = useState([...(previousMessages?.data ?? [])]);
 
   const handleSocketMessage = () => {
     sendMessage(
@@ -40,17 +34,6 @@ const ChatRoom = () => {
       senderUuid
     );
   };
-
-  useEffect(
-    function onSocket() {
-      const getMessage = (msg: ChatMessage[]) => {
-        setChatMsgs([...chatMsgs, ...msg]);
-      };
-      onMessage(getMessage);
-      joinRoom(chatRoomId);
-    },
-    [socket, chatRoomId]
-  );
 
   return (
     <>

@@ -2,7 +2,6 @@ import RootLayout from '@/components/Layout/RootLayout/RootLayout';
 import DetailReservation from '@/pages/Reservation/Detail/DetailReservation';
 import ReservationIndexPage from '@/pages/Reservation/Index/Index';
 import ChatRoomPage from '@/pages/Chat/ChatRoom/ChatRoom';
-import ChatRoomsPage from '@/pages/Chat/ChatRooms/ChatRooms';
 import PaymentPage from '@/pages/Payment/Payment/Payment';
 
 import {
@@ -15,6 +14,7 @@ import LocationPage from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
 import VersionPage from '@/pages/Version/Version';
 import ErrorPage from '@/pages/Error/ErrorPage';
+import ChatRoomsPage from '@/pages/Chat/ChatRooms/ChatRoomsPage';
 
 export const RootRouter = () => {
   const router = createBrowserRouter(

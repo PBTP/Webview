@@ -1,6 +1,8 @@
 @import '@/styles/theme.scss';
 
 .ChatRoomsWrapper {
+  height: 100dvh;
+
   > .ChatRoomsHeader {
     display: flex;
     justify-content: space-between;
