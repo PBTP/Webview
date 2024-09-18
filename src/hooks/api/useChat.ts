@@ -20,7 +20,8 @@ export const useChatRoomMessages = (params: ReqChatRoomMessages) => {
   return useQuery({
     queryKey: chatKeys.chatMessagesKey(params),
     queryFn: async ({ queryKey }) => {
-      const reqChatRoomMessages = queryKey[1];
+      const queryKeyParamsIndex = 1;
+      const reqChatRoomMessages = queryKey[queryKeyParamsIndex];
       const res = await fetchChatRoomMessages(reqChatRoomMessages);
       return res;
     },
