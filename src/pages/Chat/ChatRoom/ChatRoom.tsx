@@ -3,9 +3,9 @@ import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
 import { useLocation, useNavigate } from 'react-router';
 import { useState } from 'react';
-import { useSocket } from '@/hooks/socket/useSocket';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { UploadIcon, CameraIcon } from '@/icons/icon';
+import { useChat } from '@/hooks/useChat';
 
 type ChatMessageType = 'TEXT' | 'IMAGE' | 'VIDEO';
 
@@ -17,8 +17,7 @@ const ChatRoom = () => {
 
   const [chatMessageContent, setChatMessageContent] = useState('');
 
-  const { messages, sendMessage } = useSocket('chat', chatRoomId);
-  console.log(messages);
+  const { messages, sendMessage } = useChat(chatRoomId);
 
   const [chatMessageType, setChatMessageType] =
     useState<ChatMessageType>('TEXT');
