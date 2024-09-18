@@ -3,15 +3,15 @@ import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 
 import styles from './ChatRoomsEdit.module.scss';
 import Button from '@/components/common/Button/Button';
-import ChatItemBase from '../ChatRooms/ChatItemBase';
+import ChatItemBase from '../ChatItemBase/ChatItemBase';
 import { ChatRoom } from '@/hooks/api/types/chat';
 
 type ChatRoomsEditProps = {
   setIsEdit: React.Dispatch<boolean>;
-  chatData: ChatRoom[];
+  chatRoomsData: ChatRoom[];
 };
 
-const ChatRoomsEdit = ({ setIsEdit, chatData }: ChatRoomsEditProps) => {
+const ChatRoomsEdit = ({ setIsEdit, chatRoomsData }: ChatRoomsEditProps) => {
   const [selectedEditChatRooms, setSelectedEditChatRooms] = useState<string[]>(
     []
   );
@@ -34,10 +34,12 @@ const ChatRoomsEdit = ({ setIsEdit, chatData }: ChatRoomsEditProps) => {
       setSelectedEditChatRooms([]);
       return;
     }
-    setSelectedEditChatRooms(chatData.map((chatInfo) => chatInfo.chatRoomId));
+    setSelectedEditChatRooms(
+      chatRoomsData.map((chatInfo) => chatInfo.chatRoomId)
+    );
   };
 
-  const isAllSelected = selectedEditChatRooms.length === chatData.length;
+  const isAllSelected = selectedEditChatRooms.length === chatRoomsData.length;
 
   return (
     <div className={styles.ChatRoomsEditWrapper}>
@@ -58,7 +60,7 @@ const ChatRoomsEdit = ({ setIsEdit, chatData }: ChatRoomsEditProps) => {
           </div>
         </div>
         <div className={styles.ChatRoomsEditContent}>
-          {chatData.map((chatInfo, idx) => {
+          {chatRoomsData.map((chatInfo, idx) => {
             return (
               <ChatItemBase
                 onClick={() => handleSelectedEditChatRooms(chatInfo.chatRoomId)}
