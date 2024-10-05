@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styles from './ChatRooms.module.scss';
 import EditIcon from '@/icons/icon/EditIcon';
 import { useNavigate } from 'react-router';
-import ChatItemBase from '../ChatItemBase/ChatItemBase';
 import { useChatRooms } from '@/hooks/api/useChat';
 import ChatRoomsEdit from '../ChatRoomsEdit/ChatRoomsEdit';
+import ChatItemBase from './ChatItemBase/ChatItemBase';
 
 const ChatRooms = () => {
   const [isEdit, setIsEdit] = useState(false);

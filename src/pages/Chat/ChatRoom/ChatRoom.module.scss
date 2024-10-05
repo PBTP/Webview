@@ -27,64 +27,6 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
-  > .ChatWrapper {
-    display: flex;
-
-    &.Sender {
-      justify-content: right;
-    }
-
-    &.Receiver {
-      align-items: self-start;
-      justify-content: flex-start;
-      gap: 16px;
-
-      > .ChatImage {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    }
-
-    > .ChatContainer {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      > .ChatContent {
-        display: flex;
-        align-items: flex-end;
-        gap: 8px;
-
-        > .Chat {
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 20px;
-
-          &.Sender {
-            background-color: $primary;
-            color: $white;
-          }
-
-          &.Receiver {
-            background-color: $gray100;
-            color: $black;
-          }
-        }
-
-        > .Date {
-          color: $gray400;
-          font-size: 11px;
-          font-weight: 500;
-          line-height: 16px;
-        }
-      }
-    }
-  }
 }
 
 .ChatInputWrapper {
@@ -112,7 +54,9 @@
       font-size: 14px;
       font-weight: 500;
       flex: 1;
-      height: auto;
+      max-height: 20px; // 최대 높이 설정
+      resize: none; // 사용자가 크기를 조절하지 못하게 함
+      overflow-y: auto; // 내용이 넘칠 경우 스크롤바 표시
 
       &::placeholder {
         color: $gray300;

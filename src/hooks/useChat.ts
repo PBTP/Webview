@@ -19,25 +19,45 @@ export const useChat = (chatRoomId: string) => {
   );
 
   useEffect(() => {
-    if (!socket) return;
-    socket.emit('join', chatRoomId);
+    if (!socket || !chatRoomId) return;
 
-    const handleReceiveMessage = (msg: ChatMessage[]) => {
-      setMessages((prevMessages) => [...prevMessages, ...msg]);
+    const joinRoom = () => {
+      if (chatRoomId) {
+        console.log('joinRoom', chatRoomId);
+        socket.emit('join', { chatRoomId });
+      }
     };
 
+    const handleConnect = () => {
+      console.log('CONNECT');
+      joinRoom();
+    };
+
+    const handleReceiveMessage = (msg: ChatMessage) => {
+      console.log(msg);
+      setMessages((prevMessages) => [...prevMessages, msg]);
+    };
+
+    socket.on('connect', handleConnect);
     socket.on('receive', handleReceiveMessage);
+    socket.on('exception', (message) => console.log('Exception:', message));
+
+    if (socket.connected) {
+      joinRoom();
+    }
 
     return () => {
+      socket.off('connect', handleConnect);
       socket.off('receive', handleReceiveMessage);
+      socket.off('exception');
     };
-  }, [chatRoomId, socket]);
+  }, [socket, chatRoomId]);
 
   const sendMessage = useCallback(
-    (message: object, senderUuid: string) => {
-      if (socket) {
-        const socketUniqueId = `${socket.id}-${senderUuid}`;
-        socket.emit('send', message, socketUniqueId);
+    (message: object) => {
+      if (socket && socket.connected) {
+        console.log('sendMessage', message);
+        socket.emit('send', message);
       }
     },
     [socket]

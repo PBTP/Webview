@@ -3,8 +3,8 @@ import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 
 import styles from './ChatRoomsEdit.module.scss';
 import Button from '@/components/common/Button/Button';
-import ChatItemBase from '../ChatItemBase/ChatItemBase';
 import { ChatRoom } from '@/hooks/api/types/chat';
+import ChatItemBase from '../ChatRooms/ChatItemBase/ChatItemBase';
 
 type ChatRoomsEditProps = {
   setIsEdit: React.Dispatch<boolean>;
