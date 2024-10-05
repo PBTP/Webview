@@ -2,10 +2,12 @@ import styles from './ChatRoom.module.scss';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
 import { useLocation, useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { UploadIcon, CameraIcon } from '@/icons/icon';
 import { useChat } from '@/hooks/useChat';
+import { useChatRoomMessages } from '@/hooks/api/useChat';
+import ChatMessage from '@/components/Chat/ChatRoom/ChatMessage';
 
 type ChatMessageType = 'TEXT' | 'IMAGE' | 'VIDEO';
 
@@ -15,7 +17,10 @@ const ChatRoom = () => {
   const { state } = useLocation();
   const { chatRoomId, storeName } = state;
 
-  const [chatMessageContent, setChatMessageContent] = useState('');
+  const { data: chatRoomMessages } = useChatRoomMessages({ chatRoomId });
+
+  console.log(chatRoomMessages);
+  const chatMessageContent = useRef('');
 
   const { messages, sendMessage } = useChat(chatRoomId);
 
@@ -23,15 +28,12 @@ const ChatRoom = () => {
     useState<ChatMessageType>('TEXT');
 
   const handleSocketMessage = () => {
-    sendMessage(
-      {
-        chatRoomId,
-        senderUuid,
-        chatMessageType,
-        chatMessageContent,
-      },
-      senderUuid
-    );
+    sendMessage({
+      chatRoomId,
+      user: senderUuid,
+      chatMessageType,
+      chatMessageContent: chatMessageContent.current,
+    });
   };
 
   return (
@@ -46,37 +48,17 @@ const ChatRoom = () => {
         <DotsVerticalIcon width={24} height={24} />
       </div>
       <div className={styles.ChatRoomWrapper}>
-        <div className={`${styles.ChatWrapper} ${styles.Sender}`}>
-          <div className={styles.ChatContainer}>
-            <div className={styles.ChatContent}>
-              <div className={styles.Date}>오후 8:08</div>
-              <div className={`${styles.Chat} ${styles.Sender}`}>
-                앗 네! 감사합니다.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={`${styles.ChatWrapper} ${styles.Receiver}`}>
-          <img
-            src="https://i.namu.wiki/i/Qvk18CBALY3A7CKoYdienLC1B8q8JXEZIiydvuxxVFFqGYjDmDOaY2vB0YX_P_WbxA5REh9NtAdhi5L1TLEx1A.webp"
-            className={styles.ChatImage}
+        {chatRoomMessages?.data.map((message) => (
+          <ChatMessage
+            key={message.chatMessageId}
+            isSender={message.user.uuid === senderUuid}
+            message={message.chatMessageContent}
+            // time={message.createdAt}
+            // imageUrl={message.imageUrl}
           />
-          <div className={styles.ChatContainer}>
-            <div className={styles.ChatContent}>
-              <div className={`${styles.Chat} ${styles.Receiver}`}>
-                아하 네 알겠습니다. ㅎㅎ
-              </div>
-              <div className={styles.Date}>오후 8:08</div>
-            </div>
-            <div className={styles.ChatContent}>
-              <div className={`${styles.Chat} ${styles.Receiver}`}>
-                아하 네 알겠습니다. ㅎㅎ
-              </div>
-              <div className={styles.Date}>오후 8:08</div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
+
       <div className={styles.ChatInputWrapper}>
         <CameraIcon className={styles.CameraIcon} width={24} height={24} />
         <div className={styles.ChatInputContent}>
@@ -84,7 +66,7 @@ const ChatRoom = () => {
             rows={1}
             className={styles.ChatInput}
             placeholder="메시지를 입력하세요"
-            onChange={(e) => setChatMessageContent(e.target.value)}
+            onChange={(e) => (chatMessageContent.current = e.target.value)}
           />
           <UploadIcon
             onClick={handleSocketMessage}

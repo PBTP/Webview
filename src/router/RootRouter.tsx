@@ -14,7 +14,7 @@ import LocationPage from '@/pages/Location/Location/Location';
 import ReviewPage from '@/pages/Review/Review';
 import VersionPage from '@/pages/Version/Version';
 import ErrorPage from '@/pages/Error/ErrorPage';
-import ChatRoomsPage from '@/pages/Chat/ChatRooms/ChatRoomsPage';
+import ChatRoomsPage from '@/pages/Chat/ChatRooms';
 
 export const RootRouter = () => {
   const router = createBrowserRouter(

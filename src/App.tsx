@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { RootRouter } from './router/RootRouter';
 import { setUserAuth } from './stores/useAuthStore';
 import { showiOSInfo } from './webview/utils';
@@ -14,6 +15,11 @@ if (!window.handleIosWebviewToken) {
 }
 
 function App() {
+  useEffect(() => {
+    if (window.webkit?.messageHandlers.webviewInit) {
+      window.webkit.messageHandlers.webviewInit.postMessage('webviewReady');
+    }
+  }, []);
   return <RootRouter />;
 }
 
