@@ -13,7 +13,7 @@ export const useChat = (chatRoomId: string) => {
   const { data: previousMessages } = useChatRoomMessages({
     chatRoomId,
   });
-
+  console.log(previousMessages);
   const [messages, setMessages] = useState<ChatMessage[]>(
     previousMessages?.data || []
   );
@@ -55,7 +55,7 @@ export const useChat = (chatRoomId: string) => {
 
   const sendMessage = useCallback(
     (message: object) => {
-      if (socket && socket.connected) {
+      if (socket && socket.connected && message) {
         console.log('sendMessage', message);
         socket.emit('send', message);
       }

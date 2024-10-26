@@ -2,7 +2,7 @@ import styles from './ChatRoom.module.scss';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
 import { useLocation, useNavigate } from 'react-router';
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { UploadIcon, CameraIcon } from '@/icons/icon';
 import { useChat } from '@/hooks/useChat';
@@ -17,24 +17,44 @@ const ChatRoom = () => {
   const { state } = useLocation();
   const { chatRoomId, storeName } = state;
 
-  const { data: chatRoomMessages } = useChatRoomMessages({ chatRoomId });
+  const [chatMessageContent, setChatMessageContent] = useState('');
 
-  console.log(chatRoomMessages);
-  const chatMessageContent = useRef('');
+  const messageEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const { messages, sendMessage } = useChat(chatRoomId);
+  console.log(messages);
 
   const [chatMessageType, setChatMessageType] =
     useState<ChatMessageType>('TEXT');
+
+  const adjustHeight = () => {
+    if (textareaRef.current) {
+      const scrollHeight = textareaRef.current.scrollHeight;
+      const lineHeight = 29; // leading-[29px]와 일치
+      const maxHeight = lineHeight * 2; // 최대 2줄
+      textareaRef.current.style.height = `${Math.min(scrollHeight, maxHeight)}px`;
+    }
+  };
 
   const handleSocketMessage = () => {
     sendMessage({
       chatRoomId,
       user: senderUuid,
       chatMessageType,
-      chatMessageContent: chatMessageContent.current,
+      chatMessageContent,
     });
+    setChatMessageContent('');
   };
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      adjustHeight();
+    }
+    if (messageEndRef.current) {
+      messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   return (
     <>
@@ -48,7 +68,7 @@ const ChatRoom = () => {
         <DotsVerticalIcon width={24} height={24} />
       </div>
       <div className={styles.ChatRoomWrapper}>
-        {chatRoomMessages?.data.map((message) => (
+        {messages.map((message) => (
           <ChatMessage
             key={message.chatMessageId}
             isSender={message.user.uuid === senderUuid}
@@ -57,16 +77,18 @@ const ChatRoom = () => {
             // imageUrl={message.imageUrl}
           />
         ))}
+        <div ref={messageEndRef} />
       </div>
 
       <div className={styles.ChatInputWrapper}>
         <CameraIcon className={styles.CameraIcon} width={24} height={24} />
         <div className={styles.ChatInputContent}>
           <textarea
+            ref={textareaRef}
             rows={1}
             className={styles.ChatInput}
             placeholder="메시지를 입력하세요"
-            onChange={(e) => (chatMessageContent.current = e.target.value)}
+            onChange={(e) => setChatMessageContent(e.target.value)}
           />
           <UploadIcon
             onClick={handleSocketMessage}
