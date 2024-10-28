@@ -1,11 +1,9 @@
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { fetchChatRoomMessages, fetchChatRooms } from './services/chat';
 import { ReqChatRoomMessages } from './types/chat';
-import { useAuthStore } from '@/stores/useAuthStore';
 import { chatKeys } from './keys/chat';
 
-export const useChatRooms = () => {
-  const token = useAuthStore((state) => state.accessToken);
+export const useChatRooms = (token: string) => {
   return useSuspenseQuery({
     queryKey: ['chatRooms', token],
     queryFn: () => {

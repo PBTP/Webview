@@ -2,11 +2,10 @@ import styles from './ChatRoom.module.scss';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
 import DotsVerticalIcon from '@/icons/icon/DotsVertical';
 import { useLocation, useNavigate } from 'react-router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { UploadIcon, CameraIcon } from '@/icons/icon';
 import { useChat } from '@/hooks/useChat';
-import { useChatRoomMessages } from '@/hooks/api/useChat';
 import ChatMessage from '@/components/Chat/ChatRoom/ChatMessage';
 
 type ChatMessageType = 'TEXT' | 'IMAGE' | 'VIDEO';

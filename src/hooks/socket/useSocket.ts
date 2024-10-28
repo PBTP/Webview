@@ -24,7 +24,7 @@ export const useSocket = () => {
       ackTimeout: MAX_ACK_TIME,
       retries: INITIAL_RETRY,
       withCredentials: true,
-      transports: ['websocket', 'polling'],
+      transports: ['websocket'],
     });
   }, [token]);
 

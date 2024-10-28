@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import { useChatRooms } from '@/hooks/api/useChat';
 import ChatRoomsEdit from '../ChatRoomsEdit/ChatRoomsEdit';
 import ChatItemBase from './ChatItemBase/ChatItemBase';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 const ChatRooms = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -13,7 +14,9 @@ const ChatRooms = () => {
     setIsEdit((prev) => !prev);
   };
 
-  const { data: chatRoomsData } = useChatRooms();
+  const token = useAuthStore((state) => state.accessToken);
+
+  const { data: chatRoomsData } = useChatRooms(token);
 
   const navigate = useNavigate();
 
