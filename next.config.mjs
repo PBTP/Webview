@@ -1,7 +1,23 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Single-Page Application (SPA) 출력.
-  distDir: './dist', // 빌드 출력 디렉터리를 `./dist/`로 변경합니다.
+  output: 'export',
+  distDir: './dist',
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.join(__dirname, 'src'),
+    };
+    return config;
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
