@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 8000",
-    "build": "./revision.sh && tsc && vite build",
+    "dev": "next dev",
+    "build": "./revision.sh && next build",
+    "start": "next start",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },

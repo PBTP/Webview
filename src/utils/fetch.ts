@@ -3,7 +3,7 @@ import qs from 'qs';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: process.env.NEXT_PUBLICVITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
