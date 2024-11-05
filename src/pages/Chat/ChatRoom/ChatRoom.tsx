@@ -21,7 +21,7 @@ const ChatRoom = () => {
   const messageEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const { messages, sendMessage } = useChat(chatRoomId);
+  const { messages, sendMessage, isConnected } = useChat(chatRoomId);
 
   const [chatMessageType, setChatMessageType] =
     useState<ChatMessageType>('TEXT');
@@ -62,7 +62,9 @@ const ChatRoom = () => {
           width={24}
           height={24}
         />
-        <div className={styles.ChatRoomTitle}> {storeName} </div>
+        <div className={styles.ChatRoomTitle}>
+          {storeName} {isConnected ? '연결' : '미연결'}
+        </div>
         <DotsVerticalIcon width={24} height={24} />
       </div>
       <div className={styles.ChatRoomWrapper}>

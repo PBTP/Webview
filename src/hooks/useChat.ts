@@ -9,6 +9,7 @@ import { useSocket } from './socket/useSocket';
  * @returns messages: 채팅방 메세지 | sendMessage: 메세지 보내는 함수
  */
 export const useChat = (chatRoomId: string) => {
+  const [isConnected, setIsConnected] = useState(false);
   const { socket } = useSocket();
   const { data: previousMessages } = useChatRoomMessages({
     chatRoomId,
@@ -47,11 +48,13 @@ export const useChat = (chatRoomId: string) => {
       if (chatRoomId) {
         console.log('Joining room:', chatRoomId);
         socket?.emit('join', { chatRoomId });
+        setIsConnected(true);
       }
     };
 
     const handleException = (error: unknown) => {
       console.error('Socket exception:', error);
+      setIsConnected(false);
     };
 
     if (socket && chatRoomId && !hasSetupListeners.current) {
@@ -103,5 +106,5 @@ export const useChat = (chatRoomId: string) => {
     [socket]
   );
 
-  return { messages, sendMessage };
+  return { messages, sendMessage, isConnected };
 };
