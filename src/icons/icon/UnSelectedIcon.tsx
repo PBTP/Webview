@@ -1,4 +1,4 @@
-import UnSelectedIconSvg from '@/assets/icon/un_selected.svg?react';
+import UnSelectedIconSvg from '@/assets/icon/un_selected.svg';
 import { IconProps } from '../types';
 
 const UnSelectedIcon = ({ width, height, className, onClick }: IconProps) => {

@@ -1,4 +1,4 @@
-import CalendarSvg from '@/assets/icon/calendar.svg?react';
+import CalendarSvg from '@/assets/icon/calendar.svg';
 import { IconProps } from '../types';
 /**
  *

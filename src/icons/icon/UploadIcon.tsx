@@ -1,4 +1,4 @@
-import UploadIconSvg from '@/assets/icon/upload.svg?react';
+import UploadIconSvg from '@/assets/icon/upload.svg';
 import { IconProps } from '../types';
 /**
  *

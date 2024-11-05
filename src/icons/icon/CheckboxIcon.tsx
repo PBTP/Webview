@@ -1,4 +1,4 @@
-import CheckboxSvg from '@/assets/icon/checkbox.svg?react';
+import CheckboxSvg from '@/assets/icon/checkbox.svg';
 import { IconProps } from '../types';
 
 const CheckboxIcon = ({ width, height, className }: IconProps) => {

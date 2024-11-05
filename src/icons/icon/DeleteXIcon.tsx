@@ -1,4 +1,4 @@
-import DeleteXSvg from '@/assets/icon/delete_x.svg?react';
+import DeleteXSvg from '@/assets/icon/delete_x.svg';
 import { IconProps } from '../types';
 
 const DeleteXIcon = ({width,height,className,onClick}: IconProps) => {

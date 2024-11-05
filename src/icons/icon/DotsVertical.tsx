@@ -1,4 +1,4 @@
-import DotsVerticalSvg from '@/assets/icon/dots_vertical.svg?react';
+import DotsVerticalSvg from '@/assets/icon/dots_vertical.svg';
 import { IconProps } from '../types';
 /**
  *

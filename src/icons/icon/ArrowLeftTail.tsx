@@ -1,4 +1,4 @@
-import ArrowLeftTailSvg from '@/assets/icon/arrow_left_tail.svg?react';
+import ArrowLeftTailSvg from '@/assets/icon/arrow_left_tail.svg';
 import { IconProps } from '../types';
 /**
  *

@@ -1,4 +1,4 @@
-import PlusSvg from '@/assets/icon/plus.svg?react';
+import PlusSvg from '@/assets/icon/plus.svg';
 import { IconProps } from '../types';
 /**
  *

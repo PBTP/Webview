@@ -1,4 +1,4 @@
-import EditIconSvg from '@/assets/icon/edit.svg?react';
+import EditIconSvg from '@/assets/icon/edit.svg';
 import { IconProps } from '../types';
 /**
  *
