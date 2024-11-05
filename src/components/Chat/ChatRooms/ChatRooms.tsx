@@ -16,7 +16,7 @@ const ChatRooms = () => {
 
   const token = useAuthStore((state) => state.accessToken);
 
-  const { data: chatRoomsData } = useChatRooms(token);
+  const { data: chatRoomsData } = useChatRooms(token ?? '');
 
   const navigate = useNavigate();
 
