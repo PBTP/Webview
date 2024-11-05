@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 interface AuthState {
   accessToken: string | null;
@@ -13,6 +13,7 @@ export const useAuthStore = create<AuthState>()(
       accessToken: null,
       uuid: null,
       setAuth: (token, uuid) => {
+        console.log('Setting auth:', { token, uuid });
         set({ accessToken: token, uuid });
         window.dispatchEvent(
           new CustomEvent('auth-update', {
@@ -23,11 +24,17 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth-storage',
-      storage: createJSONStorage(() => localStorage),
+      onRehydrateStorage: () => {
+        console.log('Rehydrating auth store');
+        return (state) => {
+          console.log('Rehydrated state:', state);
+        };
+      },
     }
   )
 );
 
 export const setUserAuth = (token: string, uuid: string) => {
+  console.log('setUserAuth called:', { token, uuid });
   useAuthStore.getState().setAuth(token, uuid);
 };
