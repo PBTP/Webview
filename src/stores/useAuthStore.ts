@@ -1,26 +1,33 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
-interface IAuthStore {
-  accessToken: string;
-  uuid: string;
+interface AuthState {
+  accessToken: string | null;
+  uuid: string | null;
   setAuth: (token: string, uuid: string) => void;
 }
 
-export const useAuthStore = create(
-  persist<IAuthStore>(
+export const useAuthStore = create<AuthState>()(
+  persist(
     (set) => ({
-      accessToken: '',
-      uuid: '',
-      setAuth: (token, uuid) => set({ accessToken: token, uuid }),
+      accessToken: null,
+      uuid: null,
+      setAuth: (token, uuid) => {
+        set({ accessToken: token, uuid });
+        window.dispatchEvent(
+          new CustomEvent('auth-update', {
+            detail: { token, uuid },
+          })
+        );
+      },
     }),
     {
       name: 'auth-storage',
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );
 
-export const setUserAuth = (accessToken: string, uuid: string) =>
-  useAuthStore.getState().setAuth(accessToken, uuid);
-
-export const logout = useAuthStore.persist.clearStorage;
+export const setUserAuth = (token: string, uuid: string) => {
+  useAuthStore.getState().setAuth(token, uuid);
+};

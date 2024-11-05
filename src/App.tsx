@@ -1,20 +1,14 @@
 import { useEffect } from 'react';
 import { RootRouter } from './router/RootRouter';
-import { setUserAuth } from './stores/useAuthStore';
+import { setUserAuth, useAuthStore } from './stores/useAuthStore';
 import { showiOSInfo } from './webview/utils';
-
-const AUTH_UPDATE_EVENT = 'authUpdate';
+import { useSocket } from './hooks/socket/useSocket';
 
 if (!window.handleIosWebviewToken) {
   window.handleIosWebviewToken = (token, uuid) => {
     showiOSInfo(`token:${token},uuid:${uuid}`);
     if (token) {
       setUserAuth(token, uuid);
-      window.dispatchEvent(
-        new CustomEvent(AUTH_UPDATE_EVENT, {
-          detail: { token, uuid },
-        })
-      );
       return 'success';
     }
     return 'fail';
@@ -22,16 +16,19 @@ if (!window.handleIosWebviewToken) {
 }
 
 function App() {
+  const token = useAuthStore((state) => state.accessToken);
+  const { socket } = useSocket();
+
   useEffect(() => {
     const handleAuthUpdate = (event: CustomEvent) => {
-      const { token, uuid } = event.detail;
-      console.log('Auth updated:', token, uuid);
+      console.log('Auth updated:', event.detail);
+      if (socket) {
+        socket.disconnect();
+        socket.connect();
+      }
     };
 
-    window.addEventListener(
-      AUTH_UPDATE_EVENT,
-      handleAuthUpdate as EventListener
-    );
+    window.addEventListener('auth-update', handleAuthUpdate as EventListener);
 
     if (window.webkit?.messageHandlers.webviewInit) {
       window.webkit.messageHandlers.webviewInit.postMessage('webviewReady');
@@ -39,11 +36,12 @@ function App() {
 
     return () => {
       window.removeEventListener(
-        AUTH_UPDATE_EVENT,
+        'auth-update',
         handleAuthUpdate as EventListener
       );
     };
-  }, []);
+  }, [socket, token]);
+
   return <RootRouter />;
 }
 
