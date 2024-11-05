@@ -10,10 +10,20 @@ import LoadingSpinner from '@/pages/Loading/LoadingSpinner';
 
 const RootLayout = () => {
   const { accessToken, uuid } = useAuthStore((state) => state);
+
+  const maskToken = (token: string | null) => {
+    if (!token) return '';
+    if (token.length <= 12) return token;
+
+    const prefix = token.slice(0, 6);
+    const suffix = token.slice(-6);
+    return `${prefix}...${suffix}`;
+  };
+
   return (
     <div className={styles.RootLayout}>
       <div>
-        <div>Token: {accessToken}</div>
+        <div className={styles.Token}>Token: {maskToken(accessToken)}</div>
         <div>uuid: {uuid}</div>
         <button onClick={() => showiOSInfo(`${accessToken},uuid:${uuid}`)}>
           확인

@@ -22,7 +22,6 @@ const ChatRoom = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const { messages, sendMessage } = useChat(chatRoomId);
-  console.log(messages);
 
   const [chatMessageType, setChatMessageType] =
     useState<ChatMessageType>('TEXT');
@@ -87,6 +86,7 @@ const ChatRoom = () => {
             rows={1}
             className={styles.ChatInput}
             placeholder="메시지를 입력하세요"
+            value={chatMessageContent}
             onChange={(e) => setChatMessageContent(e.target.value)}
           />
           <UploadIcon
