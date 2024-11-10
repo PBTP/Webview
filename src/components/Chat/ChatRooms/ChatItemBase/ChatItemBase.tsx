@@ -1,9 +1,10 @@
-import React, { ReactNode, createContext } from 'react';
-import styles from './ChatItemBase.module.scss';
+import { ChatRoom } from '@/hooks/api/types/chat';
 import RadioActiveIcon from '@/icons/icon/RadioActiveIcon';
 import RadioIcon from '@/icons/icon/RadioIcon';
-import { ChatRoom } from '@/hooks/api/types/chat';
 import { ErrorLogoIcon } from '@/icons/logo';
+import { formatChatDate } from '@/utils/format';
+import { ReactNode, createContext } from 'react';
+import styles from './ChatItemBase.module.scss';
 
 type ChatItemBaseProps = {
   children?: ReactNode;
@@ -28,22 +29,19 @@ const ChatItemBase = ({ children, onClick }: ChatItemBaseProps) => {
 };
 
 const ChatItemContent = ({ chatInfo, onClick }: ChatItemContentProps) => {
-  // const { lastMessage, inviteUser, chatRoomName } = chatInfo;
-  const { chatRoomName } = chatInfo;
-  // const { lastDate, chatMessageContent: recentChat } = lastMessage;
-  // const { lastDate, chatMessageContent: recentChat } = lastMessage;
-  // const { imgSrc } = inviteUser;
+  const { lastMessage, chatRoomName } = chatInfo;
+  const { createdAt: lastDate, chatMessageContent: recentChat } = lastMessage;
+  const lastDateString = formatChatDate(lastDate);
 
   return (
     <div className={styles.ChatItemContainer} onClick={onClick}>
       <ErrorLogoIcon width={60} height={60} className={styles.ChatImage} />
-      {/* <img src={imgSrc} className={styles.ChatImage} /> */}
       <div className={styles.ChatContent}>
         <div className={styles.ChatTitle}>
           <span className={styles.ShopName}>{chatRoomName}</span>
-          <span className={styles.LastDate}>lastDate</span>
+          <span className={styles.LastDate}>{lastDateString}</span>
         </div>
-        <div className={styles.ChatText}>recentChat</div>
+        <div className={styles.ChatText}>{recentChat}</div>
       </div>
     </div>
   );

@@ -22,6 +22,8 @@
     }
 
     > .ChatContent {
+      flex: 1;
+
       > .ChatTitle {
         display: flex;
         align-items: center;
@@ -47,6 +49,11 @@
         font-size: 14px;
         font-weight: 500;
         line-height: 20px;
+        width: 100%;
+        max-width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
