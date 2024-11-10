@@ -1,21 +1,18 @@
 export interface ChatRoom {
-  chatRoomId: string;
   tsid: string;
+  chatRoomId: number;
   chatRoomName: string;
-  inviteUser: {
-    name: string;
-    imgSrc: string;
-  };
-  unViewedMsgCount: number;
+  createdAt: Date;
   lastMessage: {
-    chatRoomId: 0;
-    chatMessageId: 0;
+    tsid: string;
+    chatMessageId: number;
+    chatRoomId: number;
     senderUuid: string;
     chatMessageType: string;
-    user: string;
     chatMessageContent: string;
-    lastDate: string;
+    createdAt: Date;
   };
+  unViewedMsgCount: number;
 }
 
 export interface ReqChatRoomMessages {
