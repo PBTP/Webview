@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import ArrowLeftTailIcon from '@/icons/icon/ArrowLeftTail';
+import React, { useState } from 'react';
 
-import styles from './ChatRoomsEdit.module.scss';
 import Button from '@/components/common/Button/Button';
 import { ChatRoom } from '@/hooks/api/types/chat';
-import ChatItemBase from '../ChatRooms/ChatItemBase/ChatItemBase';
+import ChatRoomItems from '../ChatRooms/ChatRoomItems';
+import styles from './ChatRoomsEdit.module.scss';
 
 type ChatRoomsEditProps = {
   setIsEdit: React.Dispatch<boolean>;
@@ -12,21 +12,21 @@ type ChatRoomsEditProps = {
 };
 
 const ChatRoomsEdit = ({ setIsEdit, chatRoomsData }: ChatRoomsEditProps) => {
-  const [selectedEditChatRooms, setSelectedEditChatRooms] = useState<string[]>(
+  const [selectedEditChatRooms, setSelectedEditChatRooms] = useState<number[]>(
     []
   );
 
   const selectedEditChatRoomsCount = selectedEditChatRooms.length;
   const isDisabledDeleteButton = selectedEditChatRoomsCount > 0;
 
-  const handleSelectedEditChatRooms = (chatId: string) => {
-    if (selectedEditChatRooms.includes(chatId)) {
+  const handleSelectedEditChatRooms = (chatRoomId: number) => {
+    if (selectedEditChatRooms.includes(chatRoomId)) {
       setSelectedEditChatRooms(
-        selectedEditChatRooms.filter((index) => index !== chatId)
+        selectedEditChatRooms.filter((index) => index !== chatRoomId)
       );
       return;
     }
-    setSelectedEditChatRooms([...selectedEditChatRooms, chatId]);
+    setSelectedEditChatRooms([...selectedEditChatRooms, chatRoomId]);
   };
 
   const handleAllSelectEditChatRooms = () => {
@@ -60,26 +60,19 @@ const ChatRoomsEdit = ({ setIsEdit, chatRoomsData }: ChatRoomsEditProps) => {
           </div>
         </div>
         <div className={styles.ChatRoomsEditContent}>
-          {chatRoomsData.map((chatInfo, idx) => {
-            return (
-              <ChatItemBase
-                onClick={() => handleSelectedEditChatRooms(chatInfo.chatRoomId)}
-                key={`${chatInfo.chatRoomId}-${idx}`}
-              >
-                <ChatItemBase.EditButton
-                  isActive={selectedEditChatRooms.includes(chatInfo.chatRoomId)}
-                />
-                <ChatItemBase.ChatItemContent chatInfo={chatInfo} />
-              </ChatItemBase>
-            );
-          })}
+          <ChatRoomItems
+            chatRoomsData={chatRoomsData}
+            isEdit={true}
+            selectedItems={selectedEditChatRooms}
+            onItemClick={handleSelectedEditChatRooms}
+          />
         </div>
       </div>
       <Button
         buttonType={isDisabledDeleteButton ? 'Spacing' : 'Disabled'}
         className={styles.DeleteButton}
       >
-        삭제 {selectedEditChatRoomsCount}
+        삭제 {selectedEditChatRoomsCount > 0 && selectedEditChatRoomsCount}
       </Button>
     </div>
   );
