@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { IReservation } from '@/interfaces/reservation';
 import { requestAPI } from '@/utils/fetch';
 
+/**
+ * TODO: TimeWrap 컴포넌트 분리하여 재사용 가능하게 만들기
+ * @returns 
+ */
 const ReservationIndexPage = () => {
   const [times, setTimes] = useState<IReservation>();
 
