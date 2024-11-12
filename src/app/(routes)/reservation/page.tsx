@@ -1,49 +1,10 @@
 'use client';
 
-import CMCalendar from '@/components/common/Calendar/Calendar';
-import styles from '../../../pagesss/Reservation/Index/Index.module.scss';
-import Button from '@/components/common/Button/Button';
-import { useEffect, useState } from 'react';
-import { IReservation } from '@/interfaces/reservation';
+import ReservationIndexPage from '@/pagesss/Reservation/Index/Index';
 
-const ReservationIndexPage = () => {
-  const [times, setTimes] = useState<IReservation>();
 
-  return (
-    <div>
-      <div className={styles.Title}>예약 스케쥴</div>
-      {/* <CMCalendar /> */}
-      <div className={`Divider Reservation`} />
-      <div className={styles.Title}>오전</div>
-      <div className={styles.TimeWrap}>
-        {times?.am?.map((item, index) => (
-          <Button
-            key={index}
-            buttonType={item.able ? 'White' : 'TimeDisabled'}
-            className={styles.TimeButton}
-          >
-            {item.time}
-          </Button>
-        ))}
-      </div>
-      <div className={styles.Title}>오후</div>
-      <div className={styles.TimeWrap}>
-        {times?.pm?.map((item, index) => (
-          <Button
-            key={index}
-            buttonType={item.able ? 'White' : 'TimeDisabled'}
-            className={styles.TimeButton}
-          >
-            {item.time}
-          </Button>
-        ))}
-      </div>
-      <div className={styles.NavigateWrap}>
-        <Button buttonType="Gray">취소</Button>
-        <Button buttonType="Primary">다음</Button>
-      </div>
-    </div>
-  );
+const ReservationPage = () => {
+  return <ReservationIndexPage />;
 };
 
-export default ReservationIndexPage;
+export default ReservationPage;

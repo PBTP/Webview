@@ -90,7 +90,7 @@ const Payment = () => {
         <div className={styles.PaymentMethodHeader}>결제 수단</div>
         <div className={styles.PaymentMethodContent}>
           <div className={styles.PaymentMethod}>
-            <SelectedIcon width={18} height={18} />
+            {/* <SelectedIcon width={18} height={18} /> */}
             <span>신용카드</span>
           </div>
         </div>
@@ -150,16 +150,16 @@ const Payment = () => {
             handlePaymentInfo('isDefaultPayment', !paymentInfo.isDefaultPayment)
           }
         >
-          {paymentInfo.isDefaultPayment ? (
+          {/* {paymentInfo.isDefaultPayment ? (
             <SelectedCheckboxIcon width={20} height={20} />
           ) : (
             <CheckboxIcon width={20} height={20} />
-          )}
+          )} */}
 
           <span>기본 결제 수단으로 사용</span>
         </div>
         <div className={styles.PaymentMeetAndPay}>
-          <UnSelectedIcon width={18} height={18} />
+          {/* <UnSelectedIcon width={18} height={18} /> */}
           <span>만나서 결제</span>
         </div>
       </section>

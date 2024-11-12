@@ -1,4 +1,3 @@
-import { DeleteXIcon } from '@/icons/icon';
 import styles from './Review.module.scss';
 import ReviewInfo from '@/components/ReviewInfo/ReviewInfo';
 import { useState, useEffect } from 'react';
@@ -105,7 +104,7 @@ const ReviewPage = () => {
             그래서 ios측으로 앨범을 선택하고 이미지 파일을 보낸다.
           */}
           <div className={styles.ReviewPhotoWrapper}>
-            <CameraIcon width={24} height={24} stroke="#8B95A1" />
+            {/* <CameraIcon width={24} height={24} stroke="#8B95A1" /> */}
           </div>
           <div className={styles.ReviewSurveyMainTitle}>
             개신남 10호점’의 리뷰를 작성해 주세요
