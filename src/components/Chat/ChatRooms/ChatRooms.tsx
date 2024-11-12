@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from './ChatRooms.module.scss';
 import EditIcon from '@/icons/icon/EditIcon';
-import { useNavigate } from 'react-router';
 import { useChatRooms } from '@/hooks/api/useChat';
 import ChatRoomsEdit from '../ChatRoomsEdit/ChatRoomsEdit';
 import ChatItemBase from './ChatItemBase/ChatItemBase';
 import { useAuthStore } from '@/stores/useAuthStore';
+import { useRouter } from 'next/navigation';
 
 const ChatRooms = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -18,10 +18,10 @@ const ChatRooms = () => {
 
   const { data: chatRoomsData } = useChatRooms(token);
 
-  const navigate = useNavigate();
+  const {push} = useRouter();
 
   const onClickRoute = (chatRoomId: string, storeName: string) => {
-    navigate(`${chatRoomId}`, { state: { chatRoomId, storeName } });
+    push(`${chatRoomId}`);
   };
 
   return (

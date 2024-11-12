@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Providers from './provider';
+// import '@/styles/globals.scss';
 
 export const metadata: Metadata = {
   title: 'Mongle',
@@ -12,16 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-        <title>몽글</title>
-        <meta name="description" content="My App is a..." />
-      </head>
+    <html lang="ko">
       <body>
-        <Providers>
-          <div>{children}</div>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
