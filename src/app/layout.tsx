@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Providers from './provider';
-// import '@/styles/globals.scss';
+import '@/styles/global.scss';
 
 export const metadata: Metadata = {
   title: 'Mongle',
