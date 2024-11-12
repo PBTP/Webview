@@ -7,25 +7,11 @@ import { requestAPI } from '@/utils/fetch';
 
 const ReservationIndexPage = () => {
   const [times, setTimes] = useState<IReservation>();
-  const fetchs = async () => {
-    const res = await requestAPI().get('/time');
-    console.log(res.data);
-    setTimes(res.data);
-  };
-  const fetch2 = async () => {
-    const res = await requestAPI().get('/todos');
-    console.log(res);
-  };
-
-  useEffect(() => {
-    fetchs();
-    fetch2();
-  }, []);
 
   return (
     <div>
       <div className={styles.Title}>예약 스케쥴</div>
-      {/* <CMCalendar /> */}
+      <CMCalendar />
       <div className={`Divider Reservation`} />
       <div className={styles.Title}>오전</div>
       <div className={styles.TimeWrap}>

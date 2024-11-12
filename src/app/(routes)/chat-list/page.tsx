@@ -1,9 +1,12 @@
 'use client';
 
-import ChatRoomsPage from '@/pagesss/Chat/ChatRooms';
+import dynamic from 'next/dynamic';
 
-const ChatListPage = () => {
-  return <ChatRoomsPage />
-};
+const ChatRooms = dynamic(
+  () => import('@/components/Chat/ChatRooms/ChatRooms'),
+  { ssr: false } // SSR을 비활성화
+);
 
-export default ChatListPage;
+export default function ChatListPage() {
+  return <ChatRooms />;
+}

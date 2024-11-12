@@ -13,7 +13,7 @@ const ErrorPage = ({ type = 'error' }: ErrorProps) => {
   };
   return (
     <div className={styles.ErrorWrapper}>
-      {/* <ErrorLogoIcon width={66} height={64} /> */}
+      <ErrorLogoIcon width={66} height={64} />
       <div className={styles.ErrorContent}>
         <div className={styles.ErrorTitle}>불편을 드려 죄송합니다</div>
         <div>{errorType[type]}</div>

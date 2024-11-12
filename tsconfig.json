@@ -60,7 +60,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "./dist/types/**/*.ts"
+    "./dist/types/**/*.ts",
+    "src/types/svg.d.ts"
   ],
   "exclude": [
     "node_modules"

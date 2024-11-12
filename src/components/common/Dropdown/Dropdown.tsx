@@ -68,11 +68,11 @@ const Trigger = ({
       onClick={() => setOpen(!open)}
     >
       {label ? label : placeholder}
-      {/* <ArrowDownNoTail
+      <ArrowDownNoTail
         width={12}
         height={7}
         className={`${styles.DownArrow} ${open ? styles.Active : ''}`}
-      /> */}
+      />
     </button>
   );
 };

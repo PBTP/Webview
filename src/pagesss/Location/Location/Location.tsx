@@ -91,7 +91,7 @@ const Location = () => {
         className={styles.LocationInfoField}
         onClick={() => setIsShowSearchWrapper(true)}
       >
-        {/* <SearchIcon width={24} height={24} className={styles.SearchIcon} /> */}
+        <SearchIcon width={24} height={24} className={styles.SearchIcon} />
         <input
           className={styles.LocationInput}
           value={keyword}
