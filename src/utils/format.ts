@@ -43,3 +43,42 @@ export function foramtSearchWord(keyword: string): string {
 export function removeSpecialCharacters(str: string): string {
   return str.replace(/[%=><!@#$^&*]/g, '');
 }
+
+const ONE_MINUTE = 60 * 1000;
+const ONE_HOUR = 60 * ONE_MINUTE;
+const ONE_DAY = 24 * ONE_HOUR;
+const ONE_MONTH = 30 * ONE_DAY;
+
+export const formatChatDate = (dateString: Date): string => {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diff = now.getTime() - date.getTime();
+
+  // 59초 이내
+  if (diff < ONE_MINUTE) {
+    return '방금 전';
+  }
+
+  // 당일 (1분 ~ 23:59)
+  if (
+    date.getDate() === now.getDate() &&
+    date.getMonth() === now.getMonth() &&
+    date.getFullYear() === now.getFullYear()
+  ) {
+    const hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const period = hours < 12 ? '오전' : '오후';
+    const displayHours = hours % 12 || 12; // 12시간제로 변환 (0을 12로)
+
+    return `${period} ${displayHours}:${minutes}`;
+  }
+
+  // 어제~30일 전
+  if (diff < ONE_MONTH) {
+    return `${date.getMonth() + 1}월 ${date.getDate()}일`;
+  }
+
+  // 1달 이후
+  const monthsDiff = Math.floor(diff / ONE_MONTH);
+  return `${monthsDiff}달 전`;
+};

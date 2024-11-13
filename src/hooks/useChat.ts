@@ -9,14 +9,15 @@ import { useSocket } from './socket/useSocket';
  * @returns messages: 채팅방 메세지 | sendMessage: 메세지 보내는 함수
  */
 export const useChat = (chatRoomId: string) => {
+  const [isConnected, setIsConnected] = useState(false);
   const { socket } = useSocket();
   const { data: previousMessages } = useChatRoomMessages({
     chatRoomId,
   });
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-
   const hasSetupListeners = useRef(false);
+  const isProcessing = useRef(false);
 
   useEffect(() => {
     if (previousMessages?.data) {
@@ -25,76 +26,85 @@ export const useChat = (chatRoomId: string) => {
   }, [previousMessages]);
 
   useEffect(() => {
-    if (!socket || !chatRoomId || hasSetupListeners.current) return;
-
-    const joinRoom = () => {
-      if (chatRoomId) {
-        console.log('joinRoom', chatRoomId);
-        socket.emit('join', { chatRoomId });
-      }
-    };
-
-    const handleConnect = () => {
-      console.log('CONNECT');
-      joinRoom();
-    };
-
     const handleReceiveMessage = (msg: ChatMessage) => {
-      console.log(msg);
+      console.log('Received message:', msg);
       setMessages((prevMessages) => {
-        // 중복 메시지 방지
         const isDuplicate = prevMessages.some(
           (prevMsg) => prevMsg.chatMessageId === msg.chatMessageId
         );
-        if (isDuplicate) return prevMessages;
+        const isSameUser = prevMessages.some(
+          (prevMsg) => prevMsg.user === msg.user
+        );
+        if (isDuplicate || isSameUser) {
+          console.log('Duplicate message or Same user detected');
+          return prevMessages;
+        }
         return [...prevMessages, msg];
       });
     };
-    socket.off('connect', handleConnect);
-    socket.off('receive', handleReceiveMessage);
-    socket.off('exception');
 
-    socket.on('connect', handleConnect);
-    socket.on('receive', handleReceiveMessage);
-    socket.on('exception', (message) => console.log('Exception:', message));
+    const handleConnect = () => {
+      console.log('Socket connected');
+      if (chatRoomId) {
+        console.log('Joining room:', chatRoomId);
+        socket?.emit('join', { chatRoomId });
+        setIsConnected(true);
+      }
+    };
 
-    hasSetupListeners.current = true;
+    const handleException = (error: unknown) => {
+      console.error('Socket exception:', error);
+      setIsConnected(false);
+    };
 
-    if (socket.connected) {
-      joinRoom();
+    if (socket && chatRoomId && !hasSetupListeners.current) {
+      socket.off('connect', handleConnect);
+      socket.off('receive', handleReceiveMessage);
+      socket.off('exception', handleException);
+
+      socket.on('connect', handleConnect);
+      socket.on('receive', handleReceiveMessage);
+      socket.on('exception', handleException);
+
+      hasSetupListeners.current = true;
+
+      if (socket.connected) {
+        handleConnect();
+      }
     }
 
     return () => {
-      socket.off('connect', handleConnect);
-      socket.off('receive', handleReceiveMessage);
-      socket.off('exception');
-      hasSetupListeners.current = false;
+      if (socket) {
+        socket.off('connect', handleConnect);
+        socket.off('receive', handleReceiveMessage);
+        socket.off('exception', handleException);
+        hasSetupListeners.current = false;
+      }
     };
   }, [socket, chatRoomId]);
 
   const sendMessage = useCallback(
     (message: object) => {
-      if (!socket?.connected || !message) return;
-
-      // 메시지 전송 중 상태 관리
-      let isProcessing = false;
-
-      if (isProcessing) return;
+      if (!socket?.connected || !message || isProcessing.current) return;
 
       try {
-        isProcessing = true;
-        console.log('sendMessage', message);
+        isProcessing.current = true;
+        console.log('Sending message:', message);
+
         socket.emit('send', message, () => {
-          // 서버로부터 응답을 받으면 처리 완료
-          isProcessing = false;
+          isProcessing.current = false;
         });
+
+        setTimeout(() => {
+          isProcessing.current = false;
+        }, 5000);
       } catch (error) {
         console.error('Failed to send message:', error);
-        isProcessing = false;
+        isProcessing.current = false;
       }
     },
     [socket]
   );
 
-  return { messages, sendMessage };
+  return { messages, sendMessage, isConnected };
 };

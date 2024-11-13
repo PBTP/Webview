@@ -6,6 +6,8 @@
   justify-content: space-between;
 
   > .ChatRoomsEditContainer {
+    min-height: 80dvh;
+
     > .ChatRoomsEditHeader {
       display: flex;
       justify-content: space-between;
