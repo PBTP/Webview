@@ -12,6 +12,7 @@ import Cookies from 'js-cookie';
 const RootLayout = () => {
   const { accessToken, uuid } = useAuthStore((state) => state);
   const cookieToken = Cookies.get('AUTH');
+  const allCookies = Cookies.get();
   const maskToken = (token: string | null) => {
     if (!token) return '';
     if (token.length <= 12) return token;
@@ -26,6 +27,7 @@ const RootLayout = () => {
       <div>
         <div className={styles.Token}>Token: {maskToken(accessToken)}</div>
         <div className={styles.Token}>CookieToken: {cookieToken || '없음'}</div>
+        <div className={styles.Token}>allCookie: {JSON.stringify(allCookies) || '올쿠키'}</div>
         <div>uuid: {uuid}</div>
         <button onClick={() => showiOSInfo(`${accessToken},uuid:${uuid}`)}>
           확인
