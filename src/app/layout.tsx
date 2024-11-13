@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Providers from './provider';
 import '@/styles/global.scss';
+import TokenInjection from '@/components/Layout/RootLayout/RootLayout';
 
 export const metadata: Metadata = {
   title: 'Mongle',
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <TokenInjection>{children}</TokenInjection>
+        </Providers>
       </body>
     </html>
   );
