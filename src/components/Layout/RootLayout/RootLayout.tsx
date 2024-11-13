@@ -7,10 +7,11 @@ import { showiOSInfo, webviewInit } from '@/webview/utils';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorPage from '@/pages/Error/ErrorPage';
 import LoadingSpinner from '@/pages/Loading/LoadingSpinner';
+import Cookies from 'js-cookie';
 
 const RootLayout = () => {
   const { accessToken, uuid } = useAuthStore((state) => state);
-
+  const cookieToken = Cookies.get('AUTH');
   const maskToken = (token: string | null) => {
     if (!token) return '';
     if (token.length <= 12) return token;
@@ -19,11 +20,12 @@ const RootLayout = () => {
     const suffix = token.slice(-6);
     return `${prefix}...${suffix}`;
   };
-
+  
   return (
     <div className={styles.RootLayout}>
       <div>
         <div className={styles.Token}>Token: {maskToken(accessToken)}</div>
+        <div className={styles.Token}>CookieToken: {cookieToken || '없음'}</div>
         <div>uuid: {uuid}</div>
         <button onClick={() => showiOSInfo(`${accessToken},uuid:${uuid}`)}>
           확인
