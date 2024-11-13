@@ -1,9 +1,9 @@
 import { ChatRoom } from '@/hooks/api/types/chat';
 import EditIcon from '@/icons/icon/EditIcon';
 import React from 'react';
-import { useNavigate } from 'react-router';
 import ChatRoomItems from './ChatRoomItems';
 import styles from './ChatRoomList.module.scss';
+import { useRouter } from 'next/router';
 
 interface ChatRoomListProps {
   chatRoomsData: ChatRoom[];
@@ -14,10 +14,9 @@ const ChatRoomList = ({ chatRoomsData, setIsEdit }: ChatRoomListProps) => {
   const handleEditIcon = () => {
     setIsEdit((prev) => !prev);
   };
-
-  const navigate = useNavigate();
+  const router = useRouter();
   const onClickRoute = (chatRoomId: number, storeName: string) => {
-    navigate(`${chatRoomId}`, { state: { chatRoomId, storeName } });
+    router.push(`${chatRoomId}`);
   };
 
   return (
