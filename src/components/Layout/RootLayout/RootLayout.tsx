@@ -1,15 +1,19 @@
-import React, { Suspense } from 'react';
+'use client';
 
+import React, { Suspense } from 'react';
 import styles from './RootLayout.module.scss';
-import { Outlet } from 'react-router-dom';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { showiOSInfo, webviewInit } from '@/webview/utils';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorPage from '@/pages/Error/ErrorPage';
-import LoadingSpinner from '@/pages/Loading/LoadingSpinner';
+import ErrorPage from '@/pagesss/Error/ErrorPage';
+import LoadingSpinner from '@/pagesss/Loading/LoadingSpinner';
 import Cookies from 'js-cookie';
 
-const RootLayout = () => {
+type TokenInjectionProps = {
+  children: React.ReactNode;
+};
+
+const TokenInjection = ({ children }: TokenInjectionProps) => {
   const { accessToken, uuid } = useAuthStore((state) => state);
   const cookieToken = Cookies.get('AUTH');
   const allCookies = Cookies.get();
@@ -35,12 +39,10 @@ const RootLayout = () => {
         <button onClick={webviewInit}>초기설정</button>
       </div>
       <ErrorBoundary fallback={<ErrorPage />}>
-        <Suspense fallback={<LoadingSpinner />}>
-          <Outlet />
-        </Suspense>
+        <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
       </ErrorBoundary>
     </div>
   );
 };
 
-export default RootLayout;
+export default TokenInjection;

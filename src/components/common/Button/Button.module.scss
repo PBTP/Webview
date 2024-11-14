@@ -1,52 +1,62 @@
 @import '@/styles/theme.scss';
 
-button {
+.button {
   border-radius: 8px;
   transition: background-color 0.4s;
+
   &.Gray {
-    background-color: $gray500;
-    color: $white;
+    background-color: #7d8691;
+    color: #fff;
   }
+
   &.White {
-    background-color: $white;
-    border: 1px solid $gray300;
-    color: $gray500;
+    background-color: #fff;
+    border: 1px solid #dbdee2;
+    color: #7d8691;
   }
+
   &.Primary {
-    background-color: $primary;
-    color: $white;
+    background-color: #688edc;
+    color: #fff;
   }
+
   &.Disabled {
-    background-color: $gray300;
-    color: $white;
+    background-color: #dbdee2;
+    color: #fff;
     pointer-events: none;
   }
+
   &.Reserved {
-    background-color: $white;
-    border: 1px solid $gray200;
-    color: $gray100;
+    background-color: #fff;
+    border: 1px solid #eeeff1;
+    color: #f3f4f6;
   }
+
   &.TimeActive {
-    background-color: $gray400;
-    border: 1px solid $gray400;
-    color: $white;
+    background-color: #8b95a1;
+    border: 1px solid #8b95a1;
+    color: #fff;
   }
+
   &.TimeDisabled {
     pointer-events: none;
-    border: 1px solid $gray200;
-    color: $gray100;
+    border: 1px solid #eeeff1;
+    color: #f3f4f6;
     background-color: transparent;
   }
+
   &.Spacing {
-    background-color: $spacing400;
-    color: $white;
+    background-color: #ff6a69;
+    color: #fff;
   }
+
   &.Survey {
-    background-color: $gray200;
-    color: $gray1000;
+    background-color: #eeeff1;
+    color: #313438;
   }
+
   &.SurveyActive {
-    background-color: $gray800;
-    color: $white;
+    background-color: #535961;
+    color: #fff;
   }
 }

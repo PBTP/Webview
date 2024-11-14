@@ -1,4 +1,4 @@
-import ArrowDownNoTailSvg from '@/assets/icon/arrow_down_no_tail.svg?react';
+import ArrowDownNoTailSvg from '@/assets/icon/arrow_down_no_tail.svg';
 import { IconProps } from '../types';
 /**
  *

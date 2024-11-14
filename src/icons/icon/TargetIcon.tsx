@@ -1,4 +1,4 @@
-import TargetIconSvg from '@/assets/icon/target.svg?react';
+import TargetIconSvg from '@/assets/icon/target.svg';
 import { IconProps } from '../types';
 
 const TargetIcon = ({ width, height, className }: IconProps) => {

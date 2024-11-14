@@ -26,3 +26,7 @@ dist-ssr
 
 revision.json
 *.pem
+
+.next
+next-env.d.ts
+dist

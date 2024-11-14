@@ -14,7 +14,7 @@ const CMCalendar = () => {
   };
 
   return (
-    <>
+    <div className={styles.calendar}>
       <Calendar
         onChange={onChange}
         value={date}
@@ -42,7 +42,7 @@ const CMCalendar = () => {
         }
         showNeighboringMonth={false}
       />
-    </>
+    </div>
   );
 };
 

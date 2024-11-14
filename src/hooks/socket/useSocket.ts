@@ -16,7 +16,7 @@ export const useSocket = () => {
   const socket = useMemo(() => {
     if (!token) return null;
     console.log(token);
-    return io(`${import.meta.env.VITE_SOCKET_URL}`, {
+    return io(`${process.env.NEXT_PUBLICVITE_SOCKET_URL}`, {
       extraHeaders: {
         authorization: `Bearer ${token}`,
       },

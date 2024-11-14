@@ -13,13 +13,13 @@ export const searchAddress = async ({
 }: ReqSearchAddress): Promise<ResSearchAddress> => {
   try {
     const { data } = await axios({
-      url: `${import.meta.env.VITE_JUSO_API_URL}/addrLinkApi.do`,
+      url: `${process.env.NEXT_PUBLICVITE_JUSO_API_URL}/addrLinkApi.do`,
       method: 'get',
       params: {
         keyword,
         currentPage,
         countPerPage,
-        confmKey: import.meta.env.VITE_JUSO_ADDRESS_CONFIRM_KEY,
+        confmKey: process.env.NEXT_PUBLICVITE_JUSO_ADDRESS_CONFIRM_KEY,
         resultType: 'json',
       },
     });
@@ -49,10 +49,10 @@ export const searchCoordinate = async ({
 }: ReqSearchCoordinate): Promise<ResSearchCoordinate> => {
   try {
     const { data } = await axios({
-      url: `${import.meta.env.VITE_JUSO_API_URL}/addrCoordApi.do`,
+      url: `${process.env.NEXT_PUBLICVITE_JUSO_API_URL}/addrCoordApi.do`,
       method: 'get',
       params: {
-        confmKey: import.meta.env.VITE_JUSO_COORDINATE_CONFIRM_KEY,
+        confmKey: process.env.NEXT_PUBLICVITE_JUSO_COORDINATE_CONFIRM_KEY,
         admCd,
         rnMgtSn,
         udrtYn,

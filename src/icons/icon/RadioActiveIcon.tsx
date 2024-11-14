@@ -1,4 +1,4 @@
-import RadioActiveIconSvg from '@/assets/icon/radio-active.svg?react';
+import RadioActiveIconSvg from '@/assets/icon/radio-active.svg';
 import { IconProps } from '../types';
 
 const RadioActiveIcon = ({ width, height, className, onClick }: IconProps) => {

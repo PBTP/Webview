@@ -1,4 +1,3 @@
-import { DeleteXIcon } from '@/icons/icon';
 import styles from './Review.module.scss';
 import ReviewInfo from '@/components/ReviewInfo/ReviewInfo';
 import { useState, useEffect } from 'react';

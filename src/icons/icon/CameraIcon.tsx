@@ -1,4 +1,4 @@
-import CameraSvg from '@/assets/icon/camera.svg?react';
+import CameraSvg from '@/assets/icon/camera.svg';
 import { IconProps } from '../types';
 /**
  *

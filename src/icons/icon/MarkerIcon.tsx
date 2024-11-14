@@ -1,4 +1,4 @@
-import MarkerSvg from '@/assets/icon/marker.svg?react';
+import MarkerSvg from '@/assets/icon/marker.svg';
 import { IconProps } from '../types';
 /**
  *

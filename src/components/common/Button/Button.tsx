@@ -23,7 +23,7 @@ const Button = ({ children, buttonType, className, onClick }: ButtonProps) => {
   return (
     <button
       disabled={['Disabled', 'Reserved'].includes(buttonType)}
-      className={`${className} ${styles[buttonType]}`}
+      className={`${styles.button} ${className} ${styles[buttonType]}`}
       onClick={onClick}
     >
       {children}

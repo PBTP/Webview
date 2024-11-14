@@ -1,4 +1,4 @@
-import RadioIconSvg from '@/assets/icon/radio.svg?react';
+import RadioIconSvg from '@/assets/icon/radio.svg';
 import { IconProps } from '../types';
 
 const RadioIcon = ({ width, height, className, onClick }: IconProps) => {

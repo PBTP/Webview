@@ -1,4 +1,4 @@
-import ViteSvg from '@/assets/logo/vite.svg?react';
+import ViteSvg from '@/assets/logo/vite.svg';
 import { IconProps } from '../types';
 
 const ViteLogoIcon = ({

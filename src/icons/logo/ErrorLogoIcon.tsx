@@ -1,4 +1,4 @@
-import ErrorLogoSvg from '@/assets/logo/error.svg?react';
+import ErrorLogoSvg from '@/assets/logo/error.svg';
 import { IconProps } from '../types';
 
 const ErrorLogoIcon = ({ width, height, className }: IconProps) => {

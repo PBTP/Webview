@@ -1,4 +1,4 @@
-import SearchIconSvg from '@/assets/icon/search.svg?react';
+import SearchIconSvg from '@/assets/icon/search.svg';
 import { IconProps } from '../types';
 /**
  *
