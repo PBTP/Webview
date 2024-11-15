@@ -8,7 +8,7 @@
     "build": "./revision.sh && next build",
     "start": "next start",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "prepare": "husky install",
+    "prepare": "husky",
     "lint-staged": "lint-staged",
     "preinstall": "npx only-allow pnpm"
   },
