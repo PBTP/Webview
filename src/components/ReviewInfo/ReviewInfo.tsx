@@ -1,9 +1,9 @@
+import { DeleteXIcon } from '@/components/ui/icons/icon';
 import styles from './ReviewInfo.module.scss';
-import { DeleteXIcon } from '@/icons/icon';
 
 /**
  * 해당 정보는 추후에 props로 받아서 반려동물 정보를 보여준다.
- * @returns 
+ * @returns
  */
 const ReviewInfo = () => {
   return (
@@ -25,6 +25,6 @@ const ReviewInfo = () => {
       </div>
     </>
   );
-}
+};
 
 export default ReviewInfo;

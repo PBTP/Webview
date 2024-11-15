@@ -1,0 +1,12 @@
+.LoadingSpinnerWrapper {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba($color: #fff, $alpha: 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}

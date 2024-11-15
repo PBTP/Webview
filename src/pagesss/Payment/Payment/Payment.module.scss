@@ -1,0 +1,248 @@
+@import '@/styles/theme.scss';
+
+.PaymentWrapper {
+  > .PaymentSectionLine {
+    height: 16px;
+    background-color: $gray100;
+    margin: 0px -20px;
+  }
+
+  > .PaymentInfoWrapper {
+    margin-bottom: 16px;
+
+    > .PaymentTooltip {
+      color: $black;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 22px;
+    }
+
+    > .PaymentInfoContainer {
+      padding: 12px 16px;
+      margin-top: 8px;
+
+      > .PaymentInfoHeader {
+        color: $black;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 24px;
+      }
+
+      > .PaymentInfoContent {
+        margin-top: 16px;
+        color: $gray700;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+
+        > .PaymentInfoLine {
+          display: flex;
+          gap: 8px;
+        }
+      }
+    }
+
+    > .PaymentPhoneInfo {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      > .PaymentPhone {
+        color: $black;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+      }
+
+      > .PaymentPhoneEditButton {
+        background-color: $gray100;
+        padding: 8px 16px;
+        color: $gray800;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 18px;
+      }
+    }
+
+    > .PaymentRequestInto {
+      margin-top: 16px;
+
+      > .PaymentRequestHeader {
+        color: $black;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 22px;
+      }
+
+      > .PaymentRequestInputWrapper {
+        margin-top: 8px;
+        padding: 12px 16px;
+
+        > .PaymentInput {
+          width: 100%;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
+  > .PaymentMethodWrapper {
+    margin-bottom: 16px;
+
+    > .PaymentMethodHeader {
+      margin-top: 16px;
+      color: $black;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 22px;
+    }
+
+    > .PaymentMethodContent {
+      margin-top: 16px;
+
+      > .PaymentMethod {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    > .PaymentCardWrapper {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      > .PaymentCardContent {
+        display: flex;
+        align-items: center;
+
+        > .PaymentCardHeader {
+          color: $gray800;
+          font-size: 13px;
+          line-height: 18px;
+          width: 80px;
+        }
+
+        > .PaymentCardInputWrapper {
+          flex: 1;
+          border-radius: 8px;
+          border: 1px solid $gray300;
+          padding: 7px 12px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+
+          > .PaymentCardInput {
+            width: 100%;
+          }
+        }
+
+        > .PaymentCardDropdownWrapper {
+          flex: 1;
+          .PaymentCardDropdown {
+            flex: 1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+          }
+
+          .PaymentCardDropdownItem {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            padding: 8px 12px;
+          }
+        }
+      }
+    }
+
+    > .PaymentDefaultContent {
+      width: fit-content;
+      margin-top: 9px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $gray700;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 18px;
+    }
+
+    > .PaymentMeetAndPay {
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $gray400;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 22px;
+    }
+  }
+
+  > .PaymentAmountWrapper {
+    > .PaymentAmountHeader {
+      margin-top: 16px;
+      color: $black;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 22px;
+    }
+
+    > .PaymentAmountContent {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      > .PaymentAmountDetail {
+        display: flex;
+        justify-content: space-between;
+        color: $gray700;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+      }
+    }
+
+    > .PaymentAmountDivider {
+      margin: 12px 0px;
+    }
+
+    > .PaymentTotalAmount {
+      display: flex;
+      justify-content: space-between;
+
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22px;
+
+      > .TotalAmountHeader {
+        color: $black;
+      }
+      > .TotalAmount {
+        color: $primary;
+      }
+    }
+  }
+
+  > .PaymentButton {
+    width: 100%;
+    padding: 17px 0px;
+    margin-top: 58px;
+    margin-bottom: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.32px;
+  }
+}

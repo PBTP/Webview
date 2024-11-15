@@ -1,0 +1,62 @@
+@import '@/styles/theme.scss';
+
+.button {
+  border-radius: 8px;
+  transition: background-color 0.4s;
+
+  &.Gray {
+    background-color: #7d8691;
+    color: #fff;
+  }
+
+  &.White {
+    background-color: #fff;
+    border: 1px solid #dbdee2;
+    color: #7d8691;
+  }
+
+  &.Primary {
+    background-color: #688edc;
+    color: #fff;
+  }
+
+  &.Disabled {
+    background-color: #dbdee2;
+    color: #fff;
+    pointer-events: none;
+  }
+
+  &.Reserved {
+    background-color: #fff;
+    border: 1px solid #eeeff1;
+    color: #f3f4f6;
+  }
+
+  &.TimeActive {
+    background-color: #8b95a1;
+    border: 1px solid #8b95a1;
+    color: #fff;
+  }
+
+  &.TimeDisabled {
+    pointer-events: none;
+    border: 1px solid #eeeff1;
+    color: #f3f4f6;
+    background-color: transparent;
+  }
+
+  &.Spacing {
+    background-color: #ff6a69;
+    color: #fff;
+  }
+
+  &.Survey {
+    background-color: #eeeff1;
+    color: #313438;
+  }
+
+  &.SurveyActive {
+    background-color: #535961;
+    color: #fff;
+  }
+}

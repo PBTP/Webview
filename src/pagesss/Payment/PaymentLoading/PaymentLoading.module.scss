@@ -1,0 +1,17 @@
+@import '@/styles/theme.scss';
+
+.PaymentLoadingWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 24px;
+  color: $gray1000;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
