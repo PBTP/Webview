@@ -1,13 +1,12 @@
-import CMCalendar from '@/components/common/Calendar/Calendar';
+import Button from '@/components/ui/common/Button/Button';
+import CMCalendar from '@/components/ui/common/Calendar/Calendar';
+import { IReservation } from '@/types/reservation';
+import { useState } from 'react';
 import styles from './Index.module.scss';
-import Button from '@/components/common/Button/Button';
-import { useEffect, useState } from 'react';
-import { IReservation } from '@/interfaces/reservation';
-import { requestAPI } from '@/utils/fetch';
 
 /**
  * TODO: TimeWrap 컴포넌트 분리하여 재사용 가능하게 만들기
- * @returns 
+ * @returns
  */
 const ReservationIndexPage = () => {
   const [times, setTimes] = useState<IReservation>();

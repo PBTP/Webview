@@ -1,16 +1,10 @@
-import ContentField from '@/components/common/ContentField/ContentField';
-import styles from './Payment.module.scss';
-import {
-  CheckboxIcon,
-  SelectedCheckboxIcon,
-  SelectedIcon,
-  UnSelectedIcon,
-} from '@/icons/icon';
+import Button from '@/components/ui/common/Button/Button';
+import ContentField from '@/components/ui/common/ContentField/ContentField';
+import Divider from '@/components/ui/common/Divider/Divider';
+import Dropdown from '@/components/ui/common/Dropdown/Dropdown';
 import { useState } from 'react';
-import Divider from '@/components/common/Divider/Divider';
-import Button from '@/components/common/Button/Button';
 import PaymentLoading from '../PaymentLoading/PaymentLoading';
-import Dropdown from '@/components/common/Dropdown/Dropdown';
+import styles from './Payment.module.scss';
 
 const Payment = () => {
   const cardMethods = ['국민은행', '신한은행', '우리은행', '기업은행'];

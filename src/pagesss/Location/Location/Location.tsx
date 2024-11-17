@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react';
-import styles from './Location.module.scss';
-import ContentField from '@/components/common/ContentField/ContentField';
-import { SearchIcon } from '@/icons/icon';
-import Button from '@/components/common/Button/Button';
-import useOutsideClick from '@/hooks/useOutsideClick';
-import { useDebounce } from '@/hooks/useDebounce';
-import { sendAddressFromWebview } from '@/webview/address';
-import { useAddress, useCoordinate } from '@/hooks/api/useAddress';
+import Button from '@/components/ui/common/Button/Button';
+import ContentField from '@/components/ui/common/ContentField/ContentField';
+import { SearchIcon } from '@/components/ui/icons/icon';
 import { SearchAddressJuso } from '@/hooks/api/types/address';
+import { useAddress, useCoordinate } from '@/hooks/api/useAddress';
+import { useDebounce } from '@/hooks/useDebounce';
+import useOutsideClick from '@/hooks/useOutsideClick';
 import { foramtSearchWord } from '@/utils/format';
+import { sendAddressFromWebview } from '@/webview/address';
+import { useRef, useState } from 'react';
+import styles from './Location.module.scss';
 
 const Location = () => {
   const [addressInfo, setAddressInfo] = useState({

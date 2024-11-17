@@ -1,5 +1,4 @@
-import { ErrorLogoIcon } from '@/icons/logo';
-import React from 'react';
+import { ErrorLogoIcon } from '@/components/ui/icons/logo';
 import styles from './Error.module.scss';
 
 interface ErrorProps {

@@ -1,15 +1,15 @@
-import styles from './Review.module.scss';
 import ReviewInfo from '@/components/ReviewInfo/ReviewInfo';
-import { useState, useEffect } from 'react';
-import Button from '@/components/common/Button/Button';
-import CameraIcon from '@/icons/icon/CameraIcon';
+import Button from '@/components/ui/common/Button/Button';
+import CameraIcon from '@/components/ui/icons/icon/CameraIcon';
+import { useEffect, useState } from 'react';
+import styles from './Review.module.scss';
 
 const ReviewPage = () => {
   const [step, setStep] = useState<'SURVEY' | 'REVIEW'>('SURVEY');
   // review data 형식을 모르기 떄문에 any 선언
   const [reviewData, setReviewData] = useState<any>({
-    text: ''
-  })
+    text: '',
+  });
   const initialButtonStates = new Array(8).fill('Survey');
   const [buttonStates, setButtonStates] = useState(initialButtonStates);
   const [isNextButtonEnabled, setIsNextButtonEnabled] = useState(false);
@@ -123,9 +123,7 @@ const ReviewPage = () => {
           </div>
           <div className={styles.NavigateWrap}>
             <Button buttonType="Disabled">이전</Button>
-            <Button
-              buttonType={isNextButtonEnabled ? 'Primary' : 'Disabled'}
-            >
+            <Button buttonType={isNextButtonEnabled ? 'Primary' : 'Disabled'}>
               등록
             </Button>
           </div>

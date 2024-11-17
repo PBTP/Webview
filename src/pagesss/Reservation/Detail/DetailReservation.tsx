@@ -1,9 +1,11 @@
-import React from 'react';
-
+import Button from '@/components/ui/common/Button/Button';
+import ContentField from '@/components/ui/common/ContentField/ContentField';
+import {
+  CalendarIcon,
+  CheckboxIcon,
+  MarkerIcon,
+} from '@/components/ui/icons/icon';
 import styles from './DetailReservation.module.scss';
-import ContentField from '@/components/common/ContentField/ContentField';
-import Button from '@/components/common/Button/Button';
-import { CalendarIcon, CheckboxIcon, MarkerIcon } from '@/icons/icon';
 
 const DetailReservation = () => {
   // const location = useLocation();
